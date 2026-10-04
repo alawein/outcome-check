@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Outcome check | outcome report</title><style>body{margin:0;background:#f4f6f5;color:#142c2a;font:17px/1.6 system-ui}main{max-width:980px;margin:auto;padding:36px 20px}h1{font-size:2.8rem}.cards{display:flex;flex-wrap:wrap;gap:12px}.card{background:white;border:1px solid #baccc6;border-radius:12px;padding:16px;flex:1 1 110px}.card strong{display:block;font-size:2rem}.card span{display:block}pre{background:#fff;padding:20px;border:1px solid #baccc6;white-space:pre-wrap;overflow-wrap:anywhere}a{color:#075851}</style></head><body><main><p>LOCAL EVIDENCE / REFERENCED OBSERVATIONS</p><h1>Outcome check</h1><p>Checks supplied evidence, not authenticated execution.</p><div class="cards"><div class="card"><strong>1</strong><span>confirmed</span></div><div class="card"><strong>1</strong><span>contradicted</span></div><div class="card"><strong>1</strong><span>unobserved</span></div></div><h2>Inspectable report</h2><pre>{
+  &quot;counts&quot;: {
+    &quot;confirmed&quot;: 1,
+    &quot;contradicted&quot;: 1,
+    &quot;unobserved&quot;: 1
+  },
+  &quot;exit_code&quot;: 1,
+  &quot;input_sha256&quot;: &quot;8ef16c586741987d4fd4ff592e7b68f5bfaf2784ba5dbbf83f90eb82e06d4b88&quot;,
+  &quot;results&quot;: [
+    {
+      &quot;action&quot;: &quot;confirmed&quot;,
+      &quot;action_id&quot;: &quot;set-alarm&quot;,
+      &quot;id&quot;: &quot;enabled&quot;,
+      &quot;observation_id&quot;: &quot;fresh&quot;,
+      &quot;outcome&quot;: &quot;confirmed&quot;,
+      &quot;reason&quot;: &quot;expected value observed&quot;,
+      &quot;status&quot;: &quot;confirmed&quot;
+    },
+    {
+      &quot;action&quot;: &quot;confirmed&quot;,
+      &quot;action_id&quot;: &quot;set-alarm&quot;,
+      &quot;id&quot;: &quot;time&quot;,
+      &quot;observation_id&quot;: &quot;fresh&quot;,
+      &quot;outcome&quot;: &quot;contradicted&quot;,
+      &quot;reason&quot;: &quot;different value observed&quot;,
+      &quot;status&quot;: &quot;contradicted&quot;
+    },
+    {
+      &quot;action&quot;: &quot;not_required&quot;,
+      &quot;action_id&quot;: null,
+      &quot;id&quot;: &quot;volume&quot;,
+      &quot;observation_id&quot;: &quot;old&quot;,
+      &quot;outcome&quot;: &quot;unobserved&quot;,
+      &quot;reason&quot;: &quot;stale observation&quot;,
+      &quot;status&quot;: &quot;unobserved&quot;
+    }
+  ],
+  &quot;schema_version&quot;: 1
+}
+</pre><p>Hashes bind bytes, not authenticity. This is a static executed example.</p><p><a href="https://github.com/alawein/outcome-check">Source and installation</a></p></main></body></html>
