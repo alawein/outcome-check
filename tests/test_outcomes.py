@@ -193,3 +193,20 @@ def test_escaping_and_boundary():
     p["requirements"].append(p["requirements"][0] | {"id": "overflow"})
     with pytest.raises(InputError):
         validate(p)
+
+
+@pytest.mark.parametrize("offset", ["+00:60", "+01:99", "+24:00", "-24:00"])
+def test_invalid_timezone_offset(offset):
+    p = packet()
+    p["as_of"] = "2026-10-04T12:00:00" + offset
+    with pytest.raises(InputError):
+        validate(p)
+
+
+def test_submicrosecond_future_and_stale():
+    p = packet()
+    p["requirements"][0]["max_age_seconds"] = 0
+    p["observations"][0]["observed_at"] = "2026-10-04T12:00:00.0000001Z"
+    assert check_packet(p)["results"][0]["reason"] == "future observation"
+    p["observations"][0]["observed_at"] = "2026-10-04T11:59:59.9999999Z"
+    assert check_packet(p)["results"][0]["reason"] == "stale observation"

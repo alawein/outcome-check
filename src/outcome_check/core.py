@@ -1,4 +1,4 @@
-from outcome_check.contract import timestamp, validate
+from outcome_check.contract import age_seconds, validate
 
 
 def same_json(left: object, right: object) -> bool:
@@ -17,7 +17,6 @@ def same_json(left: object, right: object) -> bool:
 
 def check_packet(packet: dict) -> dict:
     validate(packet)
-    now = timestamp(packet["as_of"])
     actions = {row["id"]: row for row in packet["actions"]}
     observations = {row["id"]: row for row in packet["observations"]}
     results = []
@@ -33,7 +32,7 @@ def check_packet(packet: dict) -> dict:
         observation = observations.get(requirement["observation_id"])
         outcome, reason = "unobserved", "missing observation"
         if observation is not None:
-            age = (now - timestamp(observation["observed_at"])).total_seconds()
+            age = age_seconds(packet["as_of"], observation["observed_at"])
             if observation["subject"] != requirement["subject"]:
                 reason = "subject mismatch"
             elif age < 0:

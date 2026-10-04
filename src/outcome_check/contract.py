@@ -1,7 +1,9 @@
 import hashlib
 import json
 import math
+import re
 from datetime import datetime
+from fractions import Fraction
 from pathlib import Path
 
 
@@ -27,12 +29,12 @@ def identifier(value: object, label: str) -> None:
 def timestamp(value: str) -> datetime:
     require(type(value) is str and len(value) <= 64, "invalid timestamp type")
     # Restrict to RFC3339 calendar date/time, seconds and explicit zone.
-    import re
-
     require(
         bool(
             re.fullmatch(
-                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", value
+                r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                r"(?:\.[0-9]+)?(?:Z|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])",
+                value,
             )
         ),
         "timestamp requires RFC3339 timezone",
@@ -43,6 +45,18 @@ def timestamp(value: str) -> datetime:
         raise InputError("invalid timestamp") from exc
     require(result.utcoffset() is not None, "timezone required")
     return result
+
+
+def age_seconds(as_of: str, observed_at: str) -> Fraction:
+    """Compare every supplied fractional digit without float rounding."""
+    now, observed = timestamp(as_of), timestamp(observed_at)
+    delta = now.replace(microsecond=0) - observed.replace(microsecond=0)
+
+    def fraction(value: str) -> Fraction:
+        match = re.search(r"\.([0-9]+)", value)
+        return Fraction("0." + match[1]) if match else Fraction(0)
+
+    return Fraction(delta.days * 86400 + delta.seconds) + fraction(as_of) - fraction(observed_at)
 
 
 def json_value(value: object, depth: int = 0) -> None:

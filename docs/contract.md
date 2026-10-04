@@ -21,3 +21,7 @@ null=>not_required. Overall contradicted if either required component contradict
 confirmed if outcome confirmed and action confirmed/not_required; otherwise
 unobserved. Reports show both components and an outcome reason. No clock lookup.
 Output schema_version1, counts, results, exit_code and exact input SHA-256.
+
+Offset hours00..23/minutes00..59 are enforced. Fractional-second freshness uses
+every supplied digit. Leap seconds and year0000 are unsupported by the calendar
+parser and rejected. Timestamp strings are limited to64 characters.
