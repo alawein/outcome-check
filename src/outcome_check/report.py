@@ -101,12 +101,14 @@ def render_html(report: dict, packet: dict | None = None) -> str:
             if not isinstance(item, dict):
                 continue
             expected, observed, freshness = _evidence_cells(item, packet)
+            status_value = str(item.get("status", ""))
             rows += (
                 "<tr>"
                 f"<td>{html.escape(str(item.get('id', '')))}</td>"
                 f"<td>{html.escape(str(item.get('action', '')))}</td>"
                 f"<td>{html.escape(str(item.get('outcome', '')))}</td>"
-                f"<td>{html.escape(str(item.get('status', '')))}</td>"
+                f'<td class="st st-{html.escape(status_value)}">'
+                f"{html.escape(status_value)}</td>"
                 f"<td>{html.escape(str(item.get('reason', '')))}</td>"
                 f"<td>{html.escape(expected)}</td>"
                 f"<td>{html.escape(observed)}</td>"
@@ -116,7 +118,9 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         table = (
             "<h2>Results by requirement</h2>"
             '<div style="overflow-x:auto">'
-            f"<table>{head}<tbody>{rows}</tbody></table>"
+            "<table><caption>Per-requirement action receipt, outcome, status and "
+            "evidence echo</caption>"
+            f"{head}<tbody>{rows}</tbody></table>"
             "</div>"
         )
     else:
@@ -142,19 +146,36 @@ def render_html(report: dict, packet: dict | None = None) -> str:
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="description" content="Supplied-evidence outcome checks: action '
+        'receipt, observed outcome and merged status per requirement.">'
+        '<meta name="theme-color" content="#f4f6f5">'
         "<title>Outcome check | outcome report</title><style>"
-        "body{margin:0;background:#f4f6f5;color:#142c2a;font:17px/1.6 system-ui}"
-        "main{max-width:980px;margin:auto;padding:36px 20px}h1{font-size:2.8rem}"
+        ":root{color-scheme:light}"
+        "body{margin:0;background:#f4f6f5;color:#142c2a;font:17px/1.6 system-ui;"
+        "-webkit-tap-highlight-color:transparent}"
+        "main{max-width:980px;margin:auto;padding:36px 20px}"
+        "h1{font-size:2.8rem;text-wrap:balance}h2,h3{text-wrap:balance}"
+        ".eyebrow{letter-spacing:.12em;font-size:.85rem}"
         ".cards{display:flex;flex-wrap:wrap;gap:12px}.card{background:white;"
         "border:1px solid #baccc6;border-radius:12px;padding:16px;flex:1 1 110px}"
-        ".card strong{display:block;font-size:2rem}.card span{display:block}"
+        ".card strong{display:block;font-size:2rem;font-variant-numeric:tabular-nums}"
+        ".card span{display:block}"
         "table{border-collapse:collapse;width:100%;background:#fff}"
+        "caption{caption-side:top;text-align:left;font-weight:650;padding:8px 0}"
         "th,td{border:1px solid #baccc6;padding:10px;text-align:left;"
         "vertical-align:top;overflow-wrap:anywhere}"
         "th{background:#e7f1ec}"
+        "tbody tr:nth-child(even){background:#f4f8f6}"
+        ".st{font-weight:650}"
+        ".st-confirmed{background:#e7f1ec}"
+        ".st-contradicted{background:#f9e7e7}"
+        ".st-unobserved{background:#f6f0dd}"
         "pre{background:#fff;padding:20px;border:1px solid #baccc6;"
-        "white-space:pre-wrap;overflow-wrap:anywhere}a{color:#075851}"
-        "</style></head><body><main><p>LOCAL EVIDENCE / REFERENCED OBSERVATIONS</p>"
+        "white-space:pre-wrap;overflow-wrap:anywhere}"
+        "a{color:#075851}a:hover{text-decoration:underline}"
+        ":focus-visible{outline:3px solid #075851;outline-offset:3px}"
+        '</style></head><body><main><p class="eyebrow">LOCAL EVIDENCE / '
+        "REFERENCED OBSERVATIONS</p>"
         "<h1>Outcome check</h1><p>Checks supplied evidence, not authenticated execution.</p>"
         '<div class="cards">'
         + cards
