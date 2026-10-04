@@ -1,5 +1,7 @@
 # Changelog
 
-## Unreleased
+## 0.1.0
 
-- Strict read-only supplied-evidence outcome checks and portable reports.
+- Read-only explicit action/outcome checks over supplied evidence.
+- Exact fractional freshness, typed JSON equality and safe reports.
+- Synthetic examples, independently specified tests and GitHub-only distribution.
