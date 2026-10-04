@@ -7,7 +7,7 @@ observed outcome and overall decision separate: confirmed, contradicted or unobs
 ## Run
 
 Python3.13+, no runtime dependencies. Install the wheel from this repository's
-Releases using `python -m pip install path/to/outcome_check-0.1.0-py3-none-any.whl`.
+Releases using `python -m pip install path/to/outcome_check-0.1.2-py3-none-any.whl`.
 Or from a clone:
 
 ```sh
