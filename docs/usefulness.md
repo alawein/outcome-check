@@ -4,13 +4,13 @@ Actor: Codex, AI-assisted, original synthetic non-client alarm packet. No extern
 users, client result, measured time saving, adoption or independent labeler.
 
 Baseline: read three requirements and two observations. Direct state assertions
-confirm enabled=true and fail time07:00 against07:30. A separate freshness check
-is needed before using old volume5; its age900 exceeds120 seconds. A plain equality
+confirm enabled=true and fail time 07:00 against 07:30. A separate freshness check
+is needed before using old volume 5; its age 900 exceeds 120 seconds. A plain equality
 assertion would pass that stale value. Both referenced actions report succeeded.
 
-Actual core/CLI reports one confirmed, one contradicted, one unobserved, exit1.
-Time retains actionconfirmed alongside outcomecontradicted. Volume is unobserved
-with stale observation reason and actionnot_required. Input hash and actual output
+Actual core/CLI reports one confirmed, one contradicted, one unobserved, exit 1.
+Time retains action confirmed alongside outcome contradicted. Volume is unobserved
+with stale observation reason and action not_required. Input hash and actual output
 are in examples/report.json. No false alarm against these declared expectations;
 no general error-rate or authenticity claim. Expectations preceded implementation.
 

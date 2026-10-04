@@ -1,6 +1,6 @@
 # Functional evidence
 
-35 local pytest cases passed after initial missing-module failure. The independently
+45 local pytest cases passed after initial missing-module failure. The independently
 specified twelve-case matrix covers clean, wrong-state, failed/missing/unknown/null
 action, missing/stale/future/wrong-subject observation, missing path and Boolean
 versus number. Other tests cover explicit retries, row ordering, recursive equality,

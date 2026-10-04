@@ -13,7 +13,7 @@ def main() -> None:
     }
     target = Path("site")
     target.mkdir(exist_ok=True)
-    (target / "index.html").write_text(render_html(report), encoding="utf-8")
+    (target / "index.html").write_text(render_html(report, packet), encoding="utf-8")
     (target / "report.json").write_text(render_json(report), encoding="utf-8")
 
 

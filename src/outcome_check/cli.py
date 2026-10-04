@@ -14,16 +14,24 @@ def same_location(left: Path, right: Path) -> bool:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Check supplied agent outcome receipts.")
-    parser.add_argument("packet", type=Path)
-    parser.add_argument("--json", type=Path)
-    parser.add_argument("--html", type=Path)
-    parser.add_argument("--force", action="store_true")
+    parser = argparse.ArgumentParser(
+        description="Check supplied agent outcome receipts.",
+        epilog=(
+            "packet shape: schema_version 1 with as_of, requirements, actions, "
+            "observations; see docs/contract.md. "
+            "example: outcome-check examples/packet.json --html report.html. "
+            "exit 0 all confirmed; exit 1 needs review; exit 2 invalid input or I/O."
+        ),
+    )
+    parser.add_argument("packet", type=Path, help="input packet JSON file")
+    parser.add_argument("--json", type=Path, help="write the JSON report to PATH")
+    parser.add_argument("--html", type=Path, help="write the HTML report to PATH")
+    parser.add_argument("--force", action="store_true", help="overwrite existing output files")
     args = parser.parse_args(argv)
     try:
         packet, digest = load_packet(args.packet)
         report = check_packet(packet) | {"input_sha256": digest}
-        targets = [(args.json, render_json(report)), (args.html, render_html(report))]
+        targets = [(args.json, render_json(report)), (args.html, render_html(report, packet))]
         outputs = [path for path, content in targets if path is not None]
         inputs = [args.packet]
         for index, path in enumerate(outputs):

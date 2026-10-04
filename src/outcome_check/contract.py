@@ -16,13 +16,16 @@ def require(condition: bool, message: str) -> None:
         raise InputError(message)
 
 
-def fields(value: object, keys: set[str], label: str) -> None:
-    require(type(value) is dict and set(value) == keys, f"invalid {label} fields")
+def fields(value: object, keys: set[str], label: str, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
+    require(type(value) is dict and set(value) == keys, f"invalid {label} fields{suffix}")
 
 
-def identifier(value: object, label: str) -> None:
+def identifier(value: object, label: str, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
     require(
-        isinstance(value, str) and bool(value.strip()) and len(value) <= 200, f"invalid {label}"
+        isinstance(value, str) and bool(value.strip()) and len(value) <= 200,
+        f"invalid {label}{suffix}",
     )
 
 
@@ -101,32 +104,37 @@ def validate(packet: dict) -> None:
         require(type(entries) is list and len(entries) <= 10000, f"invalid {name} count")
         require(name != "requirements" or bool(entries), "requirements cannot be empty")
         seen = set()
-        for row in entries:
-            fields(row, keys, name)
-            identifier(row["id"], name + " ID")
-            require(row["id"] not in seen, f"duplicate {name} ID")
+        for index, row in enumerate(entries, 1):
+            where = f"{name} row {index}"
+            fields(row, keys, name, where)
+            identifier(row["id"], name + " ID", where)
+            require(row["id"] not in seen, f"duplicate {name} ID at row {index}")
             seen.add(row["id"])
             if name == "actions":
                 require(
-                    row["status"] in ("succeeded", "failed", "unknown"), "invalid action status"
+                    row["status"] in ("succeeded", "failed", "unknown"),
+                    f"invalid action status at {where}",
                 )
             else:
-                identifier(row["subject"], "subject")
+                identifier(row["subject"], "subject", where)
             if name == "requirements":
-                require(type(row["path"]) is list and 0 < len(row["path"]) <= 32, "invalid path")
+                require(
+                    type(row["path"]) is list and 0 < len(row["path"]) <= 32,
+                    f"invalid path at {where}",
+                )
                 for key in row["path"]:
-                    identifier(key, "path key")
-                identifier(row["observation_id"], "observation reference")
+                    identifier(key, "path key", where)
+                identifier(row["observation_id"], "observation reference", where)
                 require(
                     type(row["max_age_seconds"]) is int and row["max_age_seconds"] >= 0,
-                    "invalid max_age_seconds",
+                    f"invalid max_age_seconds at {where}",
                 )
                 if row["action_id"] is not None:
-                    identifier(row["action_id"], "action reference")
+                    identifier(row["action_id"], "action reference", where)
                 json_value(row["expected"])
             if name == "observations":
                 timestamp(row["observed_at"])
-                require(type(row["state"]) is dict, "state must be object")
+                require(type(row["state"]) is dict, f"state must be object at {where}")
                 json_value(row["state"])
 
 
