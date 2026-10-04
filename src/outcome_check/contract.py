@@ -29,8 +29,9 @@ def identifier(value: object, label: str, where: str = "") -> None:
     )
 
 
-def timestamp(value: str) -> datetime:
-    require(type(value) is str and len(value) <= 64, "invalid timestamp type")
+def timestamp(value: str, where: str = "") -> datetime:
+    suffix = f" at {where}" if where else ""
+    require(type(value) is str and len(value) <= 64, f"invalid timestamp type{suffix}")
     # Restrict to RFC3339 calendar date/time, seconds and explicit zone.
     require(
         bool(
@@ -40,13 +41,13 @@ def timestamp(value: str) -> datetime:
                 value,
             )
         ),
-        "timestamp requires RFC3339 timezone",
+        f"timestamp requires RFC3339 timezone{suffix}",
     )
     try:
         result = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError as exc:
-        raise InputError("invalid timestamp") from exc
-    require(result.utcoffset() is not None, "timezone required")
+        raise InputError(f"invalid timestamp{suffix}") from exc
+    require(result.utcoffset() is not None, f"timezone required{suffix}")
     return result
 
 
@@ -62,21 +63,22 @@ def age_seconds(as_of: str, observed_at: str) -> Fraction:
     return Fraction(delta.days * 86400 + delta.seconds) + fraction(as_of) - fraction(observed_at)
 
 
-def json_value(value: object, depth: int = 0) -> None:
-    require(depth <= 32, "JSON nesting exceeds 32")
+def json_value(value: object, depth: int = 0, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
+    require(depth <= 32, f"JSON nesting exceeds 32{suffix}")
     if value is None or type(value) in (str, bool, int):
         return
     if type(value) is float:
-        require(math.isfinite(value), "nonfinite value")
+        require(math.isfinite(value), f"nonfinite value{suffix}")
         return
     if type(value) is list:
         for child in value:
-            json_value(child, depth + 1)
+            json_value(child, depth + 1, where)
         return
-    require(type(value) is dict, "invalid JSON value")
+    require(type(value) is dict, f"invalid JSON value{suffix}")
     for key, child in value.items():
-        identifier(key, "state key")
-        json_value(child, depth + 1)
+        identifier(key, "state key", where)
+        json_value(child, depth + 1, where)
 
 
 def validate(packet: dict) -> None:
@@ -131,11 +133,11 @@ def validate(packet: dict) -> None:
                 )
                 if row["action_id"] is not None:
                     identifier(row["action_id"], "action reference", where)
-                json_value(row["expected"])
+                json_value(row["expected"], where=where)
             if name == "observations":
-                timestamp(row["observed_at"])
+                timestamp(row["observed_at"], where)
                 require(type(row["state"]) is dict, f"state must be object at {where}")
-                json_value(row["state"])
+                json_value(row["state"], where=where)
 
 
 def unique_pairs(pairs: list[tuple[str, object]]) -> dict:

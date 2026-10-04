@@ -24,13 +24,51 @@ def test_contract_errors_include_row_index():
     bad["requirements"][0]["max_age_seconds"] = -1
     with pytest.raises(InputError) as excinfo:
         validate(bad)
-    assert "1" in str(excinfo.value)
+    assert "row 1" in str(excinfo.value)
 
     dup = make_packet()
     dup["observations"].append(dict(dup["observations"][0]))
     with pytest.raises(InputError) as excinfo:
         validate(dup)
-    assert "2" in str(excinfo.value) or "row" in str(excinfo.value).lower()
+    assert "row 2" in str(excinfo.value)
+
+    bad_time = make_packet()
+    bad_time["observations"][0]["observed_at"] = "not-a-time"
+    with pytest.raises(InputError) as excinfo:
+        validate(bad_time)
+    assert "row 1" in str(excinfo.value)
+
+
+def test_fractional_age_renders_as_decimal():
+    p = make_packet()
+    p["as_of"] = "2026-10-04T12:00:00.5Z"
+    report = check_packet(p)
+    page = render_html(report, p)
+    assert "121/2" not in page
+    assert "age 60.5 s" in page
+
+
+def test_html_without_packet_uses_placeholder_cells():
+    report = check_packet(make_packet())
+    page = render_html(report)
+    assert "—" in page
+    assert "missing observation" not in page
+
+
+def test_html_missing_observation_and_bad_as_of_fallback():
+    p = make_packet()
+    p["requirements"][0]["observation_id"] = "absent"
+    report = check_packet(p)
+    assert "missing observation" in render_html(report, p)
+    broken = make_packet()
+    broken.pop("as_of")
+    page = render_html(check_packet(make_packet()), broken)
+    assert "max " in page
+
+
+def test_html_empty_results_has_no_table():
+    page = render_html({"counts": {}, "results": [], "exit_code": 0})
+    assert "<table" not in page
 
 
 def test_age_equal_to_max_is_confirmed():

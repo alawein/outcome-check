@@ -1,6 +1,7 @@
 import html
 import json
-from fractions import Fraction
+
+from outcome_check.contract import InputError, age_seconds
 
 
 def render_json(report: dict) -> str:
@@ -30,47 +31,39 @@ def _walk(state: object, path: list) -> tuple[bool, object]:
     return True, value
 
 
-def _evidence_cells(result: dict, packet: dict | None) -> tuple[str, str, str]:
+def _index(rows: object, key: str = "id") -> dict:
+    if not isinstance(rows, list):
+        return {}
+    return {row.get(key): row for row in rows if isinstance(row, dict) and key in row}
+
+
+def _evidence_cells(
+    result: dict,
+    requirements: dict,
+    observations: dict,
+    as_of: object,
+) -> tuple[str, str, str]:
     """Return (expected, observed, freshness) display strings, unescaped."""
-    if not isinstance(packet, dict):
-        return "—", "—", "—"
-    requirements = (
-        packet.get("requirements") if isinstance(packet.get("requirements"), list) else []
-    )
-    observations = (
-        packet.get("observations") if isinstance(packet.get("observations"), list) else []
-    )
-    req = next(
-        (r for r in requirements if isinstance(r, dict) and r.get("id") == result.get("id")),
-        None,
-    )
+    req = requirements.get(result.get("id"))
     if req is None:
         return "—", "—", "—"
     path = req.get("path") if isinstance(req.get("path"), list) else []
     dotted = ".".join(str(k) for k in path)
     expected = _short_json(req.get("expected"))
-    expected_cell = f"{dotted} = {expected}" if dotted else expected
-    obs = next(
-        (
-            o
-            for o in observations
-            if isinstance(o, dict) and o.get("id") == req.get("observation_id")
-        ),
-        None,
-    )
+    expected_cell = _truncate_text(f"{dotted} = {expected}") if dotted else expected
+    obs = observations.get(req.get("observation_id"))
     if obs is None:
         return expected_cell, "missing observation", "no observation; needs a fresh receipt"
     state = obs.get("state")
-    found, value = _walk(state, path if isinstance(path, list) else [])
+    found, value = _walk(state, path)
     observed = _short_json(value) if found else "missing object path"
     observed_cell = f"{observed} (observation {obs.get('id')})"
     max_age = req.get("max_age_seconds")
     try:
-        from outcome_check.contract import age_seconds
-
-        age: Fraction = age_seconds(str(packet.get("as_of")), str(obs.get("observed_at")))
-        freshness = f"age {age} s / max {max_age} s (observed at {obs.get('observed_at')})"
-    except Exception:
+        age = age_seconds(str(as_of), str(obs.get("observed_at")))
+        shown = f"{float(age):g}"
+        freshness = f"age {shown} s / max {max_age} s (observed at {obs.get('observed_at')})"
+    except (InputError, ValueError):
         freshness = f"max {max_age} s (observed at {obs.get('observed_at')})"
     return expected_cell, observed_cell, freshness
 
@@ -83,6 +76,10 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         for k, v in report.get("counts", {}).items()
     )
     results = report.get("results") if isinstance(report.get("results"), list) else []
+    packet_map = packet if isinstance(packet, dict) else {}
+    requirements = _index(packet_map.get("requirements"))
+    observations = _index(packet_map.get("observations"))
+    as_of = packet_map.get("as_of")
     if results:
         head = (
             "<thead><tr>"
@@ -100,14 +97,17 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         for item in results:
             if not isinstance(item, dict):
                 continue
-            expected, observed, freshness = _evidence_cells(item, packet)
+            expected, observed, freshness = _evidence_cells(item, requirements, observations, as_of)
             status_value = str(item.get("status", ""))
+            chip = (
+                status_value if status_value in ("confirmed", "contradicted", "unobserved") else ""
+            )
             rows += (
                 "<tr>"
                 f"<td>{html.escape(str(item.get('id', '')))}</td>"
                 f"<td>{html.escape(str(item.get('action', '')))}</td>"
                 f"<td>{html.escape(str(item.get('outcome', '')))}</td>"
-                f'<td class="st st-{html.escape(status_value)}">'
+                f'<td class="st st-{chip}">'
                 f"{html.escape(status_value)}</td>"
                 f"<td>{html.escape(str(item.get('reason', '')))}</td>"
                 f"<td>{html.escape(expected)}</td>"
