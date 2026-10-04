@@ -50,5 +50,9 @@ static executed Pages report. JSON stdout by default; --json PATH and --html PAT
 export files, --force permits overwrite. Input aliases/hard links are rejected.
 Writes are not a multi-file transaction; a write failure may leave partial output.
 
+For stack naming and structure, follow the
+[shared repository conventions](https://github.com/alawein/.github/blob/main/docs/system/repos.md#stack-conventions)
+alongside this project's local instructions and contract.
+
 MIT code, original CC0 synthetic AI-assisted non-client examples. Independent
 project; no production ownership, client delivery or adoption claim.
