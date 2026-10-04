@@ -1,0 +1,39 @@
+{
+  "counts": {
+    "confirmed": 1,
+    "contradicted": 1,
+    "unobserved": 1
+  },
+  "exit_code": 1,
+  "input_sha256": "8ef16c586741987d4fd4ff592e7b68f5bfaf2784ba5dbbf83f90eb82e06d4b88",
+  "results": [
+    {
+      "action": "confirmed",
+      "action_id": "set-alarm",
+      "id": "enabled",
+      "observation_id": "fresh",
+      "outcome": "confirmed",
+      "reason": "expected value observed",
+      "status": "confirmed"
+    },
+    {
+      "action": "confirmed",
+      "action_id": "set-alarm",
+      "id": "time",
+      "observation_id": "fresh",
+      "outcome": "contradicted",
+      "reason": "different value observed",
+      "status": "contradicted"
+    },
+    {
+      "action": "not_required",
+      "action_id": null,
+      "id": "volume",
+      "observation_id": "old",
+      "outcome": "unobserved",
+      "reason": "stale observation",
+      "status": "unobserved"
+    }
+  ],
+  "schema_version": 1
+}
