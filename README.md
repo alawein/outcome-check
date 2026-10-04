@@ -6,8 +6,8 @@ observed outcome and overall decision separate: confirmed, contradicted or unobs
 
 ## Run
 
-Python3.13+, no runtime dependencies. Install the wheel from this repository's
-Releases using `python -m pip install path/to/outcome_check-0.1.2-py3-none-any.whl`.
+Python 3.13+, no runtime dependencies. Install the wheel from this repository's
+Releases using `python -m pip install path/to/outcome_check-0.2.0-py3-none-any.whl`.
 Or from a clone:
 
 ```sh
@@ -15,16 +15,28 @@ uv sync --frozen
 uv run outcome-check examples/packet.json --html report.html
 ```
 
-The synthetic alarm example exits1: enabled is confirmed, requested time07:00
-is contradicted by observed07:30 despite a succeeded action, and volume is
-unobserved because its receipt is stale. Exit0 all confirmed; exit2 invalid/I/O.
+Minimal authoring path: copy `examples/packet.json`, keep one requirement with its
+subject, single-key path, expected value, observation reference, small max age, and
+action reference (or null when no action applies), then add the matching observation
+with the same subject, a fresh `observed_at`, and a state object holding the path key.
+Run the command above and read the HTML results table before the JSON blob.
+
+The synthetic alarm example exits 1: enabled is confirmed, requested time 07:00
+is contradicted by observed 07:30 despite a succeeded action, and volume is
+unobserved because its receipt is stale. Exit 0 all confirmed; exit 2 invalid/I/O.
 
 ## Capabilities and limits
 
 Explicit observation IDs prevent accidental retry or row-order matching. Supplied
 as_of fixes the comparison time. Object-key paths use recursive typed JSON equality;
-Boolean true differs from number1. Missing/wrong-subject/future/stale evidence
+Boolean true differs from number 1. Missing/wrong-subject/future/stale evidence
 remains unobserved. A required failed action is contradicted even with correct state.
+
+Troubleshooting: validation errors name the array row (for example
+`requirements row 2`); check that entry's fields before editing the rest of the file.
+Rejected inputs keep prior outputs: the CLI exits 2 and leaves an existing output file
+untouched. Reruns need `--force` when the output path already exists, and outputs
+cannot alias the input path. See [contract](docs/contract.md) for field limits.
 
 This read-only tool authenticates nothing, collects no external state and executes
 no agent actions, code, shell or network. Hashes bind bytes, not truth. It cannot

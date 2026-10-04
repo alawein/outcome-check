@@ -16,18 +16,22 @@ def require(condition: bool, message: str) -> None:
         raise InputError(message)
 
 
-def fields(value: object, keys: set[str], label: str) -> None:
-    require(type(value) is dict and set(value) == keys, f"invalid {label} fields")
+def fields(value: object, keys: set[str], label: str, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
+    require(type(value) is dict and set(value) == keys, f"invalid {label} fields{suffix}")
 
 
-def identifier(value: object, label: str) -> None:
+def identifier(value: object, label: str, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
     require(
-        isinstance(value, str) and bool(value.strip()) and len(value) <= 200, f"invalid {label}"
+        isinstance(value, str) and bool(value.strip()) and len(value) <= 200,
+        f"invalid {label}{suffix}",
     )
 
 
-def timestamp(value: str) -> datetime:
-    require(type(value) is str and len(value) <= 64, "invalid timestamp type")
+def timestamp(value: str, where: str = "") -> datetime:
+    suffix = f" at {where}" if where else ""
+    require(type(value) is str and len(value) <= 64, f"invalid timestamp type{suffix}")
     # Restrict to RFC3339 calendar date/time, seconds and explicit zone.
     require(
         bool(
@@ -37,13 +41,13 @@ def timestamp(value: str) -> datetime:
                 value,
             )
         ),
-        "timestamp requires RFC3339 timezone",
+        f"timestamp requires RFC3339 timezone{suffix}",
     )
     try:
         result = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError as exc:
-        raise InputError("invalid timestamp") from exc
-    require(result.utcoffset() is not None, "timezone required")
+        raise InputError(f"invalid timestamp{suffix}") from exc
+    require(result.utcoffset() is not None, f"timezone required{suffix}")
     return result
 
 
@@ -59,21 +63,22 @@ def age_seconds(as_of: str, observed_at: str) -> Fraction:
     return Fraction(delta.days * 86400 + delta.seconds) + fraction(as_of) - fraction(observed_at)
 
 
-def json_value(value: object, depth: int = 0) -> None:
-    require(depth <= 32, "JSON nesting exceeds 32")
+def json_value(value: object, depth: int = 0, where: str = "") -> None:
+    suffix = f" at {where}" if where else ""
+    require(depth <= 32, f"JSON nesting exceeds 32{suffix}")
     if value is None or type(value) in (str, bool, int):
         return
     if type(value) is float:
-        require(math.isfinite(value), "nonfinite value")
+        require(math.isfinite(value), f"nonfinite value{suffix}")
         return
     if type(value) is list:
         for child in value:
-            json_value(child, depth + 1)
+            json_value(child, depth + 1, where)
         return
-    require(type(value) is dict, "invalid JSON value")
+    require(type(value) is dict, f"invalid JSON value{suffix}")
     for key, child in value.items():
-        identifier(key, "state key")
-        json_value(child, depth + 1)
+        identifier(key, "state key", where)
+        json_value(child, depth + 1, where)
 
 
 def validate(packet: dict) -> None:
@@ -101,33 +106,38 @@ def validate(packet: dict) -> None:
         require(type(entries) is list and len(entries) <= 10000, f"invalid {name} count")
         require(name != "requirements" or bool(entries), "requirements cannot be empty")
         seen = set()
-        for row in entries:
-            fields(row, keys, name)
-            identifier(row["id"], name + " ID")
-            require(row["id"] not in seen, f"duplicate {name} ID")
+        for index, row in enumerate(entries, 1):
+            where = f"{name} row {index}"
+            fields(row, keys, name, where)
+            identifier(row["id"], name + " ID", where)
+            require(row["id"] not in seen, f"duplicate {name} ID at row {index}")
             seen.add(row["id"])
             if name == "actions":
                 require(
-                    row["status"] in ("succeeded", "failed", "unknown"), "invalid action status"
+                    row["status"] in ("succeeded", "failed", "unknown"),
+                    f"invalid action status at {where}",
                 )
             else:
-                identifier(row["subject"], "subject")
+                identifier(row["subject"], "subject", where)
             if name == "requirements":
-                require(type(row["path"]) is list and 0 < len(row["path"]) <= 32, "invalid path")
+                require(
+                    type(row["path"]) is list and 0 < len(row["path"]) <= 32,
+                    f"invalid path at {where}",
+                )
                 for key in row["path"]:
-                    identifier(key, "path key")
-                identifier(row["observation_id"], "observation reference")
+                    identifier(key, "path key", where)
+                identifier(row["observation_id"], "observation reference", where)
                 require(
                     type(row["max_age_seconds"]) is int and row["max_age_seconds"] >= 0,
-                    "invalid max_age_seconds",
+                    f"invalid max_age_seconds at {where}",
                 )
                 if row["action_id"] is not None:
-                    identifier(row["action_id"], "action reference")
-                json_value(row["expected"])
+                    identifier(row["action_id"], "action reference", where)
+                json_value(row["expected"], where=where)
             if name == "observations":
-                timestamp(row["observed_at"])
-                require(type(row["state"]) is dict, "state must be object")
-                json_value(row["state"])
+                timestamp(row["observed_at"], where)
+                require(type(row["state"]) is dict, f"state must be object at {where}")
+                json_value(row["state"], where=where)
 
 
 def unique_pairs(pairs: list[tuple[str, object]]) -> dict:
