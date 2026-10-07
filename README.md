@@ -1,8 +1,14 @@
-# Outcome check
+# Outcome Check
 
-An action can succeed while its requested outcome is wrong. Compare each explicit
-requirement with supplied state evidence. Outcome check keeps the action receipt,
-observed outcome and overall decision separate: confirmed, contradicted or unobserved.
+Check whether supplied evidence confirms an agent's requested outcome.
+
+![Agent evaluation](assets/label-purpose.svg)
+![Python](assets/label-stack.svg)
+![Offline CLI](assets/label-runtime.svg)
+
+An action can succeed while its outcome is wrong. Outcome Check compares explicit
+requirements with supplied observations and reports each as confirmed,
+contradicted, or unobserved. Action receipts stay separate from outcome evidence.
 
 ## Run
 
