@@ -228,7 +228,9 @@ def main() -> None:
         "clock_policy": "Fixed study times encode relative log order, not collection freshness.",
         "rows": rows,
     }
-    args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.output.write_text(
+        json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
+    )
     print("PASS: offline trajectory projection; full-state limitation recorded")
 
 
