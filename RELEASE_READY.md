@@ -10,9 +10,9 @@ After explicit merge authorization, mark the draft ready in the PR UI, review
 the exact current head and checks, then use the PR number from this branch:
 
 ```powershell
-gh pr ready --repo alawein/outcome-check <PR_NUMBER>
-gh pr checks --repo alawein/outcome-check <PR_NUMBER>
-gh pr merge --repo alawein/outcome-check <PR_NUMBER> --squash --match-head-commit <APPROVED_HEAD_SHA>
+gh pr ready --repo alawein/outcome-check 16
+gh pr checks --repo alawein/outcome-check 16
+gh pr merge --repo alawein/outcome-check 16 --squash --match-head-commit <APPROVED_HEAD_SHA>
 ```
 
 Do not use `--delete-branch` or `--admin`. Passing checks are not merge permission.

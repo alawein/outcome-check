@@ -14,3 +14,17 @@ Scope: local autonomous hardening on feat/v0.3.0-hardening. Root alone publishes
 - Existing release automation remains tag-only and uses OIDC with artifact attestations.
   Pages workflow is manual-only so merging the draft cannot deploy. No publication
   is authorized in this task. Hosted settings verification is root-owned.
+
+## Release coordination decisions
+
+Hosted link checks returned 404 only for the repository's maintainer-only security
+settings URL. Keep its exact click path, exclude only that anchored URL from
+anonymous lychee probes, and continue checking all public research/document links.
+Read-only API checks separately established the disabled alerts/update settings.
+No setting or credential was changed to make the check pass.
+
+Pages deployment is manual-only so approving a merge does not also approve
+hosting. A release tag starts trusted package publication, so the tag requires
+both tag and registry publication authorization. npm first-publication bootstrap,
+if needed, is a separate owner-approved publication using existing access; this
+run does not create secrets or bypass registry setup.
