@@ -37,6 +37,20 @@ Current delivery instructions are in [release readiness](RELEASE_READY.md).
   before OIDC publish and GitHub upload. Existing different assets fail closed.
   A missing interactive credential is an access issue, not renewed permission.
 
+## Reviewed release failure fixes (October 8, 2026)
+
+- Keep the canonical build immutable. The pinned PyPA publisher writes attestation
+  sidecars, so only missing file copies go to a separate fresh publish-dist directory
+  through its packages-dir input. Canonical inventory validation remains strict;
+  build verification addresses only manifest distribution filenames.
+- Resume a partial upload only after every present file passes registry digest,
+  downloaded-byte and exact publisher-provenance checks. Require the complete
+  inventory after publication. Reject extra/conflicting files and foreign provenance;
+  never use blind skip-existing or replace existing registry/GitHub assets.
+- Generate factual public release notes only after verified complete registry state.
+  Include version, source/tag and byte digests; keep checkout preparation notes and
+  dated v0.3.0 history out of the generated public body. No old release is rewritten.
+
 ## Dated v0.3.0 prepublication record
 
 The following records the earlier preparation run, before the publication above.

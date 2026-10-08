@@ -28,14 +28,23 @@ creates an exact two-file inventory, attests those files and retains them in the
 SHA256SUMS and inventory.json live in release-assets, outside dist.
 
 The publish job downloads and verifies those retained files, reconciles PyPI, and
-uses OIDC only if the version is absent. Existing matching files are verified,
-never blindly uploaded again; a partial inventory or different digest fails.
-Downloaded registry bytes must match, with build provenance constrained to the
+verifies each existing upload's digest, downloaded bytes and exact publisher
+provenance. A matching partial upload resumes only its missing files through OIDC;
+extra files, conflicting bytes or missing/foreign provenance fail closed. A fresh
+`publish-dist` directory holds copies of only missing files. PyPA's generated
+`.publish.attestation` sidecars stay there; retained dist and its inventory are
+never modified or loosened. Already verified existing files are never uploaded again.
+After publication the complete exact registry inventory is required. Downloaded
+registry bytes must match, with build provenance constrained to the
 repository, release workflow, source commit, tag and hosted runner. PyPI publish
 attestations are cryptographically checked and their certificate claims bind the
 repository, workflow, signer/source commit, tag and hosted runner. Only the final GitHub upload job
 has contents:write. It uploads the same files and checksums and rejects conflicting
-existing assets. This is prepared automation until a new run actually succeeds.
+existing assets. Its public release body is generated only after complete registry
+byte and publisher-provenance verification, and includes the actual version, source,
+tag and digests. It does not copy this checkout's preparation notes. Version-specific
+historical notes and existing tags/assets remain unchanged. This is prepared
+automation until a new run actually succeeds.
 
 Publication states must remain distinct:
 

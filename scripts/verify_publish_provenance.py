@@ -42,46 +42,54 @@ def check_claims(certificate: x509.Certificate, repository: str, sha: str, ref: 
         raise ValueError("publishing certificate workflow identity mismatch")
 
 
+def verify_file(
+    manifest: dict, filename: str, distribution: Path, repository: str, sha: str, ref: str
+) -> None:
+    """Verify this exact downloaded file before accepting a previously uploaded artifact."""
+    url = (
+        f"https://pypi.org/integrity/{manifest['name']}/{manifest['version']}/{filename}/provenance"
+    )
+    with urllib.request.urlopen(url, timeout=30) as response:
+        raw = response.read()
+    provenance = json.loads(raw)
+    bundles = provenance.get("attestation_bundles", [])
+    if not bundles:
+        raise ValueError("no registry publish attestation")
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "provenance.json"
+        path.write_bytes(raw)
+        subprocess.run(
+            [
+                "pypi-attestations",
+                "verify",
+                "pypi",
+                "--repository",
+                f"https://github.com/{repository}",
+                "--provenance-file",
+                str(path),
+                str(distribution),
+            ],
+            check=True,
+        )
+    for bundle in bundles:
+        if not bundle.get("attestations"):
+            raise ValueError("empty registry attestation bundle")
+        for attestation in bundle["attestations"]:
+            der = base64.b64decode(attestation["verification_material"]["certificate"])
+            check_claims(x509.load_der_x509_certificate(der), repository, sha, ref)
+
+
 def main() -> None:
     manifest = json.loads(Path("release-assets/inventory.json").read_text(encoding="utf-8"))
-    repository, sha, ref = (
-        os.environ["GITHUB_REPOSITORY"],
-        os.environ["SOURCE_SHA"],
-        os.environ["SOURCE_REF"],
-    )
     for filename in manifest["sha256"]:
-        url = (
-            f"https://pypi.org/integrity/{manifest['name']}/{manifest['version']}/"
-            f"{filename}/provenance"
+        verify_file(
+            manifest,
+            filename,
+            Path("dist") / filename,
+            os.environ["GITHUB_REPOSITORY"],
+            os.environ["SOURCE_SHA"],
+            os.environ["SOURCE_REF"],
         )
-        with urllib.request.urlopen(url, timeout=30) as response:
-            raw = response.read()
-        provenance = json.loads(raw)
-        bundles = provenance.get("attestation_bundles", [])
-        if not bundles:
-            raise ValueError("no registry publish attestation")
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "provenance.json"
-            path.write_bytes(raw)
-            subprocess.run(
-                [
-                    "pypi-attestations",
-                    "verify",
-                    "pypi",
-                    "--repository",
-                    f"https://github.com/{repository}",
-                    "--provenance-file",
-                    str(path),
-                    str(Path("dist") / filename),
-                ],
-                check=True,
-            )
-        for bundle in bundles:
-            if not bundle.get("attestations"):
-                raise ValueError("empty registry attestation bundle")
-            for attestation in bundle["attestations"]:
-                der = base64.b64decode(attestation["verification_material"]["certificate"])
-                check_claims(x509.load_der_x509_certificate(der), repository, sha, ref)
     print("PASS: PyPI signatures and exact workflow/source/tag/hosted-runner claims")
 
 

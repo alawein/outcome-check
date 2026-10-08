@@ -4,6 +4,9 @@ on:
     tags: ["v*"]
 permissions:
   contents: read
+env:
+  SOURCE_SHA: ${{ github.sha }}
+  SOURCE_REF: ${{ github.ref }}
 concurrency:
   group: pypi-${{ github.ref }}
   cancel-in-progress: false
@@ -88,17 +91,14 @@ jobs:
         uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
         with:
           attestations: true
+          packages-dir: publish-dist/
       - run: uv run python scripts/distribute_release.py registry
       - name: Verify build and registry provenance for downloaded bytes
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_REF: ${{ github.ref }}
-        run: |
-          for file in dist/*; do
-            gh attestation verify "$file" --repo "$GITHUB_REPOSITORY" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" --source-digest "$SOURCE_SHA" --signer-digest "$SOURCE_SHA" --source-ref "$SOURCE_REF" --deny-self-hosted-runners
-          done
-          uv run python scripts/verify_publish_provenance.py
+        run: uv run python scripts/distribute_release.py build-provenance
   github-release:
     needs: publish
     runs-on: ubuntu-latest
@@ -115,7 +115,11 @@ jobs:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: canonical-distributions
-      - name: Upload same bytes; reject mismatching existing assets
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+        with:
+          version: "0.9.5"
+      - run: uv sync --frozen
+      - name: Verify registry, generate factual notes, upload identical assets
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/distribute_release.py github
+        run: uv run python scripts/distribute_release.py github

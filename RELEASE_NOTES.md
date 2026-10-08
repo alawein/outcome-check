@@ -1,4 +1,8 @@
-# outcome-check v0.4.0
+# outcome-check v0.4.0 preparation notes
+
+This checkout document records preparation and dated history. The workflow generates
+the public GitHub Release body after verified registry publication from the actual
+version, source commit, tag and distribution digests; it does not upload this file.
 
 Schema v3 adds explicitly bound RFC 8785 signatures with finite binary64 numbers,
 UTF-16 key ordering and unchanged legacy v2 signing bytes. Signed migration requires
