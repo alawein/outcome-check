@@ -12,8 +12,8 @@ contradicted, unobserved, or (for required changes) unconfirmed. Action receipts
 
 ## Run
 
-Python 3.11+, no core runtime dependencies. [Version 0.3.0 is published](https://pypi.org/project/outcome-check/0.3.0/).
-This branch prepares 0.4.0; use a clone for the new schema:
+Python 3.11+, no core runtime dependencies. [Version 0.4.0 is published](https://pypi.org/project/outcome-check/0.4.0/).
+Run the repository examples from a clone:
 
 ```sh
 uv sync --frozen
@@ -95,7 +95,7 @@ For stack naming and structure, follow the
 alongside this project's local instructions and contract.
 
 [Release readiness](RELEASE_READY.md) and [security settings](SECURITY_SETTINGS.md)
-record published v0.3.0, planned v0.4.0 delivery, and verified settings separately.
+record published versions, v0.4.0 delivery evidence, and verified settings separately.
 
 MIT code, original CC0 synthetic AI-assisted non-client examples. Independent
 project; no production ownership, client delivery or adoption claim.

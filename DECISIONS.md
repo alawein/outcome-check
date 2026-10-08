@@ -10,9 +10,15 @@ and [PyPI](https://pypi.org/project/outcome-check/0.3.0/).
 The source commit is `66fea09ab87352224d3e01b65709392c3259e0ca`.
 Do not retry that successful publication or replace its tag/assets.
 
-The owner authorized the remaining closeout, excluding the entire Dependabot
-family. Version 0.4.0 adds schema v3; its publication has not yet been attempted.
-Current delivery instructions are in [release readiness](RELEASE_READY.md).
+Version 0.4.0 is now public on [PyPI](https://pypi.org/project/outcome-check/0.4.0/)
+from immutable source `6f026e2f59059c34dd53b496eb4ff973712d380d`.
+Its retained distribution bytes and publisher/build provenance were verified.
+The initial post-upload registry check observed an incomplete listing. Recovery
+[run 37824835131](https://github.com/alawein/outcome-check/actions/runs/37824835131)
+succeeded without reuploading verified files and created the public
+[GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.4.0).
+Exact hashes and recovery evidence are in [release readiness](RELEASE_READY.md).
+The entire Dependabot family remains excluded from this closeout.
 
 ## v0.4.0 decisions
 
@@ -50,6 +56,17 @@ Current delivery instructions are in [release readiness](RELEASE_READY.md).
 - Generate factual public release notes only after verified complete registry state.
   Include version, source/tag and byte digests; keep checkout preparation notes and
   dated v0.3.0 history out of the generated public body. No old release is rewritten.
+
+## Registry propagation recovery (October 8, 2026)
+
+The first v0.4.0 run uploaded successfully, then failed because the immediate PyPI
+version listing was incomplete. Verified retained bytes and provenance allowed a
+failed-job rerun to skip existing uploads and finish the GitHub release. Preserve
+that source/tag and every published byte. Future workflow checks retry only the
+typed incomplete-inventory condition, at most five attempts with 37 seconds total
+backoff. File conflicts, download errors and failed/missing provenance still fail
+immediately; no unverified file is accepted and preflight never blindly skips.
+Network and verification duration is additional to the bounded backoff.
 
 ## Dated v0.3.0 prepublication record
 

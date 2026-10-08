@@ -6,12 +6,18 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 import tomllib
 import urllib.error
 import urllib.request
+from collections.abc import Callable
 from pathlib import Path
 
 from verify_release_artifacts import verify
+
+
+class MissingPublishedArtifacts(ValueError):
+    """The version metadata is visible only as an incomplete verified subset."""
 
 
 def verify_published_file(manifest: dict, filename: str, path: Path) -> None:
@@ -59,8 +65,27 @@ def registry(manifest: dict, directory: Path, *, require_complete: bool = False)
             verify_published_file(manifest, filename, path)
     missing = expected - set(entries)
     if require_complete and missing:
-        raise ValueError("published registry inventory incomplete")
+        raise MissingPublishedArtifacts(
+            "published registry inventory incomplete: " + ", ".join(sorted(missing))
+        )
     return missing
+
+
+def complete_registry(
+    manifest: dict, directory: Path, *, sleep: Callable[[float], None] = time.sleep
+) -> set[str]:
+    """Allow five metadata attempts with 37 seconds of total backoff, never weaker proof."""
+    delays = (2, 5, 10, 20)
+    for attempt in range(len(delays) + 1):
+        try:
+            return registry(manifest, directory, require_complete=True)
+        except MissingPublishedArtifacts:
+            if attempt == len(delays):
+                raise
+            delay = delays[attempt]
+            print(f"WAIT: registry metadata incomplete; retry {attempt + 1}/4 in {delay}s")
+            sleep(delay)
+    raise AssertionError("unreachable registry retry state")
 
 
 def stage_missing(manifest: dict, directory: Path, staging: Path, missing: set[str]) -> None:
@@ -188,7 +213,7 @@ def main() -> None:
     project = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))["project"]
     verify(args.directory, args.manifest, project["name"], project["version"])
     if args.mode == "github":
-        registry(manifest, args.directory, require_complete=True)
+        complete_registry(manifest, args.directory)
         with tempfile.TemporaryDirectory(prefix="release-body-") as temporary:
             notes = Path(temporary) / "release.md"
             notes.write_text(
@@ -230,12 +255,13 @@ def main() -> None:
                 ],
                 check=True,
             )
+    elif args.mode == "registry":
+        complete_registry(manifest, args.directory)
     else:
-        missing = registry(manifest, args.directory, require_complete=args.mode == "registry")
-        if args.mode == "preflight":
-            stage_missing(manifest, args.directory, args.staging, missing)
-            with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as stream:
-                stream.write(f"exists={str(not missing).lower()}\n")
+        missing = registry(manifest, args.directory)
+        stage_missing(manifest, args.directory, args.staging, missing)
+        with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as stream:
+            stream.write(f"exists={str(not missing).lower()}\n")
     print("PASS: release distribution reconciliation")
 
 
