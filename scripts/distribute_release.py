@@ -6,6 +6,7 @@ import json
 import os
 import subprocess
 import tempfile
+import tomllib
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -117,7 +118,8 @@ def main() -> None:
     parser.add_argument("--manifest", type=Path, default=Path("release-assets/inventory.json"))
     args = parser.parse_args()
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
-    verify(args.directory, args.manifest, manifest["name"], manifest["version"])
+    project = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))["project"]
+    verify(args.directory, args.manifest, project["name"], project["version"])
     if args.mode == "github":
         release_upload(
             args.directory,
