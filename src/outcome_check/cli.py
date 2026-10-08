@@ -2,15 +2,10 @@ import argparse
 import sys
 from pathlib import Path
 
-from outcome_check.contract import InputError, load_packet, require
+from outcome_check.contract import InputError, load_packet
 from outcome_check.core import check_packet
+from outcome_check.output import atomic_write, validate_outputs
 from outcome_check.report import render_html, render_json
-
-
-def same_location(left: Path, right: Path) -> bool:
-    if left.resolve() == right.resolve():
-        return True
-    return left.exists() and right.exists() and left.samefile(right)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,38 +19,31 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument("packet", type=Path, help="input packet JSON file")
+    parser.add_argument(
+        "--public-keys", type=Path, help="local Ed25519 public keys JSON; requires signing extra"
+    )
     parser.add_argument("--json", type=Path, help="write the JSON report to PATH")
     parser.add_argument("--html", type=Path, help="write the HTML report to PATH")
     parser.add_argument("--force", action="store_true", help="overwrite existing output files")
     args = parser.parse_args(argv)
     try:
         packet, digest = load_packet(args.packet)
-        report = check_packet(packet) | {"input_sha256": digest}
+        verifier = None
+        if args.public_keys is not None:
+            from outcome_check.signatures import load_public_keys
+
+            verifier = load_public_keys(args.public_keys)
+        report = check_packet(packet, verifier) | {"input_sha256": digest}
         targets = [(args.json, render_json(report)), (args.html, render_html(report, packet))]
         outputs = [path for path, content in targets if path is not None]
-        inputs = [args.packet]
-        for index, path in enumerate(outputs):
-            require(
-                not any(same_location(path, prior) for prior in outputs[:index]),
-                "output paths must differ",
-            )
-            require(
-                not any(same_location(path, source) for source in inputs),
-                "output cannot replace input",
-            )
-        for path, _content in targets:
-            if path is not None:
-                require(args.force or not path.exists(), f"output exists: {path}")
-                require(path.parent.is_dir(), f"missing output directory: {path.parent}")
+        inputs = [args.packet] + ([args.public_keys] if args.public_keys is not None else [])
+        validate_outputs(outputs, inputs, args.force)
         for path, content in targets:
             if path is not None:
-                with path.open(
-                    "w" if args.force else "x", encoding="utf-8", newline="\n"
-                ) as stream:
-                    stream.write(content)
+                atomic_write(path, content, args.force)
         if args.json is None:
             sys.stdout.write(render_json(report))
         return report["exit_code"]
-    except (InputError, OSError, OverflowError, RecursionError) as exc:
+    except (InputError, OSError, ValueError, OverflowError, RecursionError, ImportError) as exc:
         print(f"outcome-check: {exc}", file=sys.stderr)
         return 2
