@@ -43,6 +43,12 @@ def verify(directory: Path, manifest: Path, name: str, version: str) -> dict[str
     expected = json.loads(manifest.read_text(encoding="utf-8"))
     if expected != {"name": name, "version": version, "sha256": hashes}:
         raise ValueError("distribution checksum mismatch")
+    checksum_file = manifest.with_name("SHA256SUMS")
+    checksum_bytes = "".join(
+        f"{digest}  {filename}\n" for filename, digest in hashes.items()
+    ).encode("ascii")
+    if not checksum_file.is_file() or checksum_file.read_bytes() != checksum_bytes:
+        raise ValueError("SHA256SUMS inventory mismatch")
     return hashes
 
 
@@ -64,6 +70,7 @@ def main() -> None:
         args.manifest.with_name("SHA256SUMS").write_text(
             "".join(f"{digest}  {filename}\n" for filename, digest in hashes.items()),
             encoding="utf-8",
+            newline="\n",
         )
     verify(args.directory, args.manifest, name, version)
     print("PASS: exact distribution inventory, metadata and SHA-256")

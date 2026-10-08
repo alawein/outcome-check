@@ -2,6 +2,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import sys
 import tarfile
 import zipfile
 from pathlib import Path
@@ -30,6 +31,11 @@ def artifacts(tmp_path, name="outcome-check", version="0.4.0"):
     hashes = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.iterdir()}
     manifest = tmp_path / "inventory.json"
     manifest.write_text(json.dumps({"name": name, "version": version, "sha256": hashes}))
+    manifest.with_name("SHA256SUMS").write_bytes(
+        "".join(f"{digest}  {filename}\n" for filename, digest in sorted(hashes.items())).encode(
+            "ascii"
+        )
+    )
     return directory, manifest
 
 
@@ -38,7 +44,23 @@ def test_exact_inventory_and_metadata(tmp_path):
     assert len(verifier.verify(directory, manifest, "outcome-check", "0.4.0")) == 2
 
 
-@pytest.mark.parametrize("mutation", ["missing", "extra", "bytes", "checksum", "metadata"])
+def test_create_checksum_inventory_has_exact_lf_bytes(tmp_path, monkeypatch):
+    directory, manifest = artifacts(tmp_path)
+    monkeypatch.chdir(Path(__file__).parents[1])
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["verify_release_artifacts.py", str(directory), "--manifest", str(manifest), "--create"],
+    )
+    verifier.main()
+    assert b"\r" not in manifest.with_name("SHA256SUMS").read_bytes()
+    assert len(verifier.verify(directory, manifest, "outcome-check", "0.4.0")) == 2
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    ["missing", "extra", "bytes", "checksum", "metadata", "missing_sums", "changed_sums"],
+)
 def test_modified_distribution_fails(tmp_path, mutation):
     directory, manifest = artifacts(tmp_path)
     wheel = next(directory.glob("*.whl"))
@@ -52,6 +74,10 @@ def test_modified_distribution_fails(tmp_path, mutation):
         data = json.loads(manifest.read_text())
         data["sha256"][wheel.name] = "0" * 64
         manifest.write_text(json.dumps(data))
+    elif mutation == "missing_sums":
+        manifest.with_name("SHA256SUMS").unlink()
+    elif mutation == "changed_sums":
+        manifest.with_name("SHA256SUMS").write_bytes(b"wrong checksum inventory\n")
     else:
         with zipfile.ZipFile(wheel, "w") as archive:
             archive.writestr("x.dist-info/METADATA", "Name: wrong\nVersion: 0.4.0\n")
