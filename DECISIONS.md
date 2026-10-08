@@ -55,7 +55,10 @@ The entire Dependabot family remains excluded from this closeout.
   never use blind skip-existing or replace existing registry/GitHub assets.
 - Generate factual public release notes only after verified complete registry state.
   Include version, source/tag and byte digests; keep checkout preparation notes and
-  dated v0.3.0 history out of the generated public body. No old release is rewritten.
+  dated v0.3.0 history out of the generated public body. Tags and asset bytes remain
+  immutable. Future retries reconcile existing release notes only after final
+  download/readback verifies every asset; any mismatch prevents the notes edit.
+  The current v0.4.0 public body already matches its verified release identity.
 
 ## Registry propagation recovery (October 8, 2026)
 
