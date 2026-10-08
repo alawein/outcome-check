@@ -55,3 +55,12 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
   schemas and builds are independently run; no test count is inferred from docs.
   Frozen lock8 to69 entries, zero default runtime dependencies. Historical3.11.14
   interpreter was broken before project import; independent3.11.13 works.
+
+
+Product commit31269ea was cloned locally without hard links into an ignored
+build/verification-clone. Frozen installation,114 tests, Ruff lint/format, mypy,
+all12schemas/all6JSONexamples, build and isolated installed-wheel v1/v2 smoke
+passed there; git status remained clean. This verifies the committed product,
+not the root-owned uncommitted CI/public-study files. Original wheel and sdist
+were also separately built, checked by twine and installed/tested in fresh venvs.
+The default installed artifacts had no cryptography dependency.

@@ -8,7 +8,7 @@ in one change and rerun both tools' alias, output-failure and competing-creation
 
 The runtime packages remain separately installable with zero core dependencies;
 there is no shared runtime package to install. Duplication is deliberately limited
-to this small output-safety module. Per-file atomic publication does not provide a
+to this small output-safety module and the JSON serialization function. Per-file atomic publication does not provide a
 multi-file transaction, crash recovery, or directory durability.
 
 Both report modules also have an exact duplicated render_json(report) function:
