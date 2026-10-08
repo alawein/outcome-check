@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.4.0 - Unreleased
+## Unreleased
+
+- Retry incomplete post-publication registry listings with bounded backoff while
+  preserving strict distribution bytes, inventory and publisher provenance checks.
+
+## 0.4.0 - 2026-10-08
 
 - Add schema v3 with explicit RFC8785 signature profile, finite binary64 serialization,
   UTF-16 ordering, bound metadata, unsigned migration and required signed re-signing.

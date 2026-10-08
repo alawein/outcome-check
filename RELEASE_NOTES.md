@@ -1,6 +1,6 @@
-# outcome-check v0.4.0 preparation notes
+# outcome-check v0.4.0 release record
 
-This checkout document records preparation and dated history. The workflow generates
+This checkout document records delivery and dated preparation history. The workflow generates
 the public GitHub Release body after verified registry publication from the actual
 version, source commit, tag and distribution digests; it does not upload this file.
 
@@ -27,9 +27,15 @@ and [PyPI](https://pypi.org/project/outcome-check/0.3.0/).
 The source commit is `66fea09ab87352224d3e01b65709392c3259e0ca`.
 Do not retry that successful publication or replace its tag/assets.
 
-The owner authorized the remaining closeout, excluding the entire Dependabot
-family. Version 0.4.0 adds schema v3; its publication has not yet been attempted.
-Current delivery instructions are in [release readiness](RELEASE_READY.md).
+Version 0.4.0 is now public on [PyPI](https://pypi.org/project/outcome-check/0.4.0/)
+from immutable source `6f026e2f59059c34dd53b496eb4ff973712d380d`.
+Its retained distribution bytes and publisher/build provenance were verified.
+The initial post-upload registry check observed an incomplete listing. Recovery
+[run 37824835131](https://github.com/alawein/outcome-check/actions/runs/37824835131)
+succeeded without reuploading verified files and created the public
+[GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.4.0).
+Exact hashes and recovery evidence are in [release readiness](RELEASE_READY.md).
+The entire Dependabot family remains excluded from this closeout.
 
 ## Dated v0.3.0 prepublication record
 
