@@ -18,7 +18,6 @@ Fresh review found invalid offset normalization and submicrosecond truncation.
 Regressions failed first, then passed with offset range checks and exact rational
 fractional-second freshness. No remaining precision mismatch in those cases.
 
-
 Version 0.3.0 adds meaningful negative and boundary cases for rich checks, explicit
 baselines, the unchanged required-change regression, local signature verification,
 canonicalization limits, per-file atomic output failure and creation races, version 1
@@ -36,7 +35,6 @@ The public study's scoped data, transform, counts and limitations live in
 [studies/tau-airline/README.md](../studies/tau-airline/README.md). Existing synthetic examples remain
 AI-assisted, non-client CC0 data. Public traces have their own upstream license and
 are not relabeled synthetic or CC0.
-
 
 Local product verification: 114 tests pass on Python 3.11.13, 3.12.10 and 3.13.9.
 Ruff lint/format, mypy (including untyped function bodies), all 12 schemas and all

@@ -26,7 +26,6 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
 | Security alerts/Dependabot | Configuration inspection only; hosted settings are not inferred. | Root owns settings verification and security CI work. |
 | Novelty/research merit | Interpretation, not a code defect. | Related work and evidence limitations retained; study states sample scope. |
 
-
 ## Final source and contract verification
 
 - core.py same_json:5 retains typed recursion. compare:118 implements ranges,
@@ -56,7 +55,6 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
   Frozen lock8 to69 entries, zero default runtime dependencies. Historical3.11.14
   interpreter was broken before project import; independent3.11.13 works.
 
-
 Product commit31269ea was cloned locally without hard links into an ignored
 build/verification-clone. Frozen installation,114 tests, Ruff lint/format, mypy,
 all12schemas/all6JSONexamples, build and isolated installed-wheel v1/v2 smoke
@@ -64,3 +62,33 @@ passed there; git status remained clean. This verifies the committed product,
 not the root-owned uncommitted CI/public-study files. Original wheel and sdist
 were also separately built, checked by twine and installed/tested in fresh venvs.
 The default installed artifacts had no cryptography dependency.
+
+## Shared hardening and publication gates
+
+| Recommendation | Status | Evidence or remaining scope |
+| --- | --- | --- |
+| Pinned Actions | Done | Every `uses:` in `.github/workflows` has a full commit SHA; local actionlint checks passed. |
+| Dependency auditing | Done | CI reports audits with `continue-on-error`; it does not silently assert a clean audit. |
+| Release workflows | Prepared, blocked by owner gates | `release.yml` fires only on tags, uses trusted publishing/provenance and checks version plus main ancestry. No tag or publication was executed. |
+| Security settings | Prepared, blocked by owner gate | Exact settings paths and version-update configuration are in `SECURITY_SETTINGS.md`. No settings changed. |
+| Pages | Prepared, blocked by owner gate | Existing Pages workflow is manual-only. Merge no longer deploys automatically. |
+| README/changelog/contract | Done | Version 0.3.0 and candid scope documented; primary related-work sources opened and checked before citation. |
+| Merge/tag/release/publish | Prepared, blocked by owner gates | `RELEASE_READY.md` includes commands and registry setup, and `RELEASE_NOTES.md` is ready for the release gate. |
+| Final independent review | Underway | Concrete defects must be reproduced and fixed before push. |
+| Final clean-clone verification | Underway | Fresh dependency installation, tests, lint, types, schemas and artifact builds are required before push. |
+| Push and one draft PR | Pending authorized execution | Only `feat/v0.3.0-hardening` may be pushed; no merge/main/tag/deploy/settings change. |
+
+### Study status and remaining limits
+
+Partial: `studies/tau-airline` rechecks public recorded reservation-field
+projections. Of 84 upstream successes, 13 projections are confirmed, 9
+contradicted and 62 unobserved; zero meet the explicit no-change diagnostic.
+These are not full-task success judgments. All 84 full-state comparisons remain
+unobserved because complete final and expected database snapshots are absent.
+Source bytes are pinned, ignored and reproducible; no agent/tools are replayed.
+The full-state follow-up protocol is supplied rather than inventing observations.
+
+Signature canonicalization deliberately implements a restricted RFC 8785
+profile with safe integers and no floats, refusing unsupported signed values.
+This keeps byte identity deterministic but does not claim full JCS number-domain
+support. The core accepts ordinary finite JSON numbers for unsigned checks.

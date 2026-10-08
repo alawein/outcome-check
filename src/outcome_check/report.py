@@ -157,6 +157,11 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         "max_age_seconds. Large values are truncated with an explicit marker.</li>"
         "</ul>"
     )
+    if report.get("schema_version") == 2:
+        how_to = how_to.replace(
+            "otherwise unobserved.</li>",
+            "unconfirmed if the outcome needs an observed change, otherwise unobserved.</li>",
+        )
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'

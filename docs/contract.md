@@ -92,7 +92,7 @@ at sign. Bracket classes contain only ASCII letters/digits, spaces, underscore,
 hyphen and valid ranges. Escapes permit only literal `. - _ ^ $ [ ] { }` and
 backslash. Each atom may have one fixed `{n}` repetition with 1<=n<=128; the total
 expanded width is <=4096. Empty bodies are allowed. Examples: `^ok$`,
-`^[A-Z]{2}[0-9]{2}$`, `^v[0-9]\\.[0-9]$` (JSON requires escaped backslashes).
+`^[A-Z]{2}[0-9]{2}$`,`^v[0-9]\\.[0-9]$` (JSON requires escaped backslashes).
 
 Alternation, groups, lookarounds, backreferences, wildcard dots, shorthand classes,
 unbounded quantifiers, variable repetitions and flags are rejected. The stdlib

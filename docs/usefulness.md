@@ -23,7 +23,6 @@ in a controlled environment, a methodological baseline rather than demand eviden
 The workflow is usable. Broad demand, comparative speed, real-world completion,
 production suitability and superiority remain unproven.
 
-
 Version 0.3.0 also includes a [bounded public trajectory recheck](../studies/tau-airline/README.md).
 Its classifications apply to supplied reservation-field projections. The archive
 lacks full final/goal snapshots, so the study cannot confirm full tasks or establish
