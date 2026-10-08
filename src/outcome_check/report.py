@@ -50,7 +50,13 @@ def _evidence_cells(
     path = req.get("path") if isinstance(req.get("path"), list) else []
     dotted = ".".join(str(k) for k in path)
     expected = _short_json(req.get("expected"))
+    if req.get("check", "equal") != "equal":
+        expected = f"{req['check']} {expected}"
     expected_cell = _truncate_text(f"{dotted} = {expected}") if dotted else expected
+    if req.get("baseline_id") is not None:
+        expected_cell += f"; baseline {req['baseline_id']}"
+    if req.get("requires_change"):
+        expected_cell += "; change required"
     obs = observations.get(req.get("observation_id"))
     if obs is None:
         return expected_cell, "missing observation", "no observation; needs a fresh receipt"
@@ -81,12 +87,13 @@ def render_html(report: dict, packet: dict | None = None) -> str:
     observations = _index(packet_map.get("observations"))
     as_of = packet_map.get("as_of")
     if results:
+        signed = report.get("schema_version") == 2
+        signature_header = '<th scope="col">Signature</th>' if signed else ""
         head = (
             "<thead><tr>"
             '<th scope="col">Requirement</th>'
             '<th scope="col">Action receipt</th>'
-            '<th scope="col">Outcome</th>'
-            '<th scope="col">Status</th>'
+            '<th scope="col">Outcome</th>' + signature_header + '<th scope="col">Status</th>'
             '<th scope="col">Reason</th>'
             '<th scope="col">Expected</th>'
             '<th scope="col">Observed</th>'
@@ -100,14 +107,20 @@ def render_html(report: dict, packet: dict | None = None) -> str:
             expected, observed, freshness = _evidence_cells(item, requirements, observations, as_of)
             status_value = str(item.get("status", ""))
             chip = (
-                status_value if status_value in ("confirmed", "contradicted", "unobserved") else ""
+                status_value
+                if status_value in ("confirmed", "contradicted", "unobserved", "unconfirmed")
+                else ""
+            )
+            signature_cell = (
+                f"<td>{html.escape(str(item.get('signature', 'unsigned')))}</td>" if signed else ""
             )
             rows += (
                 "<tr>"
                 f"<td>{html.escape(str(item.get('id', '')))}</td>"
                 f"<td>{html.escape(str(item.get('action', '')))}</td>"
                 f"<td>{html.escape(str(item.get('outcome', '')))}</td>"
-                f'<td class="st st-{chip}">'
+                + signature_cell
+                + f'<td class="st st-{chip}">'
                 f"{html.escape(status_value)}</td>"
                 f"<td>{html.escape(str(item.get('reason', '')))}</td>"
                 f"<td>{html.escape(expected)}</td>"
@@ -132,7 +145,8 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         "action succeeded, contradicted means it failed, unobserved means it is unknown "
         "or missing, and not_required means no action was needed.</li>"
         "<li>Outcome keeps what the supplied observation shows: confirmed means the "
-        "expected value was observed fresh, contradicted means a different value was "
+        "requested check was satisfied by fresh evidence, unconfirmed means a required "
+        "change was not observed, contradicted means a different value was "
         "observed, and unobserved means the evidence is missing, stale, future, "
         "wrong-subject, or off-path.</li>"
         "<li>Status merges the two: contradicted if either side contradicts, confirmed "

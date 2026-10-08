@@ -140,3 +140,15 @@ def test_html_truncates_large_state_with_marker():
     page = render_html(report, p)
     assert "truncat" in page.lower()
     assert big not in page
+
+
+def test_v2_html_shows_signature_and_required_baseline_change():
+    from test_checks_v2 import baseline_packet
+
+    p = baseline_packet()
+    page = render_html(check_packet(p), p)
+    assert '<th scope="col">Signature</th>' in page
+    assert "<td>unsigned</td>" in page
+    assert "unconfirmed" in page
+    assert "baseline before" in page
+    assert "change required" in page

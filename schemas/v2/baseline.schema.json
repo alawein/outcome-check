@@ -1,0 +1,403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alawein/outcome-check/schemas/v2/baseline.schema.json",
+  "title": "Outcome Check v2 baseline",
+  "$defs": {
+    "json": {
+      "oneOf": [
+        {
+          "type": [
+            "null",
+            "boolean",
+            "number",
+            "string"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/json"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "\\S"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/json"
+          }
+        }
+      ]
+    },
+    "requirement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "path": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "\\S"
+          }
+        },
+        "expected": {
+          "$ref": "#/$defs/json"
+        },
+        "observation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "max_age_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "action_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "check": {
+          "enum": [
+            "equal",
+            "range",
+            "contains",
+            "regex",
+            "unchanged",
+            "changed_from_baseline"
+          ]
+        },
+        "baseline_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "requires_change": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "subject",
+        "path",
+        "expected",
+        "observation_id",
+        "max_age_seconds",
+        "action_id"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "check": {
+                "const": "range"
+              }
+            },
+            "required": [
+              "check"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected": {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  },
+                  "min_inclusive": {
+                    "type": "boolean"
+                  },
+                  "max_inclusive": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [],
+                "additionalProperties": false,
+                "anyOf": [
+                  {
+                    "required": [
+                      "min"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "max"
+                    ]
+                  }
+                ],
+                "dependentRequired": {
+                  "min_inclusive": [
+                    "min"
+                  ],
+                  "max_inclusive": [
+                    "max"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "check": {
+                "const": "regex"
+              }
+            },
+            "required": [
+              "check"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 256,
+                "pattern": "^\\^.*\\$$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "check": {
+                    "enum": [
+                      "unchanged",
+                      "changed_from_baseline"
+                    ]
+                  }
+                },
+                "required": [
+                  "check"
+                ]
+              },
+              {
+                "properties": {
+                  "requires_change": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "requires_change"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "baseline_id"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "check": {
+                "const": "unchanged"
+              }
+            },
+            "required": [
+              "check"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requires_change": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "observed_at": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+        },
+        "state": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "\\S"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/json"
+          }
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "const": "Ed25519"
+            },
+            "key_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "\\S"
+            },
+            "signature": {
+              "type": "string",
+              "maxLength": 128
+            }
+          },
+          "required": [
+            "algorithm",
+            "key_id",
+            "signature"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "subject",
+        "observed_at",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "status": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    },
+    "observed_at": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+    },
+    "state": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200,
+        "pattern": "\\S"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/json"
+      }
+    },
+    "signature": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "Ed25519"
+        },
+        "key_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "\\S"
+        },
+        "signature": {
+          "type": "string",
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "algorithm",
+        "key_id",
+        "signature"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "subject",
+    "observed_at",
+    "state"
+  ],
+  "additionalProperties": false
+}
