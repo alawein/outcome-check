@@ -201,6 +201,12 @@ def release_upload(
             if (Path(temporary) / path.name).read_bytes() != path.read_bytes():
                 raise ValueError(f"uploaded GitHub asset differs: {path.name}")
 
+    # Reconcile existing release notes only after every canonical asset is verified.
+    subprocess.run(
+        ["gh", "release", "edit", tag, "--repo", repository, "--notes-file", str(notes_file)],
+        check=True,
+    )
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)

@@ -63,7 +63,9 @@ repository, release workflow, source commit, tag and hosted runner. PyPI publish
 attestations are cryptographically checked and their certificate claims bind the
 repository, workflow, signer/source commit, tag and hosted runner. Only the final GitHub upload job
 has contents:write. It uploads the same files and checksums and rejects conflicting
-existing assets. Its public release body is generated only after complete registry
+existing assets. After every asset passes final download/readback, retries also
+reconcile an existing release body from the verified notes file. Asset mismatches
+stop before any body edit. Its public release body is generated only after complete registry
 byte and publisher-provenance verification, and includes the actual version, source,
 tag and digests. It does not copy this checkout's preparation notes. Version-specific
 historical notes and existing tags/assets remain unchanged. The bounded visibility
@@ -85,6 +87,6 @@ Never expose a token or invent an alternative secret flow.
 
 ## Pages and security
 
-Pages remains manual-only. The v0.4.0 [deployment run](https://github.com/alawein/outcome-check/actions/runs/37824853600)
-succeeded from source `6f026e2f59059c34dd53b496eb4ff973712d380d`. [Security settings](SECURITY_SETTINGS.md) describe supported controls
+Pages remains manual-only. The latest [deployment run](https://github.com/alawein/outcome-check/actions/runs/37828214231)
+succeeded from source `6500ecf94692bfb818c2fe00ae3371d9dac67b88`. [Security settings](SECURITY_SETTINGS.md) describe supported controls
 and report-only audits. Local checks do not prove those remote controls changed.

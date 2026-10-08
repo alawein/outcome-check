@@ -65,7 +65,7 @@ def test_github_existing_conflicting_asset_is_never_replaced(tmp_path, monkeypat
     directory.mkdir()
     assets.mkdir()
     (directory / "file.whl").write_bytes(b"canonical")
-    uploads = []
+    uploads, edits = [], []
 
     def run(arguments, **kwargs):
         if arguments[1] == "api":
@@ -76,12 +76,15 @@ def test_github_existing_conflicting_asset_is_never_replaced(tmp_path, monkeypat
             Path(arguments[-1], "file.whl").write_bytes(b"old different bytes")
         if arguments[2] == "upload":
             uploads.append(arguments)
+        if arguments[2] == "edit":
+            edits.append(arguments)
         return subprocess.CompletedProcess(arguments, 0)
 
     monkeypatch.setattr(distribution.subprocess, "run", run)
     with pytest.raises(ValueError, match="existing GitHub asset differs"):
         distribution.release_upload(directory, assets, "owner/repo", "v1", tmp_path / "notes")
     assert uploads == []
+    assert edits == []
 
 
 def test_partial_registry_verifies_present_then_stages_only_missing(tmp_path, monkeypatch):
@@ -236,3 +239,53 @@ def test_staging_inside_canonical_directory_is_rejected(tmp_path):
     with pytest.raises(ValueError, match="canonical"):
         distribution.stage_missing({"sha256": {}}, directory, directory / "publisher", set())
     assert list(directory.iterdir()) == []
+
+
+@pytest.mark.parametrize("corrupt_readback", [False, True])
+def test_existing_release_notes_update_only_after_complete_readback(
+    tmp_path, monkeypatch, corrupt_readback
+):
+    directory, assets = tmp_path / "dist", tmp_path / "assets"
+    directory.mkdir()
+    assets.mkdir()
+    (directory / "file.whl").write_bytes(b"canonical")
+    (assets / "SHA256SUMS").write_bytes(b"checksums")
+    notes = tmp_path / "notes.md"
+    notes.write_text("Verified published release")
+    events = []
+
+    def run(arguments, **kwargs):
+        if arguments[1] == "api":
+            return subprocess.CompletedProcess(
+                arguments, 0, json.dumps({"assets": [{"name": "file.whl"}]}), ""
+            )
+        operation = arguments[2]
+        events.append(operation)
+        if operation == "download":
+            target = Path(arguments[-1])
+            (target / "file.whl").write_bytes(b"canonical")
+            if "--pattern" not in arguments:
+                (target / "SHA256SUMS").write_bytes(b"wrong" if corrupt_readback else b"checksums")
+        if operation == "edit":
+            assert events == ["download", "upload", "download", "edit"]
+            assert arguments == [
+                "gh",
+                "release",
+                "edit",
+                "v1",
+                "--repo",
+                "owner/repo",
+                "--notes-file",
+                str(notes),
+            ]
+            assert notes.read_text() == "Verified published release"
+        return subprocess.CompletedProcess(arguments, 0)
+
+    monkeypatch.setattr(distribution.subprocess, "run", run)
+    if corrupt_readback:
+        with pytest.raises(ValueError, match="uploaded GitHub asset differs"):
+            distribution.release_upload(directory, assets, "owner/repo", "v1", notes)
+        assert "edit" not in events
+    else:
+        distribution.release_upload(directory, assets, "owner/repo", "v1", notes)
+        assert events[-1] == "edit"
