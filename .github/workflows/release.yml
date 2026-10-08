@@ -4,15 +4,17 @@ on:
     tags: ["v*"]
 permissions:
   contents: read
+env:
+  SOURCE_SHA: ${{ github.sha }}
+  SOURCE_REF: ${{ github.ref }}
 concurrency:
   group: pypi-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  publish:
+  build:
     if: github.repository == 'alawein/outcome-check'
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: pypi
     permissions:
       contents: read
       id-token: write
@@ -22,11 +24,11 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Require released version on main
+      - name: Require exact released main revision
         env:
           TAG: ${{ github.ref_name }}
         run: |
-          git merge-base --is-ancestor HEAD origin/main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
           python -c 'import os,tomllib; from pathlib import Path; v=tomllib.loads(Path("pyproject.toml").read_text())["project"]["version"]; assert os.environ["TAG"] == "v" + v'
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
@@ -36,15 +38,88 @@ jobs:
           version: "0.9.5"
       - run: uv sync --frozen
       - run: uv run ruff check .
+      - run: uv run ruff format --check .
       - run: uv run mypy src
+      - run: uv run pyright src
       - run: uv run pytest
       - run: uv run python scripts/validate_schemas.py
-      - run: uv run python -m build
+      - name: Build once with locked backend
+        run: uv run python -m build --no-isolation
       - run: uv run twine check dist/*
+      - run: uv run python scripts/verify_release_artifacts.py dist --manifest release-assets/inventory.json --create
+      - run: uv run python scripts/check_release.py dist/*.whl examples
       - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
         with:
           subject-path: dist/*
-      - name: Publish with OIDC and attestations
+      - name: Retain exact canonical build before registry authentication
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: canonical-distributions
+          path: |
+            dist/*
+            release-assets/*
+          if-no-files-found: error
+          retention-days: 30
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+        with:
+          version: "0.9.5"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: canonical-distributions
+      - run: uv sync --frozen
+      - run: uv run python scripts/verify_release_artifacts.py dist --manifest release-assets/inventory.json
+      - name: Reconcile already published version before retry
+        id: registry
+        run: uv run python scripts/distribute_release.py preflight
+      - name: Publish same bytes with OIDC and publish attestations
+        if: steps.registry.outputs.exists != 'true'
         uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
         with:
           attestations: true
+          packages-dir: publish-dist/
+      - run: uv run python scripts/distribute_release.py registry
+      - name: Verify build and registry provenance for downloaded bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REF: ${{ github.ref }}
+        run: uv run python scripts/distribute_release.py build-provenance
+  github-release:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: canonical-distributions
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+        with:
+          version: "0.9.5"
+      - run: uv sync --frozen
+      - name: Verify registry, generate factual notes, upload identical assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run python scripts/distribute_release.py github

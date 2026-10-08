@@ -1,0 +1,3442 @@
+{
+  "by_reported_success": {
+    "false": {
+      "confirmed": 0,
+      "contradicted": 0,
+      "unconfirmed": 0,
+      "unobserved": 116
+    },
+    "true": {
+      "confirmed": 0,
+      "contradicted": 0,
+      "unconfirmed": 0,
+      "unobserved": 84
+    }
+  },
+  "counts": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unconfirmed": 0,
+    "unobserved": 200
+  },
+  "coverage": {
+    "baseline": 0,
+    "complete": 0,
+    "final": 0,
+    "goal": 0
+  },
+  "license": "MIT",
+  "prior_projection": {
+    "confirmed": 13,
+    "contradicted": 9,
+    "reported_successes": 84,
+    "unobserved": 62
+  },
+  "projection": "entire supplied database plus explicit mutation paths",
+  "results": [
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "0",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "1",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "2",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "3",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "4",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "5",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "6",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "7",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "8",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "9",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "10",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "11",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "12",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "13",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "14",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "15",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "16",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "17",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "18",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "19",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "20",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "21",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "22",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "23",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "24",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "25",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "26",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "27",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "28",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "29",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "30",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "31",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "32",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "33",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "34",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "35",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "36",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "37",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "38",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "39",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "40",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "41",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "42",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "43",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "44",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "45",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "46",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "47",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "48",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "49",
+      "trial_id": "0"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "0",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "1",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "2",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "3",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "4",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "5",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "6",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "7",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "8",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "9",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "10",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "11",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "12",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "13",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "14",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "15",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "16",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "17",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "18",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "19",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "20",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "21",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "22",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "23",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "24",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "25",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "26",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "27",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "28",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "29",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "30",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "31",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "32",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "33",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "34",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "35",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "36",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "37",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "38",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "39",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "40",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "41",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "42",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "43",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "44",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "45",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "46",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "47",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "48",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "49",
+      "trial_id": "1"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "0",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "1",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "2",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "3",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "4",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "5",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "6",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "7",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "8",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "9",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "10",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "11",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "12",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "13",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "14",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "15",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "16",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "17",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "18",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "19",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "20",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "21",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "22",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "23",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "24",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "25",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "26",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "27",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "28",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "29",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "30",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "31",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "32",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "33",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "34",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "35",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "36",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "37",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "38",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "39",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "40",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "41",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "42",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "43",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "44",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "45",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "46",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "47",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "48",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "49",
+      "trial_id": "2"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "0",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "1",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "2",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "3",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "4",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "5",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "6",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "7",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "8",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "9",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "10",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "11",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "12",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "13",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "14",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "15",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "16",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "17",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "18",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "19",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "20",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "21",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "22",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "23",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "24",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "25",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "26",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "27",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "28",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "29",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "30",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "31",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "32",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "33",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "34",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "35",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "36",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "37",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "38",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "39",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "40",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "41",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "42",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "43",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "44",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "45",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "46",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": false,
+      "status": "unobserved",
+      "task_id": "47",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "48",
+      "trial_id": "3"
+    },
+    {
+      "counts": null,
+      "coverage": {
+        "baseline": false,
+        "final": false,
+        "goal": false
+      },
+      "missing_inputs": [
+        "baseline",
+        "final",
+        "goal"
+      ],
+      "reported_success": true,
+      "status": "unobserved",
+      "task_id": "49",
+      "trial_id": "3"
+    }
+  ],
+  "scope": "missing-input inventory of pinned archive; no full-state outcome verified",
+  "source": "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json",
+  "source_sha256": "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa",
+  "trials": 200
+}

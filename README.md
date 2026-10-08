@@ -12,8 +12,8 @@ contradicted, unobserved, or (for required changes) unconfirmed. Action receipts
 
 ## Run
 
-Python 3.11+, no core runtime dependencies. Version 0.3.0 is prepared on this
-branch; use a clone now:
+Python 3.11+, no core runtime dependencies. [Version 0.3.0 is published](https://pypi.org/project/outcome-check/0.3.0/).
+This branch prepares 0.4.0; use a clone for the new schema:
 
 ```sh
 uv sync --frozen
@@ -66,7 +66,7 @@ uv run outcome-check examples/signed-v2.packet.json --public-keys examples/publi
 
 The synthetic public-keys.json fixture maps key IDs to base64 raw public keys. Set packet require_signatures=true
 to require verified signatures on selected observations and baselines. The
-[contract](docs/contract.md) specifies canonical JSON's supported subset and limits.
+[contract](docs/contract.md) specifies the legacy restricted profile and the new v3 RFC 8785 profile.
 
 Troubleshooting: validation errors name the array row (for example
 `requirements row 2`); check that entry's fields before editing the rest of the file.
@@ -95,7 +95,13 @@ For stack naming and structure, follow the
 alongside this project's local instructions and contract.
 
 [Release readiness](RELEASE_READY.md) and [security settings](SECURITY_SETTINGS.md)
-separate prepared automation from unexecuted publication and hosted settings.
+record published v0.3.0, planned v0.4.0 delivery, and verified settings separately.
 
 MIT code, original CC0 synthetic AI-assisted non-client examples. Independent
 project; no production ownership, client delivery or adoption claim.
+
+Schema version 3 adds explicitly bound RFC 8785 signatures for finite binary64
+numbers. Existing v1/v2 checks and v2 signature bytes remain unchanged. Signed
+migration requires authentic re-signing; see [migration guidance](docs/contract.md#version-3-signatures-and-migration).
+The [full-state protocol](studies/tau-full-state/README.md) reports supplied-state
+coverage separately from the retained reservation-field study.

@@ -1,86 +1,66 @@
-# v0.3.0 release readiness
+# Release readiness
 
-Prepared locally, not released. This branch permits one draft PR against `main`.
-Merging, tags, GitHub Releases, package publication, Pages deployment, settings,
-and secrets are separate owner gates. No step below was executed in this run.
+## Verified v0.3.0 publication
 
-## Merge gate
+[PR 16](https://github.com/alawein/outcome-check/pull/16) merged on October 8, 2026
+at commit `66fea09ab87352224d3e01b65709392c3259e0ca`.
+The [immutable tag](https://github.com/alawein/outcome-check/tree/v0.3.0),
+[GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.3.0),
+[PyPI release](https://pypi.org/project/outcome-check/0.3.0/), and
+[publish run 37799710726](https://github.com/alawein/outcome-check/actions/runs/37799710726)
+are published successfully. Do not retry or replace that version.
+Historical preparation evidence remains in [audit verification](AUDIT_VERIFICATION.md).
 
-After explicit merge authorization, mark the draft ready in the PR UI, review
-the exact current head and checks, then use the PR number from this branch:
+## v0.4.0 delivery
 
-```powershell
-gh pr ready --repo alawein/outcome-check 16
-gh pr checks --repo alawein/outcome-check 16
-gh pr merge --repo alawein/outcome-check 16 --squash --match-head-commit <APPROVED_HEAD_SHA>
-```
+The owner authorized this closeout, including publication and necessary registry
+setup, excluding the entire Dependabot family. v0.4.0 publication has **not yet
+been attempted**. No credential or hosted setting is inferred from a local test.
+Root coordinates the reviewed PR, merge, new tag, publication and release readback.
+Preserve prior feature branches, tags and release assets.
 
-Do not use `--delete-branch` or `--admin`. Passing checks are not merge permission.
-Pages was made manual-only so a separately approved merge does not deploy.
+`release.yml` starts only on a new `v*` tag whose commit is the current main tip
+and whose version equals pyproject.toml. Build once with the frozen development
+lock and Hatchling 1.32.4. Default runtime dependencies remain empty.
+The build job checks tests, types, schemas, metadata and a fresh wheel install,
+creates an exact two-file inventory, attests those files and retains them in the
+`canonical-distributions` Actions artifact before registry authentication.
+SHA256SUMS and inventory.json live in release-assets, outside dist.
 
-## Tag and package publication gates
+The publish job downloads and verifies those retained files, reconciles PyPI, and
+verifies each existing upload's digest, downloaded bytes and exact publisher
+provenance. A matching partial upload resumes only its missing files through OIDC;
+extra files, conflicting bytes or missing/foreign provenance fail closed. A fresh
+`publish-dist` directory holds copies of only missing files. PyPA's generated
+`.publish.attestation` sidecars stay there; retained dist and its inventory are
+never modified or loosened. Already verified existing files are never uploaded again.
+After publication the complete exact registry inventory is required. Downloaded
+registry bytes must match, with build provenance constrained to the
+repository, release workflow, source commit, tag and hosted runner. PyPI publish
+attestations are cryptographically checked and their certificate claims bind the
+repository, workflow, signer/source commit, tag and hosted runner. Only the final GitHub upload job
+has contents:write. It uploads the same files and checksums and rejects conflicting
+existing assets. Its public release body is generated only after complete registry
+byte and publisher-provenance verification, and includes the actual version, source,
+tag and digests. It does not copy this checkout's preparation notes. Version-specific
+historical notes and existing tags/assets remain unchanged. This is prepared
+automation until a new run actually succeeds.
 
-`release.yml` triggers only on a pushed `v*` tag, checks that the tagged commit
-is an ancestor of `origin/main`, and compares the tag to the package version.
-It publishes automatically through a configured trusted publisher. Therefore
-**pushing the tag crosses both the tag gate and the package publication gate**.
-The workflow uses full action commit SHAs, OIDC, and build attestations.
+Publication states must remain distinct:
 
-Configure the trusted publisher only after the owner authorizes registry setup.
-The workflow filename is `release.yml`, owner `alawein`, repository `outcome-check`,
-environment `pypi`. No secret is needed by the workflow.
+- **Published successfully:** verify destination files and hashes, then stop.
+- **Failed with a verified cause:** retain the build artifact and record that cause.
+  Repair access/configuration as needed; rerun failed jobs using retained bytes.
+  Reconcile the destination first because a timeout may have had an effect.
+- **Not attempted:** no successful or failed external publication is claimed.
 
-After merge, registry configuration, and explicit tag plus publish approval:
+The existing PyPI trusted publisher uses repository `alawein/outcome-check`,
+workflow `release.yml`, environment `pypi`. Owner-entered interactive authentication
+is an access requirement when needed, not a renewed authorization request.
+Never expose a token or invent an alternative secret flow.
 
-```powershell
-git fetch origin main
-git tag -a v0.3.0 origin/main -m "chore(release): v0.3.0"
-git push origin refs/tags/v0.3.0
-gh run list --repo alawein/outcome-check --workflow release.yml --limit 1
-```
+## Pages and security
 
-Recheck the exact main revision and the absence of an existing tag before tagging.
-Never overwrite a tag. Inspect the finished publishing run and download/check
-the registry artifact before claiming that publication succeeded.
-
-For PyPI, visit [pending publishers](https://pypi.org/manage/account/publishing/)
-and Add a new pending publisher, choose GitHub, project `outcome-check`, owner `alawein`,
-repository `outcome-check`, workflow `release.yml`, environment `pypi`.
-[PyPI's publishing instructions](https://docs.pypi.org/trusted-publishers/using-a-publisher/)
-support first publication through a pending publisher. Attestations are enabled
-in the PyPA publishing action. Builds and `twine check` are local preparation.
-
-`outcome-check` returned HTTP 404 from PyPI's project JSON endpoint on October 8, 2026.
-It was available at that lookup, not reserved. Recheck before registry setup.
-
-## GitHub Release gate
-
-Only after explicit release authorization and verified package publication:
-
-```powershell
-gh release create v0.3.0 --repo alawein/outcome-check --verify-tag --title "outcome-check v0.3.0" --notes-file RELEASE_NOTES.md dist/*
-```
-
-Use the files built from the approved tagged revision. Check uploaded artifact
-hashes after downloading them. [Release notes](RELEASE_NOTES.md) are prepared
-from the changelog; add the actual published artifact checks after the release.
-
-## Pages deployment gate
-
-The Pages workflow is manual-only. After explicit Pages authorization:
-
-```powershell
-gh workflow run pages.yml --repo alawein/outcome-check --ref main
-gh run list --repo alawein/outcome-check --workflow pages.yml --limit 1
-```
-
-The existing `github-pages` environment and Pages source must be configured by
-the owner if absent. Inspect the run and <https://alawein.github.io/outcome-check/> before
-claiming deployment. Changing Pages settings is a separate settings gate.
-
-## Security settings gate
-
-Follow [SECURITY_SETTINGS.md](SECURITY_SETTINGS.md) at
-<https://github.com/alawein/outcome-check/settings/security_analysis>. Enable dependency
-graph, Dependabot alerts, and Dependabot security updates. Add version-update
-configuration through a separately authorized PR. No setting was changed here.
+Pages remains manual-only. The v0.3.0 [deployment run](https://github.com/alawein/outcome-check/actions/runs/37818145477)
+succeeded. Root handles the next authorized deployment and actual readback. [Security settings](SECURITY_SETTINGS.md) describe supported controls
+and report-only audits. Local checks do not prove those remote controls changed.

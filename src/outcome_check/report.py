@@ -87,7 +87,7 @@ def render_html(report: dict, packet: dict | None = None) -> str:
     observations = _index(packet_map.get("observations"))
     as_of = packet_map.get("as_of")
     if results:
-        signed = report.get("schema_version") == 2
+        signed = report.get("schema_version") in (2, 3)
         signature_header = '<th scope="col">Signature</th>' if signed else ""
         head = (
             "<thead><tr>"
@@ -157,7 +157,7 @@ def render_html(report: dict, packet: dict | None = None) -> str:
         "max_age_seconds. Large values are truncated with an explicit marker.</li>"
         "</ul>"
     )
-    if report.get("schema_version") == 2:
+    if report.get("schema_version") in (2, 3):
         how_to = how_to.replace(
             "otherwise unobserved.</li>",
             "unconfirmed if the outcome needs an observed change, otherwise unobserved.</li>",

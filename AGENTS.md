@@ -11,7 +11,7 @@ before behavior changes. Python 3.11+, stdlib runtime; uv manages the dev lock.
 - Escape imported text in HTML; reject malformed input without dropping records.
 - Preserve input/output identity checks, including existing hard links.
 - Examples are synthetic, AI-assisted, non-client, CC0 data. No adoption claim.
-- Do not edit the lock manually, expose secrets or spend money.
+- Do not edit the lock manually or expose secrets. Inference spending follows canonical policy.
 
 Owner authorized publication mode (c), October 4, 2026: bootstrap, first-release
 feature and release PRs to main, public MIT repo, GitHub Release v0.1.0 and Pages
@@ -27,8 +27,20 @@ existing hardening PRs, registry trusted-publisher configuration, v0.3.0 tags,
 npm/PyPI publication and GitHub Releases. It is the plain-language equivalent
 of profile execution mode (c) for this named scope, not profile mode (b).
 
-Pages deployment, GitHub repository/security/Dependabot settings, operational
-secret creation or rotation, branch deletion, force pushes and unrelated remote
-changes remain unauthorized. Publishing requires verified existing registry
-access; missing authentication blocks registry-dependent actions, not the merge.
-Preserve the feature branches. No new repositories or kohyr copies.
+Owner follow-up on October 8, 2026: "I authorize all, except Dependabot
+which takes time and is spamming PRs and stuff which I hate." This supersedes
+previous gates for the remaining recommendations in these three repositories:
+review repair, compatible code/documentation improvements, distribution naming,
+registry setup/publication, necessary credential setup, release delivery, Pages,
+and non-Dependabot security configuration. Record actual execution separately
+from the requested plan. No renewed per-step authorization is required.
+
+Exclude the entire Dependabot family: do not enable or modify its alerts,
+security updates, version-update configuration, or PR automation. Use existing
+report-only dependency audits instead. Credentials remain owner-entered and
+managed through the established secret owner; never print or commit them.
+Preserve existing release tags and feature branches. No force pushes, unrelated
+remote changes, new repositories, or kohyr copies are part of this closeout.
+
+Version 0.3.0 was merged and published on October 8, 2026; see RELEASE_READY.md
+for verified links. Version 0.4.0 is the authorized compatible feature closeout.

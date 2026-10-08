@@ -1,42 +1,28 @@
-# Security settings awaiting owner action
+# Security controls
 
-No repository settings were changed in the v0.3.0 branch. Dependency audits in
-CI are report-only. A clean audit is not proof that the software is secure.
+The October 8, 2026 closeout authorizes supported security configuration while
+excluding the entire Dependabot family: alerts, security updates, version-update
+configuration and its PR automation remain unchanged. There is no instruction to
+enable those features.
 
-Read-only API checks on October 8, 2026 found Dependabot security updates
-disabled and vulnerability alerts disabled (HTTP 404 with GitHub's explicit
-"Vulnerability alerts are disabled" response). Automated security fixes
-reported `enabled: false, paused: false`. No setting was changed.
+Existing CI runs `pip-audit --local` as a report-only check. It reports known
+vulnerabilities in installed development dependencies; it is not a clean-security
+certificate. The product has zero default runtime dependencies. Optional signing
+uses cryptography. Lock review, full-SHA action pins, protected main, least-privilege
+job permissions, OIDC, provenance checks and immutable release hashes provide
+separate controls. Root verifies any authorized hosted settings after applying them.
 
-After explicit authorization, open
-<https://github.com/alawein/outcome-check/settings/security_analysis> and enable:
+Current root readback confirmed secret scanning and push protection enabled;
+Dependabot alerts and security updates remain disabled. No control change was
+needed. These are hosted observations, not claims from local preparation.
 
-1. Dependency graph (if disabled).
-2. Dependabot alerts.
-3. Dependabot security updates.
+The read-only prepublication check on October 8 found vulnerability alerts and
+automated security fixes disabled. That is a dated observation, not a new request
+to change them. The exact maintainer page is
+<https://github.com/alawein/outcome-check/settings/security_analysis>.
+Its narrow anonymous-link-check exception remains because GitHub returns 404 to
+anonymous readers; public citations and release links remain checked.
 
-For version-update PRs, open the repository Code tab, Add file, Create new file,
-and add `.github/dependabot.yml` through a separately authorized branch/PR.
-Use `version: 2`, an ecosystem entry for `github-actions` at `/` weekly and
-an entry for `uv` at `/` weekly.
-The `uv` and `npm` ecosystem names are listed in [GitHub documentation](https://docs.github.com/en/code-security/reference/supply-chain-security/supported-ecosystems-and-repositories). Enabling
-alerts and adding version-update configuration are separate changes.
-
-The release workflow needs a trusted publisher registered by the owner before
-a tag is pushed. See [release readiness](RELEASE_READY.md). Do not create or
-rotate a token as a workaround.
-
-Ready-to-copy configuration (not active until a separately authorized PR merges):
-
-```yaml
-version: 2
-updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-  - package-ecosystem: "uv"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-```
+[Release readiness](RELEASE_READY.md) records the successful v0.3.0 trusted
+publication and the new workflow. Never rotate or expose a token to work around
+registry authentication.

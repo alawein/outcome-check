@@ -131,9 +131,10 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run mypy src
+      - run: uv run pyright src
       - run: uv run pytest
       - run: uv run python scripts/validate_schemas.py
-      - run: uv run python -m build
+      - run: uv run python -m build --no-isolation
       - run: uv run twine check dist/*
       - name: Report dependency audit
         continue-on-error: true

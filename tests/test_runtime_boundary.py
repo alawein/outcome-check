@@ -31,6 +31,17 @@ def test_runtime_cannot_collect_execute_or_write_other_paths(tmp_path, monkeypat
     check_packet(packet())
     render_html(check_packet(packet()), packet())
     render_json(check_packet(packet()))
+    from outcome_check.contract import migrate_to_v3
+    from outcome_check.signatures import sign_observation
+
+    v3 = migrate_to_v3(unsigned)
+    v3["observations"][0]["state"]["float"] = 1.5
+    v3["observations"][0] = sign_observation(
+        v3["observations"][0], "fixture", bytes(range(32)), canonicalization="RFC8785"
+    )
+    v3["require_signatures"] = True
+    # Load optional crypto before denying external operations.
+    assert check_packet(v3, verifier)["exit_code"] == 0
     open_builtin, open_io = builtins.open, io.open
     os_open = os.open
 
@@ -69,6 +80,7 @@ def test_runtime_cannot_collect_execute_or_write_other_paths(tmp_path, monkeypat
         patch.setattr(builtins, "open", guard(open_builtin))
         patch.setattr(io, "open", guard(open_io))
         patch.setattr(os, "open", guarded_os_open)
+        assert check_packet(v3, verifier)["exit_code"] == 0
         assert check_packet(signed, verifier)["exit_code"] == 0
         assert check_packet(unsigned)["exit_code"] == 0
         assert main([str(source)]) == 0

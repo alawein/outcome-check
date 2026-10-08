@@ -1,6 +1,15 @@
 # Changelog
 
-## 0.3.0
+## 0.4.0 - Unreleased
+
+- Add schema v3 with explicit RFC8785 signature profile, finite binary64 serialization,
+  UTF-16 ordering, bound metadata, unsigned migration and required signed re-signing.
+- Preserve legacy signature bytes and v1/v2 comparison behavior.
+- Add an executable full-state study protocol with honest missing-input coverage.
+- Retain one canonical release build, attest and distribute the same verified bytes.
+- Add shared output conformance vectors and reconcile published v0.3.0 documentation.
+
+## 0.3.0 - 2026-10-08
 
 - Opt-in version 2 checks: numeric ranges, typed array contains, bounded fixed-width
   regex and explicit baseline comparisons. Unchanged satisfied targets requiring a

@@ -25,7 +25,7 @@ def check_packet(packet: dict, verifier: SignatureVerifier | None = None) -> dic
     baselines = {row["id"]: row for row in packet.get("baselines", [])}
     signatures = {}
     baseline_signatures = {}
-    if packet["schema_version"] == 2:
+    if packet["schema_version"] in (2, 3):
         signatures = {key: signature_status(row, verifier) for key, row in observations.items()}
         baseline_signatures = {
             key: signature_status(row, verifier) for key, row in baselines.items()
@@ -59,7 +59,7 @@ def check_packet(packet: dict, verifier: SignatureVerifier | None = None) -> dic
                     value = value[key]
                 else:
                     outcome, reason = compare(requirement, value)
-                    if packet["schema_version"] == 2:
+                    if packet["schema_version"] in (2, 3):
                         signing = signatures[observation["id"]]
                         if signing == "invalid" or (
                             packet.get("require_signatures") and signing != "verified"
@@ -97,13 +97,13 @@ def check_packet(packet: dict, verifier: SignatureVerifier | None = None) -> dic
                 "observation_id": requirement["observation_id"],
             }
         )
-        if packet["schema_version"] == 2:
+        if packet["schema_version"] in (2, 3):
             results[-1]["signature"] = signatures.get(requirement["observation_id"], "unsigned")
     counts = {
         status: sum(row["status"] == status for row in results)
         for status in (
             ("confirmed", "contradicted", "unobserved", "unconfirmed")
-            if packet["schema_version"] == 2
+            if packet["schema_version"] in (2, 3)
             else ("confirmed", "contradicted", "unobserved")
         )
     }

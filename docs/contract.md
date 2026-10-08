@@ -142,3 +142,45 @@ stages are cleaned after failure. The input and unrelated files remain untouched
 Multiple reports are not a transaction: a later export failure can leave an earlier
 completed report. Atomic replacement requires filesystem support; unsupported
 operations fail closed. This does not promise crash recovery or directory durability.
+
+## Version 3 signatures and migration
+
+Version 0.4.0 adds schema_version 3 with the v2 check/baseline semantics and
+report statuses. A signed v3 observation or baseline requires one additional
+signature field, `canonicalization: "RFC8785"`. The complete row excluding its
+signature is combined with algorithm, key_id and canonicalization at top level,
+then serialized and signed. Unknown profiles or algorithms are rejected. Changing
+or stripping profile metadata cannot preserve a valid v3 signature.
+
+`outcome_check.canonical.canonicalize` implements RFC 8785 serialization over
+finite IEEE-754 binary64 values: shortest round-trip decimal, ECMAScript's
+fixed/exponent thresholds, negative zero as 0, exact JSON control escaping,
+UTF-16 object-key ordering, and UTF-8 output without Unicode normalization.
+NaN, infinities, lone surrogates, non-JSON types and nesting beyond 32 fail.
+Python integers are accepted only if exactly representable as binary64; arbitrary
+precision integers must use strings. This avoids silently rounding a supplied
+integer into different signed content. Ordinary unsigned v1/v2 values retain
+their previous semantics.
+
+The legacy `canonical_json` and default `sign_observation` retain their restricted
+v2 bytes and reject floats. Request the new profile explicitly with
+`sign_observation(row, key_id, private_key, canonicalization="RFC8785")` and place
+that observation in a v3 packet. v2 packets reject the new field. Algorithm and key
+ID remain bound for both versions; a signature proves supplied bytes under a local
+key, never their truth or which agent caused a change.
+
+`migrate_to_v3(packet)` validates and deep-copies unsigned v1/v2 packets, adding an
+empty baselines array where needed. It rejects signed input. A trusted signer must
+retain the original content, remove the old signature only as part of authentic
+re-signing, sign every affected observation/baseline with the new profile, and
+then validate the new v3 packet. Never merely relabel an old signature or discard
+signatures to imply that authentication survived migration.
+
+Interoperability evidence: all 24 finite RFC 8785 Appendix B numeric vectors;
+1,000 deterministic Hypothesis float examples; 20,000 seeded binary64 candidates
+against dev-only rfc8785 0.1.4; and 99,956 finite candidates against Node 22.23.2
+V8 JSON.stringify. Run `uv run python scripts/check_jcs_interop.py` for the latter.
+Sources: [RFC 8785](https://www.rfc-editor.org/rfc/rfc8785#appendix-B) and
+[reference implementation](https://github.com/trailofbits/rfc8785.py/tree/v0.1.4).
+These are finite interoperability checks, not an exhaustive enumeration of all
+binary64 values. Neither reference implementation is a product runtime dependency.

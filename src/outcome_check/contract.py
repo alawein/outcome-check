@@ -2,9 +2,11 @@ import hashlib
 import json
 import math
 import re
+from copy import deepcopy
 from datetime import datetime
 from fractions import Fraction
 from pathlib import Path
+from typing import Any
 
 
 class InputError(ValueError):
@@ -84,7 +86,7 @@ def json_value(value: object, depth: int = 0, where: str = "") -> None:
 
 def validate(packet: dict) -> None:
     require(type(packet) is dict, "invalid packet fields")
-    if packet.get("schema_version") == 2:
+    if packet.get("schema_version") in (2, 3):
         validate_v2(packet)
         return
     fields(packet, {"schema_version", "as_of", "requirements", "actions", "observations"}, "packet")
@@ -203,7 +205,7 @@ def validate_v2(packet: dict) -> None:
                 f"unchanged conflicts with requires_change at {where}",
             )
         if check == "range":
-            bounds = row.get("expected")
+            bounds: dict[str, Any] = row.get("expected")
             require(
                 type(bounds) is dict and bool(set(bounds) & {"min", "max"}),
                 f"invalid range at {where}",
@@ -245,7 +247,15 @@ def validate_v2(packet: dict) -> None:
             require(type(row) is dict, f"invalid {name} fields at {where}")
             if "signature" in row:
                 signature = row["signature"]
-                fields(signature, {"algorithm", "key_id", "signature"}, "signature", where)
+                keys = {"algorithm", "key_id", "signature"}
+                if packet["schema_version"] == 3:
+                    keys.add("canonicalization")
+                fields(signature, keys, "signature", where)
+                if packet["schema_version"] == 3:
+                    require(
+                        signature["canonicalization"] == "RFC8785",
+                        f"unsupported signature canonicalization at {where}",
+                    )
                 require(
                     signature["algorithm"] == "Ed25519",
                     f"unsupported signature algorithm at {where}",
@@ -262,3 +272,21 @@ def validate_v2(packet: dict) -> None:
             baseline_packet = legacy | {"observations": sanitized}
             validate(baseline_packet)
     validate(legacy)
+
+
+def migrate_to_v3(packet: dict) -> dict:
+    """Copy unsigned v1/v2 input to v3. Signed input needs authentic re-signing."""
+    validate(packet)
+    require(
+        not any(
+            "signature" in row
+            for name in ("observations", "baselines")
+            for row in packet.get(name, [])
+        ),
+        "signed migration requires authentic re-signing; no signatures are relabeled",
+    )
+    result = deepcopy(packet)
+    result["schema_version"] = 3
+    result.setdefault("baselines", [])
+    validate(result)
+    return result
