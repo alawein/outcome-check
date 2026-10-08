@@ -1,5 +1,46 @@
 # v0.3.0 implementation decisions
 
+## Current release state (October 8, 2026)
+
+Version 0.3.0 is published: [merged PR 16](https://github.com/alawein/outcome-check/pull/16),
+[immutable tag](https://github.com/alawein/outcome-check/tree/v0.3.0),
+[GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.3.0),
+[successful publish run](https://github.com/alawein/outcome-check/actions/runs/37799710726),
+and [PyPI](https://pypi.org/project/outcome-check/0.3.0/).
+The source commit is `66fea09ab87352224d3e01b65709392c3259e0ca`.
+Do not retry that successful publication or replace its tag/assets.
+
+The owner authorized the remaining closeout, excluding the entire Dependabot
+family. Version 0.4.0 adds schema v3; its publication has not yet been attempted.
+Current delivery instructions are in [release readiness](RELEASE_READY.md).
+
+## v0.4.0 decisions
+
+- Keep `canonical_json` and default `sign_observation` on the legacy restricted
+  profile. Schema v3 signatures require `canonicalization: "RFC8785"`; that field,
+  algorithm and key ID are signed. Unknown profiles fail closed. v2 cannot opt in.
+- Full JCS numbers use finite binary64, Python's shortest round-trip digits and
+  ECMAScript decimal placement. Python integers are accepted only when exactly
+  representable as binary64, avoiding implicit loss. Encode larger exact values
+  as strings. Negative zero canonicalizes to zero; no Unicode normalization.
+- Freeze official RFC 8785 Appendix B vectors and legacy bytes. Pin dev-only
+  rfc8785 0.1.4; an additional Node 22.23.2 V8 differential command independently
+  matched 99,956 seeded finite values. Core has no reference-package dependency.
+- `migrate_to_v3` deep-copies unsigned packets. Signed packets require the trusted
+  signer to re-sign original content; migration never relabels signature metadata.
+- Full-state protocol requires supplied complete baseline/final/goal databases.
+  Entire-database equality plus explicit mutation paths prevents unrelated changes
+  from satisfying a required target mutation. Correct unchanged goals remain valid.
+- Missing public states remain unobserved. Retain 13/9/62 reservation projections
+  and all-84 full-state-unobserved finding. No tool replay or model reconstruction.
+- Release 0.4.0 uses a single locked Hatchling 1.32.4 build; verify retained bytes
+  before OIDC publish and GitHub upload. Existing different assets fail closed.
+  A missing interactive credential is an access issue, not renewed permission.
+
+## Dated v0.3.0 prepublication record
+
+The following records the earlier preparation run, before the publication above.
+
 Scope: local autonomous hardening on feat/v0.3.0-hardening. Root alone publishes a draft PR; no merge, main push, tags, releases, settings, secrets or Pages changes.
 
 - Preserve schema_version 1 packets and report bytes. Version 2 adds baselines, optional checks, signatures and the unconfirmed status. Unconfirmed is review-needed exit 1, not a success.

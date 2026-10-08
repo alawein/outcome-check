@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.32.4"]
 build-backend = "hatchling.build"
 
 [project]
 name = "outcome-check"
-version = "0.3.0"
+version = "0.4.0"
 description = "Compare requested outcomes with supplied state evidence."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -28,6 +28,10 @@ dev = [
     "build>=1.6.1",
     "twine>=7.0.0",
     "pip-audit>=2.10.1",
+    "rfc8785==0.1.4",
+    "hatchling==1.32.4",
+    "pyright==1.1.408",
+    "pypi-attestations==0.0.30",
 ]
 
 [tool.hatch.build.targets.wheel]

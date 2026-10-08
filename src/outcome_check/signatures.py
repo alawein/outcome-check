@@ -46,9 +46,18 @@ def canonical_json(value: object) -> bytes:
 
 def signing_payload(observation: dict) -> bytes:
     signature = observation["signature"]
-    return canonical_json(
-        {key: value for key, value in observation.items() if key != "signature"}
-        | {"algorithm": signature["algorithm"], "key_id": signature["key_id"]}
+    profile = signature.get("canonicalization")
+    require(profile in (None, "RFC8785"), "unsupported signature canonicalization")
+    require(signature["algorithm"] == "Ed25519", "unsupported signature algorithm")
+    metadata = {"algorithm": signature["algorithm"], "key_id": signature["key_id"]}
+    serializer = canonical_json
+    if profile is not None:
+        from outcome_check.canonical import canonicalize
+
+        metadata["canonicalization"] = profile
+        serializer = canonicalize
+    return serializer(
+        {key: value for key, value in observation.items() if key != "signature"} | metadata
     )
 
 
@@ -90,13 +99,17 @@ class Ed25519Verifier:
         return True
 
 
-def sign_observation(observation: dict, key_id: str, private_key: bytes) -> dict:
+def sign_observation(
+    observation: dict, key_id: str, private_key: bytes, *, canonicalization: str | None = None
+) -> dict:
     """Optional extra; returns a new observation, never writes private keys."""
     from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
     result = observation | {
         "signature": {"algorithm": "Ed25519", "key_id": key_id, "signature": ""}
     }
+    if canonicalization is not None:
+        result["signature"]["canonicalization"] = canonicalization
     signature = Ed25519PrivateKey.from_private_bytes(private_key).sign(signing_payload(result))
     result["signature"]["signature"] = base64.b64encode(signature).decode("ascii")
     return result
@@ -114,6 +127,7 @@ def load_public_keys(path: Path) -> Ed25519Verifier:
             type(key_id) is str and bool(key_id.strip()) and len(key_id) <= 200, "invalid key ID"
         )
         require(type(encoded) is str, "public key must be base64 string")
+        assert isinstance(encoded, str)
         key = base64.b64decode(encoded, validate=True)
         require(len(key) == 32, "Ed25519 public key must be 32 bytes")
         decoded[key_id] = key

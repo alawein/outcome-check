@@ -17,3 +17,9 @@ and one trailing LF. Corresponding tests check snapshot/strict finite JSON behav
 HTML reports share escape-first behavior but their tables and explanations differ;
 render_html is not an exact duplicated function. Both CLIs share validation-before-
 write sequencing but main differs by input contract and is not copied byte-for-byte.
+
+The mirrored `tests/test_shared_vectors.py` exercises existing-file rejection,
+force replacement, hard-link input identity, competing creation, unsupported
+link/replace, failed staging, second-output partial completion, sorted finite JSON,
+trailing LF, and HTML text escaping. Only package import names differ. Seven shared
+vectors pass in each tool; no shared behavior defect required a runtime patch.

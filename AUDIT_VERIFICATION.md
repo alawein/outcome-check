@@ -1,5 +1,23 @@
 # Audit verification
 
+## Current release state (October 8, 2026)
+
+Version 0.3.0 is published: [merged PR 16](https://github.com/alawein/outcome-check/pull/16),
+[immutable tag](https://github.com/alawein/outcome-check/tree/v0.3.0),
+[GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.3.0),
+[successful publish run](https://github.com/alawein/outcome-check/actions/runs/37799710726),
+and [PyPI](https://pypi.org/project/outcome-check/0.3.0/).
+The source commit is `66fea09ab87352224d3e01b65709392c3259e0ca`.
+Do not retry that successful publication or replace its tag/assets.
+
+The owner authorized the remaining closeout, excluding the entire Dependabot
+family. Version 0.4.0 adds schema v3; its publication has not yet been attempted.
+Current delivery instructions are in [release readiness](RELEASE_READY.md).
+
+## Dated v0.3.0 prepublication record
+
+The following records the earlier preparation run, before the publication above.
+
 Audit source: supplied compass_artifact_wf-8f32e147-9bf3-5208-ba05-acfbbd390eae_text_markdown.md, outcome-check section and shared recommendations. This file separates repository verification from claims about collectors or external reality.
 
 ## Phase 0 baseline
