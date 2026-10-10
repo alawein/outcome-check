@@ -30,6 +30,38 @@ The synthetic alarm example exits 1: enabled is confirmed, requested time 07:00
 is contradicted by observed 07:30 despite a succeeded action, and volume is
 unobserved because its receipt is stale. Exit 0 all confirmed; exit 2 invalid/I/O.
 
+## Local Agent Acceptance demo
+
+Build the static reports locally, then open `site/acceptance.html`:
+
+```sh
+uv run python scripts/build_demo.py
+```
+
+The refund example uses original CC0 synthetic, AI-assisted, non-client data.
+It compares four requirements with named supplied observations at a fixed
+acceptance time. The report shows expected and observed values, explicit baseline
+state, freshness, action receipts, and the resulting verdict beside each other.
+
+| Requirement | Evidence | Verdict |
+| --- | --- | --- |
+| `refund-confirmed` | Enabled is true in a fresh observation; issue-refund succeeded. | Confirmed |
+| `refund-contradicted` | USD 120 expected; USD 100 observed despite a success receipt. | Contradicted |
+| `refund-stale` | Completion is true, but the observation is 900 seconds old; max 120. | Unobserved |
+| `refund-baseline` | Enabled was already true; the enable-refund receipt is unknown. | Unobserved |
+
+Action receipts alone confirm three requirements; the combined check confirms
+one, contradicts one, and leaves two unobserved (exit 1). Baseline state is display
+context supplied explicitly by the demo builder. The engine checks state and the
+required action receipt; it does not infer that the agent caused a change.
+
+The demo links the exact [packet](examples/acceptance.json),
+[source narrative](examples/acceptance-source.txt), and generated JSON report.
+Downloads retain the input bytes. The JSON report records the packet SHA-256 and
+synthetic provenance; the HTML demo context shows the source narrative SHA-256
+separately. Hashes support byte consistency; they authenticate no claims.
+The original alarm report remains at `site/index.html` with its existing JSON output.
+
 ## Related work and how this differs
 
 [tau-bench](https://arxiv.org/abs/2406.12045v1) compares final database state with
@@ -85,7 +117,7 @@ prove a real-world task was completed from a self-reported packet.
 [related work](docs/related-work.md) and [public trajectory study](studies/tau-airline/README.md).
 
 `just check`: lint, tests, type checks, schemas, wheel/sdist. `uv run python scripts/build_demo.py`:
-local static synthetic report (does not deploy). JSON stdout by default; --json PATH and --html PATH
+offline static alarm and acceptance reports. JSON stdout by default; --json PATH and --html PATH
 export files, --force permits overwrite. Input aliases/hard links are rejected.
 Each report is written atomically. Multiple reports are not a transaction; a later
 write failure may leave an earlier completed report.

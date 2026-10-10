@@ -1,4 +1,9 @@
+import base64
+import hashlib
 import json
+import runpy
+from html.parser import HTMLParser
+from pathlib import Path
 
 import pytest
 from test_outcomes import packet as make_packet
@@ -7,6 +12,22 @@ from outcome_check.cli import main
 from outcome_check.contract import InputError, validate
 from outcome_check.core import check_packet
 from outcome_check.report import render_html
+
+
+def _download_hrefs(page):
+    class Links(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.downloads = {}
+
+        def handle_starttag(self, tag, attrs):
+            values = dict(attrs)
+            if tag == "a" and values.get("download"):
+                self.downloads[values["download"]] = values["href"]
+
+    parser = Links()
+    parser.feed(page)
+    return parser.downloads
 
 
 def test_help_mentions_example_exit_codes_and_docs(capsys):
@@ -142,13 +163,208 @@ def test_html_truncates_large_state_with_marker():
     assert big not in page
 
 
+def test_generic_html_does_not_claim_executed_demo():
+    p = make_packet()
+    page = render_html(check_packet(p), p)
+    assert "static executed example" not in page.lower()
+    assert "synthetic refund" not in page.lower()
+    assert "not supplied" in page
+
+
+def test_baseline_is_only_the_explicit_matching_observation():
+    p = make_packet()
+    p["observations"].append(
+        {
+            "id": "before",
+            "subject": "alarm",
+            "observed_at": "2026-10-04T11:58:00Z",
+            "state": {"time": "06:00"},
+        }
+    )
+    report = check_packet(p)
+    page = render_html(report, p, baseline_observation_id="before")
+    evidence = page.split("<h2>Inspectable report</h2>")[0]
+    assert "06:00" in evidence
+    assert "observation before" in evidence
+    assert "2026-10-04T11:58:00Z" in evidence
+    assert "07:00" in evidence
+    assert 'data-label="Before / baseline"' in evidence
+    generic = render_html(report, p).split("<h2>Inspectable report</h2>")[0]
+    assert "06:00" not in generic
+    assert "not supplied" in generic
+    missing = render_html(report, p, baseline_observation_id="absent")
+    assert "missing baseline observation" in missing
+    p["observations"][-1]["subject"] = "other"
+    wrong_subject = render_html(report, p, baseline_observation_id="before")
+    assert "baseline subject mismatch" in wrong_subject
+    assert "06:00" not in wrong_subject
+
+
+@pytest.mark.parametrize(
+    "observed_at,label,age",
+    [
+        ("2026-10-04T11:59:00Z", "fresh", "60"),
+        ("2026-10-04T11:45:00Z", "stale", "900"),
+        ("2026-10-04T12:00:01Z", "future", "-1"),
+    ],
+)
+def test_freshness_exposes_eligibility_and_supplied_comparison_time(observed_at, label, age):
+    p = make_packet()
+    p["observations"][0]["observed_at"] = observed_at
+    page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
+    assert f"{label}; age {age} s / max 120 s" in page
+    assert "2026-10-04T12:00:00Z" in page
+    assert observed_at in page
+
+
+def test_wrong_subject_echo_cannot_look_like_accepted_evidence():
+    p = make_packet()
+    p["observations"][0]["subject"] = "other-device"
+    page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
+    assert "subject other-device" in page
+    assert "subject mismatch" in page
+
+
+def test_freshness_keeps_submicrosecond_precision_in_evidence_echo():
+    p = make_packet()
+    p["as_of"] = "2026-10-04T12:00:00.0000001Z"
+    page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
+    assert "age 60.0000001 s / max 120 s" in page
+
+
+def test_demo_context_is_explicit_escaped_and_downloads_are_local_files():
+    p = make_packet()
+    report = check_packet(p)
+    page = render_html(
+        report,
+        p,
+        demo_title="Synthetic refund <script>alert(1)</script>",
+        demo_note="Synthetic, AI-assisted, non-client <b>example</b>",
+        download_links={
+            "Packet <img>": "acceptance.json",
+            "Report": "acceptance-report.json",
+            "Unsafe": "javascript:alert(1)",
+            "Remote": "https://example.com/packet.json",
+            "Traversal": "../packet.json",
+        },
+    )
+    assert "&lt;script&gt;" in page and "<script>" not in page
+    assert "&lt;b&gt;example&lt;/b&gt;" in page
+    assert (
+        "<title>Synthetic refund &lt;script&gt;alert(1)&lt;/script&gt; | outcome report</title>"
+    ) in page
+    assert 'href="acceptance.json" download' in page
+    assert 'href="acceptance-report.json" download' in page
+    assert "Packet &lt;img&gt;" in page
+    assert "javascript:" not in page
+    assert "https://example.com" not in page
+    assert "../packet.json" not in page
+
+
+@pytest.mark.parametrize(
+    "filename,payload,mime",
+    [
+        (
+            "proof.json",
+            b'{"text":"<script>alert(1)</script>"}\r\n',
+            "application/json",
+        ),
+        ("proof.txt", b"Refund caf\xc3\xa9\r\n", "text/plain;charset=utf-8"),
+        ("empty.bin", b"", "application/octet-stream"),
+    ],
+)
+def test_embedded_download_keeps_exact_bytes_and_rejects_unsafe_names(filename, payload, mime):
+    p = make_packet()
+    page = render_html(
+        check_packet(p),
+        p,
+        download_links={
+            "Evidence <script>": filename,
+            "Fallback": "fallback.txt",
+            "Traversal": "../outside.json",
+            "Unsafe": "javascript:alert(1)",
+        },
+        download_files={
+            filename: payload,
+            "unlinked.json": b"unused",
+            "../outside.json": b"outside",
+            "javascript:alert(1)": b"unsafe",
+        },
+    )
+    links = _download_hrefs(page)
+    assert set(links) == {filename, "fallback.txt"}
+    prefix, encoded = links[filename].split(",", 1)
+    assert prefix == f"data:{mime};base64"
+    assert base64.b64decode(encoded, validate=True) == payload
+    assert links["fallback.txt"] == "fallback.txt"
+    assert "Evidence &lt;script&gt;" in page
+    assert "<script>" not in page
+    assert "../outside.json" not in page
+    assert "javascript:" not in page
+
+
+def test_build_demo_keeps_alarm_snapshot_and_exports_acceptance(tmp_path, monkeypatch):
+    root = Path(__file__).resolve().parents[1]
+    examples = tmp_path / "examples"
+    examples.mkdir()
+    for filename in ("packet.json", "acceptance.json", "acceptance-source.txt"):
+        (examples / filename).write_bytes((root / "examples" / filename).read_bytes())
+    monkeypatch.chdir(tmp_path)
+    runpy.run_path(str(root / "scripts" / "build_demo.py"), run_name="__main__")
+    site = tmp_path / "site"
+    alarm_snapshot = json.loads((root / "examples" / "report.json").read_text(encoding="utf-8"))
+    assert json.loads((site / "report.json").read_text(encoding="utf-8")) == alarm_snapshot | {
+        "provenance": "Synthetic, AI-assisted, non-client"
+    }
+    packet_bytes = (examples / "acceptance.json").read_bytes()
+    assert (site / "acceptance.json").read_bytes() == packet_bytes
+    assert (site / "acceptance-source.txt").read_bytes() == (
+        examples / "acceptance-source.txt"
+    ).read_bytes()
+    report = json.loads((site / "acceptance-report.json").read_text(encoding="utf-8"))
+    assert report["input_sha256"] == hashlib.sha256(packet_bytes).hexdigest()
+    assert report["counts"] == {"confirmed": 1, "contradicted": 1, "unobserved": 2}
+    assert report["provenance"] == "Synthetic, AI-assisted, non-client; original CC0 example"
+    assert set(report) == {
+        "schema_version",
+        "results",
+        "counts",
+        "exit_code",
+        "input_sha256",
+        "provenance",
+    }
+    page = (site / "acceptance.html").read_text(encoding="utf-8")
+    evidence = page.split("<h2>Inspectable report</h2>")[0]
+    assert "Synthetic refund acceptance" in evidence
+    assert "Agent Acceptance" in evidence
+    assert hashlib.sha256((examples / "acceptance-source.txt").read_bytes()).hexdigest() in evidence
+    assert "refund-baseline" in evidence
+    assert "already true" in evidence
+    assert "3 confirmed" in evidence
+    assert "1 unobserved" in evidence
+    links = _download_hrefs(evidence)
+    assert set(links) == {"acceptance.json", "acceptance-report.json", "acceptance-source.txt"}
+    for filename, href in links.items():
+        prefix, encoded = href.split(",", 1)
+        assert prefix.startswith("data:") and prefix.endswith(";base64")
+        assert base64.b64decode(encoded, validate=True) == (site / filename).read_bytes()
+
+
 def test_v2_html_shows_signature_and_required_baseline_change():
     from test_checks_v2 import baseline_packet
 
     p = baseline_packet()
     page = render_html(check_packet(p), p)
     assert '<th scope="col">Signature</th>' in page
-    assert "<td>unsigned</td>" in page
+    assert '<td data-label="Signature">unsigned</td>' in page
     assert "unconfirmed" in page
     assert "baseline before" in page
     assert "change required" in page
+
+
+def test_v2_card_shows_its_required_baseline_value():
+    from test_checks_v2 import baseline_packet
+
+    p = baseline_packet()
+    page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
+    assert "observation before; observed at" in page

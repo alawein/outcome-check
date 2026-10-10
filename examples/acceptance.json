@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-10T12:00:00Z",
+  "requirements": [
+    {
+      "id": "refund-confirmed",
+      "subject": "refund-case-1042",
+      "path": [
+        "enabled"
+      ],
+      "expected": true,
+      "observation_id": "refund-fresh",
+      "max_age_seconds": 120,
+      "action_id": "issue-refund"
+    },
+    {
+      "id": "refund-contradicted",
+      "subject": "refund-case-1042",
+      "path": [
+        "amount_usd"
+      ],
+      "expected": 120,
+      "observation_id": "refund-fresh",
+      "max_age_seconds": 120,
+      "action_id": "issue-refund"
+    },
+    {
+      "id": "refund-stale",
+      "subject": "refund-case-1042",
+      "path": [
+        "completed"
+      ],
+      "expected": true,
+      "observation_id": "refund-old",
+      "max_age_seconds": 120,
+      "action_id": "issue-refund"
+    },
+    {
+      "id": "refund-baseline",
+      "subject": "refund-case-1042",
+      "path": [
+        "enabled"
+      ],
+      "expected": true,
+      "observation_id": "refund-fresh",
+      "max_age_seconds": 120,
+      "action_id": "enable-refund"
+    }
+  ],
+  "actions": [
+    {
+      "id": "issue-refund",
+      "status": "succeeded"
+    },
+    {
+      "id": "enable-refund",
+      "status": "unknown"
+    }
+  ],
+  "observations": [
+    {
+      "id": "refund-fresh",
+      "subject": "refund-case-1042",
+      "observed_at": "2026-10-10T11:59:00Z",
+      "state": {
+        "enabled": true,
+        "amount_usd": 100
+      }
+    },
+    {
+      "id": "refund-old",
+      "subject": "refund-case-1042",
+      "observed_at": "2026-10-10T11:45:00Z",
+      "state": {
+        "completed": true
+      }
+    },
+    {
+      "id": "refund-baseline",
+      "subject": "refund-case-1042",
+      "observed_at": "2026-10-10T11:58:00Z",
+      "state": {
+        "enabled": true
+      }
+    }
+  ]
+}
