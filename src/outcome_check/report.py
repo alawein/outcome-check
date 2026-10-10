@@ -282,7 +282,7 @@ def render_html(
         '<meta name="description" content="Supplied-evidence outcome checks: action '
         'receipt, observed outcome and merged status per requirement.">'
         '<meta name="theme-color" content="#f4f6f5">'
-        "<title>Outcome check | outcome report</title><style>"
+        f"<title>{title} | outcome report</title><style>"
         ":root{color-scheme:light}"
         "body{margin:0;background:#f4f6f5;color:#142c2a;font:17px/1.6 system-ui;"
         "-webkit-tap-highlight-color:transparent}"

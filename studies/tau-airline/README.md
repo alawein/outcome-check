@@ -4,7 +4,7 @@ The source has 200 public recorded trajectories, including 84 with upstream
 reward 1.0. The study rechecks only explicit supplied final reservation fields.
 It does not run agents, tools, the environment, or a model.
 
-Source: [Sierra's recorded GPT-4o airline trajectories](https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json),
+Source: [Sierra's recorded GPT-4o airline trajectories](https://raw.githubusercontent.com/sierra-research/tau-bench/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json),
 commit `59a200c6d575d595120f1cb70fea53cef0632f6b`, MIT repository, downloaded
 October 8, 2026. The archive's complete end-of-run database and expected goal
 snapshots are absent; a goal-state hash cannot recover them. Third-party
@@ -25,7 +25,7 @@ The script refuses different bytes and reproduces its classifications twice.
 
 For each annotated reservation mutation, named target fields in its supplied
 kwargs become requirements. Cancellation maps to `status=cancelled`, as specified
-by the upstream [cancellation tool](https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/airline/tools/cancel_reservation.py).
+by the upstream [cancellation tool](https://raw.githubusercontent.com/sierra-research/tau-bench/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/airline/tools/cancel_reservation.py).
 Flights are projected to `flight_number` and `date`, excluding price and derived
 route data. Control arguments such as payment ID are dropped rather than treated
 as final state. Later annotated mutations override earlier expected fields for

@@ -250,6 +250,9 @@ def test_demo_context_is_explicit_escaped_and_downloads_are_local_files():
     )
     assert "&lt;script&gt;" in page and "<script>" not in page
     assert "&lt;b&gt;example&lt;/b&gt;" in page
+    assert (
+        "<title>Synthetic refund &lt;script&gt;alert(1)&lt;/script&gt; | outcome report</title>"
+    ) in page
     assert 'href="acceptance.json" download' in page
     assert 'href="acceptance-report.json" download' in page
     assert "Packet &lt;img&gt;" in page

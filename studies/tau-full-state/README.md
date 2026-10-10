@@ -6,14 +6,14 @@ protocol and an exact missing-input report, not a reconstructed benchmark result
 
 ## Corpus inspection
 
-- The pinned [tau-bench airline archive](https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json)
+- The pinned [tau-bench airline archive](https://raw.githubusercontent.com/sierra-research/tau-bench/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json)
   is MIT, commit `59a200c6d575d595120f1cb70fea53cef0632f6b`, SHA-256
   `e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa`.
   All 200 rows have task_id, trial, reward, info and traj. Their supplied records
   have no full pre-action, final or goal database. Tool arguments, tool-return
   projections and reward hashes are not substitute full snapshots.
-- [tau2-bench evaluation documentation](https://github.com/sierra-research/tau2-bench/blob/4ce7c0397c1eb65c9bbe59aeacfe1ca44a1cd699/docs/evaluation.md)
-  and its [simulation model](https://github.com/sierra-research/tau2-bench/blob/4ce7c0397c1eb65c9bbe59aeacfe1ca44a1cd699/src/tau2/data_model/simulation.py)
+- [tau2-bench evaluation documentation](https://raw.githubusercontent.com/sierra-research/tau2-bench/4ce7c0397c1eb65c9bbe59aeacfe1ca44a1cd699/docs/evaluation.md)
+  and its [simulation model](https://raw.githubusercontent.com/sierra-research/tau2-bench/4ce7c0397c1eb65c9bbe59aeacfe1ca44a1cd699/src/tau2/data_model/simulation.py)
   were inspected at commit `4ce7c0397c1eb65c9bbe59aeacfe1ca44a1cd699` (MIT).
   Its benchmark derives a goal by replaying reference actions and checks database
   hashes. Those instructions are not supplied goal snapshots and were not executed.
