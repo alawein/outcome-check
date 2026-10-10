@@ -1,7 +1,10 @@
 # Provenance
 
 Fresh AI-assisted runtime, tests and original synthetic fixtures. No archived code,
-datasets, career records or client material copied. Prior private agent-verification
+career records or client material copied into the product. The v0.3.0 public
+trajectory study reads separately licensed upstream data retained outside Git;
+source version, license, transformations and limitations live in
+[the study](../studies/tau-airline/README.md). Prior private agent-verification
 experiments inspired the narrow purpose. Public claims remain independent work.
 
 MIT scaffolding/configuration: alawein/.github local commit

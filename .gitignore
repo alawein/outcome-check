@@ -4,6 +4,8 @@
 
 # Build and tool output.
 .venv/
+.venv-*/
+release-assets/
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -32,3 +34,5 @@ Thumbs.db
 *.pfx
 
 site/
+
+studies/data/

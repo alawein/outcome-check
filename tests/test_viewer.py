@@ -345,3 +345,23 @@ def test_build_demo_keeps_alarm_snapshot_and_exports_acceptance(tmp_path, monkey
         prefix, encoded = href.split(",", 1)
         assert prefix.startswith("data:") and prefix.endswith(";base64")
         assert base64.b64decode(encoded, validate=True) == (site / filename).read_bytes()
+
+
+def test_v2_html_shows_signature_and_required_baseline_change():
+    from test_checks_v2 import baseline_packet
+
+    p = baseline_packet()
+    page = render_html(check_packet(p), p)
+    assert '<th scope="col">Signature</th>' in page
+    assert '<td data-label="Signature">unsigned</td>' in page
+    assert "unconfirmed" in page
+    assert "baseline before" in page
+    assert "change required" in page
+
+
+def test_v2_card_shows_its_required_baseline_value():
+    from test_checks_v2 import baseline_packet
+
+    p = baseline_packet()
+    page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
+    assert "observation before; observed at" in page

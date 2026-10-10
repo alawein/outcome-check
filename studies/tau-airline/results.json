@@ -1,0 +1,776 @@
+{
+  "clock_policy": "Fixed study times encode relative log order, not collection freshness.",
+  "full_database_and_goal_recheck": "unobserved for all: complete snapshots not supplied",
+  "full_database_success_counts": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unobserved": 84
+  },
+  "projected_counts": {
+    "confirmed": 13,
+    "contradicted": 9,
+    "unobserved": 62
+  },
+  "rows": [
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 6,
+      "task_id": 6,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 10,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 11,
+      "task_id": 11,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 12,
+      "task_id": 12,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 18,
+      "task_id": 18,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 20,
+      "task_id": 20,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 24,
+      "task_id": 24,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 3,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 26,
+      "task_id": 26,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 29,
+      "task_id": 29,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 31,
+      "task_id": 31,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 4,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 34,
+      "task_id": 34,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 35,
+      "task_id": 35,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 36,
+      "task_id": 36,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 38,
+      "task_id": 38,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 39,
+      "task_id": 39,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 40,
+      "task_id": 40,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 42,
+      "task_id": 42,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 43,
+      "task_id": 43,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 44,
+      "task_id": 44,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 45,
+      "task_id": 45,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 48,
+      "task_id": 48,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 49,
+      "task_id": 49,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 51,
+      "task_id": 1,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 5,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 55,
+      "task_id": 5,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 62,
+      "task_id": 12,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 63,
+      "task_id": 13,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 68,
+      "task_id": 18,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 70,
+      "task_id": 20,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 71,
+      "task_id": 21,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 74,
+      "task_id": 24,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 77,
+      "task_id": 27,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 80,
+      "task_id": 30,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 4,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 84,
+      "task_id": 34,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 85,
+      "task_id": 35,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 86,
+      "task_id": 36,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 87,
+      "task_id": 37,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 88,
+      "task_id": 38,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 90,
+      "task_id": 40,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 91,
+      "task_id": 41,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 92,
+      "task_id": 42,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 96,
+      "task_id": 46,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 97,
+      "task_id": 47,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 98,
+      "task_id": 48,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 99,
+      "task_id": 49,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 5,
+      "mapped_requirements": 10,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 102,
+      "task_id": 2,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 107,
+      "task_id": 7,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 112,
+      "task_id": 12,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 113,
+      "task_id": 13,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 115,
+      "task_id": 15,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 118,
+      "task_id": 18,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 120,
+      "task_id": 20,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 121,
+      "task_id": 21,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 124,
+      "task_id": 24,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 3,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 126,
+      "task_id": 26,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 127,
+      "task_id": 27,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 135,
+      "task_id": 35,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 136,
+      "task_id": 36,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 137,
+      "task_id": 37,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 138,
+      "task_id": 38,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 142,
+      "task_id": 42,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 144,
+      "task_id": 44,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 146,
+      "task_id": 46,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 148,
+      "task_id": 48,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 149,
+      "task_id": 49,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 162,
+      "task_id": 12,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 165,
+      "task_id": 15,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 166,
+      "task_id": 16,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 167,
+      "task_id": 17,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 168,
+      "task_id": 18,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 170,
+      "task_id": 20,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 171,
+      "task_id": 21,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 174,
+      "task_id": 24,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 2,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 180,
+      "task_id": 30,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 1,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "confirmed",
+      "source_index": 181,
+      "task_id": 31,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 2,
+      "mapped_requirements": 4,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "contradicted",
+      "source_index": 184,
+      "task_id": 34,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 185,
+      "task_id": 35,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 186,
+      "task_id": 36,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 187,
+      "task_id": 37,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 188,
+      "task_id": 38,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 190,
+      "task_id": 40,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 191,
+      "task_id": 41,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 192,
+      "task_id": 42,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 195,
+      "task_id": 45,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 198,
+      "task_id": 48,
+      "upstream_reward": 1.0
+    },
+    {
+      "final_reservation_observations": 0,
+      "mapped_requirements": 1,
+      "no_change_sensitivity_flags": 0,
+      "projected_status": "unobserved",
+      "source_index": 199,
+      "task_id": 49,
+      "upstream_reward": 1.0
+    }
+  ],
+  "source_sha256": "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa",
+  "successes_with_no_change_sensitivity_flag": 0,
+  "trajectories_in_source": 200,
+  "upstream_successes": 84
+}

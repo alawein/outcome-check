@@ -48,7 +48,42 @@ def main() -> None:
             or json.loads(result.stdout)["counts"] != expected["counts"]
         ):
             raise RuntimeError(f"Release smoke failed: {result.returncode} {result.stderr}")
-        print("PASS: isolated installed artifact; synthetic missing/partial case")
+        result_v2 = subprocess.run(
+            [str(command), str(examples / "checks-v2.packet.json")],
+            cwd=root,
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        if result_v2.returncode != 1 or json.loads(result_v2.stdout)["counts"] != {
+            "confirmed": 3,
+            "contradicted": 0,
+            "unobserved": 0,
+            "unconfirmed": 1,
+        }:
+            raise RuntimeError(f"Version 2 artifact smoke failed: {result_v2.stderr}")
+        result_v3 = subprocess.run(
+            [str(command), str(examples / "checks-v3.packet.json")],
+            cwd=root,
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        if result_v3.returncode != 1 or json.loads(result_v3.stdout)["schema_version"] != 3:
+            raise RuntimeError("Version 3 installed artifact smoke failed")
+        installed = subprocess.check_output(
+            [
+                str(python),
+                "-c",
+                "import importlib.util; print(importlib.util.find_spec('cryptography'))",
+            ],
+            cwd=root,
+            env=env,
+            text=True,
+        ).strip()
+        if installed != "None":
+            raise RuntimeError("Default artifact unexpectedly includes optional cryptography")
+        print("PASS: isolated installed artifact; v1/v2/v3; zero optional crypto dependency")
 
 
 if __name__ == "__main__":

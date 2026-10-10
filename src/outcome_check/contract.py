@@ -2,9 +2,11 @@ import hashlib
 import json
 import math
 import re
+from copy import deepcopy
 from datetime import datetime
 from fractions import Fraction
 from pathlib import Path
+from typing import Any
 
 
 class InputError(ValueError):
@@ -76,12 +78,17 @@ def json_value(value: object, depth: int = 0, where: str = "") -> None:
             json_value(child, depth + 1, where)
         return
     require(type(value) is dict, f"invalid JSON value{suffix}")
+    assert isinstance(value, dict)
     for key, child in value.items():
         identifier(key, "state key", where)
         json_value(child, depth + 1, where)
 
 
 def validate(packet: dict) -> None:
+    require(type(packet) is dict, "invalid packet fields")
+    if packet.get("schema_version") in (2, 3):
+        validate_v2(packet)
+        return
     fields(packet, {"schema_version", "as_of", "requirements", "actions", "observations"}, "packet")
     require(
         type(packet["schema_version"]) is int and packet["schema_version"] == 1,
@@ -165,3 +172,121 @@ def load_packet(path: Path) -> tuple[dict, str]:
     except (UnicodeError, ValueError, RecursionError) as exc:
         raise InputError(str(exc)) from exc
     return packet, hashlib.sha256(raw).hexdigest()
+
+
+def validate_v2(packet: dict) -> None:
+    root = {"schema_version", "as_of", "requirements", "actions", "observations", "baselines"}
+    require(root <= set(packet) <= root | {"require_signatures"}, "invalid packet fields")
+    require(type(packet["schema_version"]) is int, "invalid schema_version")
+    require(type(packet.get("require_signatures", False)) is bool, "invalid require_signatures")
+    legacy = {key: packet[key] for key in root - {"baselines"}}
+    legacy["schema_version"] = 1
+    optional = {"check", "baseline_id", "requires_change"}
+    require(type(packet["requirements"]) is list, "invalid requirements count")
+    legacy["requirements"] = []
+    for index, row in enumerate(packet["requirements"], 1):
+        where = f"requirements row {index}"
+        require(type(row) is dict, f"invalid requirements fields at {where}")
+        check = row.get("check", "equal")
+        require(
+            check in ("equal", "range", "contains", "regex", "unchanged", "changed_from_baseline"),
+            f"invalid check at {where}",
+        )
+        require(
+            type(row.get("requires_change", False)) is bool, f"invalid requires_change at {where}"
+        )
+        if check in ("unchanged", "changed_from_baseline") or row.get("requires_change", False):
+            identifier(row.get("baseline_id"), "baseline reference", where)
+        elif "baseline_id" in row:
+            identifier(row["baseline_id"], "baseline reference", where)
+        if check == "unchanged":
+            require(
+                not row.get("requires_change", False),
+                f"unchanged conflicts with requires_change at {where}",
+            )
+        if check == "range":
+            bounds: dict[str, Any] = row.get("expected")
+            require(
+                type(bounds) is dict and bool(set(bounds) & {"min", "max"}),
+                f"invalid range at {where}",
+            )
+            require(
+                set(bounds) <= {"min", "max", "min_inclusive", "max_inclusive"},
+                f"invalid range at {where}",
+            )
+            for side in ("min", "max"):
+                if side in bounds:
+                    require(
+                        type(bounds[side]) is int
+                        or (type(bounds[side]) is float and math.isfinite(bounds[side])),
+                        f"numeric range required at {where}",
+                    )
+                if side + "_inclusive" in bounds:
+                    require(
+                        side in bounds and type(bounds[side + "_inclusive"]) is bool,
+                        f"invalid range inclusivity at {where}",
+                    )
+            require(
+                not ({"min", "max"} <= set(bounds)) or bounds["min"] <= bounds["max"],
+                f"reversed range at {where}",
+            )
+        if check == "regex":
+            from outcome_check.checks import safe_regex
+
+            safe_regex(row.get("expected"))
+        legacy["requirements"].append(
+            {key: value for key, value in row.items() if key not in optional}
+        )
+    legacy["observations"] = []
+    for name in ("observations", "baselines"):
+        rows = packet[name]
+        require(type(rows) is list and len(rows) <= 10000, f"invalid {name} count")
+        sanitized = []
+        for index, row in enumerate(rows, 1):
+            where = f"{name} row {index}"
+            require(type(row) is dict, f"invalid {name} fields at {where}")
+            if "signature" in row:
+                signature = row["signature"]
+                keys = {"algorithm", "key_id", "signature"}
+                if packet["schema_version"] == 3:
+                    keys.add("canonicalization")
+                fields(signature, keys, "signature", where)
+                if packet["schema_version"] == 3:
+                    require(
+                        signature["canonicalization"] == "RFC8785",
+                        f"unsupported signature canonicalization at {where}",
+                    )
+                require(
+                    signature["algorithm"] == "Ed25519",
+                    f"unsupported signature algorithm at {where}",
+                )
+                identifier(signature["key_id"], "signature key ID", where)
+                require(
+                    type(signature["signature"]) is str and len(signature["signature"]) <= 128,
+                    f"invalid signature encoding at {where}",
+                )
+            sanitized.append({key: value for key, value in row.items() if key != "signature"})
+        if name == "observations":
+            legacy["observations"] = sanitized
+        else:
+            baseline_packet = legacy | {"observations": sanitized}
+            validate(baseline_packet)
+    validate(legacy)
+
+
+def migrate_to_v3(packet: dict) -> dict:
+    """Copy unsigned v1/v2 input to v3. Signed input needs authentic re-signing."""
+    validate(packet)
+    require(
+        not any(
+            "signature" in row
+            for name in ("observations", "baselines")
+            for row in packet.get(name, [])
+        ),
+        "signed migration requires authentic re-signing; no signatures are relabeled",
+    )
+    result = deepcopy(packet)
+    result["schema_version"] = 3
+    result.setdefault("baselines", [])
+    validate(result)
+    return result

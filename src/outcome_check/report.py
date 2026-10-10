@@ -69,6 +69,7 @@ def _evidence_cells(
     observations: dict,
     as_of: object,
     baseline_id: str | None,
+    baselines: dict,
 ) -> tuple[str, str, str, str]:
     """Return expected, observed, explicit baseline and freshness text, unescaped."""
     req = requirements.get(result.get("id"))
@@ -77,8 +78,18 @@ def _evidence_cells(
     path = req.get("path") if isinstance(req.get("path"), list) else []
     dotted = ".".join(str(k) for k in path)
     expected = _short_json(req.get("expected"))
+    if req.get("check", "equal") != "equal":
+        expected = f"{req['check']} {expected}"
     expected_cell = _truncate_text(f"{dotted} = {expected}") if dotted else expected
-    baseline = _baseline_cell(req, observations, baseline_id)
+    baseline = _baseline_cell(
+        req,
+        observations if baseline_id is not None else baselines,
+        baseline_id if baseline_id is not None else req.get("baseline_id"),
+    )
+    if req.get("baseline_id") is not None:
+        expected_cell += f"; baseline {req['baseline_id']}"
+    if req.get("requires_change"):
+        expected_cell += "; change required"
     obs = observations.get(req.get("observation_id"))
     if obs is None:
         return expected_cell, "missing observation", baseline, "no observation supplied"
@@ -115,10 +126,13 @@ def render_html(
         f"<span>{html.escape(k.replace('_', ' '))}</span></div>"
         for k, v in report.get("counts", {}).items()
     )
-    results = report.get("results") if isinstance(report.get("results"), list) else []
+    results = report.get("results")
+    if not isinstance(results, list):
+        results = []
     packet_map = packet if isinstance(packet, dict) else {}
     requirements = _index(packet_map.get("requirements"))
     observations = _index(packet_map.get("observations"))
+    baselines = _index(packet_map.get("baselines"))
     as_of = packet_map.get("as_of")
     title = html.escape(demo_title or "Outcome check")
     note = (
@@ -173,6 +187,8 @@ def render_html(
         else ""
     )
     if results:
+        signed = report.get("schema_version") in (2, 3)
+        signature_header = '<th scope="col">Signature</th>' if signed else ""
         head = (
             "<thead><tr>"
             '<th scope="col">Requirement</th>'
@@ -182,8 +198,7 @@ def render_html(
             '<th scope="col">Before / baseline</th>'
             '<th scope="col">Freshness</th>'
             '<th scope="col">Action receipt</th>'
-            '<th scope="col">Outcome</th>'
-            '<th scope="col">Reason</th>'
+            '<th scope="col">Outcome</th>' + signature_header + '<th scope="col">Reason</th>'
             "</tr></thead>"
         )
         rows = ""
@@ -191,11 +206,19 @@ def render_html(
             if not isinstance(item, dict):
                 continue
             expected, observed, baseline, freshness = _evidence_cells(
-                item, requirements, observations, as_of, baseline_observation_id
+                item, requirements, observations, as_of, baseline_observation_id, baselines
             )
             status_value = str(item.get("status", ""))
             chip = (
-                status_value if status_value in ("confirmed", "contradicted", "unobserved") else ""
+                status_value
+                if status_value in ("confirmed", "contradicted", "unobserved", "unconfirmed")
+                else ""
+            )
+            signature_cell = (
+                '<td data-label="Signature">'
+                f"{html.escape(str(item.get('signature', 'unsigned')))}</td>"
+                if signed
+                else ""
             )
             rows += (
                 "<tr>"
@@ -212,7 +235,8 @@ def render_html(
                 f"(action {html.escape(str(item.get('action_id') or 'not required'))})</td>"
                 '<td data-label="Outcome">'
                 f"{html.escape(str(item.get('outcome', '')))}</td>"
-                '<td class="reason" data-label="Engine reason">'
+                + signature_cell
+                + '<td class="reason" data-label="Engine reason">'
                 f"{html.escape(str(item.get('reason', '')))}</td>"
                 "</tr>"
             )
@@ -231,7 +255,8 @@ def render_html(
         "action succeeded, contradicted means it failed, unobserved means it is unknown "
         "or missing, and not_required means no action was needed.</li>"
         "<li>Outcome keeps what the supplied observation shows: confirmed means the "
-        "expected value was observed fresh, contradicted means a different value was "
+        "requested check was satisfied by fresh evidence, unconfirmed means a required "
+        "change was not observed, contradicted means a different value was "
         "observed, and unobserved means the evidence is missing, stale, future, "
         "wrong-subject, or off-path.</li>"
         "<li>Status merges the two: contradicted if either side contradicts, confirmed "
@@ -246,6 +271,11 @@ def render_html(
         "comparison time. Large values are truncated with an explicit marker.</li>"
         "</ul></details>"
     )
+    if report.get("schema_version") in (2, 3):
+        how_to = how_to.replace(
+            "otherwise unobserved.</li>",
+            "unconfirmed if the outcome needs an observed change, otherwise unobserved.</li>",
+        )
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alawein/outcome-check/schemas/v3/public-keys.schema.json",
+  "title": "Local public keys",
+  "type": "object",
+  "maxProperties": 10000,
+  "propertyNames": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 200,
+    "pattern": "\\S"
+  },
+  "additionalProperties": {
+    "type": "string",
+    "minLength": 44,
+    "maxLength": 44,
+    "pattern": "^[A-Za-z0-9+/]{43}=$"
+  }
+}

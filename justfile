@@ -18,7 +18,13 @@ build:
     uv build
 
 # Everything the pull request checks run, plus the build.
-check: lint test build
+typecheck:
+    uv run mypy src/outcome_check
+
+schemas:
+    uv run python scripts/validate_schemas.py
+
+check: lint test typecheck schemas build
 
 # Apply the automatic fixes.
 fix:

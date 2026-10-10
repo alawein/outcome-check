@@ -1,0 +1,43 @@
+{
+  "schema_version": 3,
+  "as_of": "2026-10-04T12:00:00Z",
+  "requirements": [
+    {
+      "id": "enabled",
+      "subject": "alarm-device",
+      "path": [
+        "enabled"
+      ],
+      "expected": true,
+      "observation_id": "fresh",
+      "max_age_seconds": 120,
+      "action_id": "set-alarm"
+    }
+  ],
+  "actions": [
+    {
+      "id": "set-alarm",
+      "status": "succeeded"
+    }
+  ],
+  "observations": [
+    {
+      "id": "fresh",
+      "subject": "alarm-device",
+      "observed_at": "2026-10-04T11:59:00Z",
+      "state": {
+        "enabled": true,
+        "time": "07:30",
+        "temperature": 1.5
+      },
+      "signature": {
+        "algorithm": "Ed25519",
+        "key_id": "synthetic-demo",
+        "signature": "lEpSdMm8p7reUyJDAIkt0XS70TDIP0dVj8CND/BmjK7tGub7Li1zheDGWZ7muPNwmTKz2AhU8+xhd6HDHswCAg==",
+        "canonicalization": "RFC8785"
+      }
+    }
+  ],
+  "baselines": [],
+  "require_signatures": true
+}

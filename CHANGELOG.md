@@ -1,5 +1,32 @@
 # Changelog
 
+## Unreleased
+
+- Retry incomplete post-publication registry listings with bounded backoff while
+  preserving strict distribution bytes, inventory and publisher provenance checks.
+
+## 0.4.0 - 2026-10-08
+
+- Add schema v3 with explicit RFC8785 signature profile, finite binary64 serialization,
+  UTF-16 ordering, bound metadata, unsigned migration and required signed re-signing.
+- Preserve legacy signature bytes and v1/v2 comparison behavior.
+- Add an executable full-state study protocol with honest missing-input coverage.
+- Retain one canonical release build, attest and distribute the same verified bytes.
+- Add shared output conformance vectors and reconcile published v0.3.0 documentation.
+
+## 0.3.0 - 2026-10-08
+
+- Opt-in version 2 checks: numeric ranges, typed array contains, bounded fixed-width
+  regex and explicit baseline comparisons. Unchanged satisfied targets requiring a
+  change return unconfirmed. Original version 1 packets/reports stay compatible.
+- Optional Ed25519 signatures verified against local public keys, with unsigned and
+  unverified labels, required signature enforcement and restricted canonical JSON.
+  Signatures authenticate supplied bytes only; core remains dependency-free.
+- Per-file atomic report output with hard-link alias and competing-creation guards.
+- Versioned Draft 2020-12 schemas, negative/compatibility tests, Hypothesis freshness
+  properties, local runtime boundary proof and source type checks.
+- Python support floor lowered to 3.11 after local compatibility verification.
+
 ## 0.2.0
 
 - Structured HTML viewer: per-requirement table with action receipt, outcome, status,
