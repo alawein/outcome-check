@@ -1,5 +1,11 @@
 # Siftgrain State
 
+Siftgrain State is the supplied-evidence outcome checker in the Siftgrain suite,
+alongside [Siftgrain Cite](https://github.com/alawein/siftgrain-cite) for human
+citation review and [Siftgrain Audit](https://github.com/alawein/siftgrain-audit)
+for evaluation completeness. State checks requested outcomes against explicitly
+supplied observations; it does not execute actions or track them over time.
+
 ![Siftgrain State](brand/wordmark.svg)
 
 Check whether supplied observations support an agent's requested outcome.

@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: github.repository == 'alawein/outcome-check'
+    if: github.repository == 'alawein/siftgrain-state'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:

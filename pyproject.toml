@@ -11,6 +11,11 @@ requires-python = ">=3.11"
 license = "MIT"
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/alawein/siftgrain-state#readme"
+Repository = "https://github.com/alawein/siftgrain-state"
+Issues = "https://github.com/alawein/siftgrain-state/issues"
+
 [project.optional-dependencies]
 signing = ["cryptography>=44"]
 

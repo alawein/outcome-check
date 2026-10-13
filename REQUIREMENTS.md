@@ -49,23 +49,22 @@ The other two tools' implementation belongs to their own repositories.
 | README/changelog/migration/limits | Done | Current brand/quickstart/integrations/results/limits, unreleased changes, stable distributions and schema migration. |
 | Clean clone/fresh environment checks | Done for verified product source | Fresh temporary clone of 1bed622 passed the complete software/viewer/benchmark chain; fast-forward to 974e64e passed all 262 Python 3.11.13 tests, lint/types, 19 schemas/10 examples and wheel/sdist after the identity follow-up. The unchanged viewer passed 27 browser observations, two motion regressions and Lighthouse CI. docs/final-verification.json binds results. Prior Python 3.13.9 and installed-wheel checks remain dated evidence. |
 | Independent review and delivery record | Done for reviewed product source | Coordinator reviewed runtime d5a0817 and interpreter-only a2e423e with no blocking finding. Final head/check/landing evidence belongs to live PR21, not this static matrix; no self-approval. |
-| Repo rename/transfer/new shared package/HF upload | Gated | Unapplied; MIGRATION.md and publishing commands below require applicable named authority. |
+| Repo rename | Done | GitHub repository is `alawein/siftgrain-state`; package and command names remain compatible. |
+| Transfer/new shared package/HF upload | Gated | Unapplied; MIGRATION.md and publishing commands below require applicable named authority. |
 | Preserve releases/tags/branches/secrets/people | Done | No tag/history replacement, permanent source deletion, secret work, or messages to people. Installer cache cleanup was observed and reported; subsequent browser installs disable GC. |
 
 ## Gated publication commands
 
-Repository rename, after explicit identity approval:
-`gh repo rename siftgrain-state --repo alawein/outcome-check`.
 Transfer, after separate approval and organization access verification:
 GitHub repository Settings -> General -> Danger Zone -> Transfer ownership ->
-enter outcome-check and kohyr, then verify the resulting repository and redirects.
+enter siftgrain-state and kohyr, then verify the resulting repository and redirects.
 No transfer API command is proposed with guessed organization/team IDs.
 
 Dataset upload, after explicit approval to create that public dataset:
 `hf upload alawein/siftgrain-state-data-v1 build/benchmark-v1 --repo-type dataset`.
 This may create a dataset repository; do not run on existing authorization.
 Public release upload, after a separately approved release/tag exists:
-`gh release upload <approved-tag> build/siftgrain-state-data-v1.zip --repo alawein/outcome-check`.
+`gh release upload <approved-tag> build/siftgrain-state-data-v1.zip --repo alawein/siftgrain-state`.
 Do not use --clobber. New Python publication requires an approved stable version,
 reviewed source/tag, existing trusted publisher and release checks; never publish
 this development build as an existing 0.4.0 registry file.
