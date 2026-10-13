@@ -10,7 +10,7 @@ The other two tools' implementation belongs to their own repositories.
 | Current MAIOS policy/style/load order | Done | MAIOS_CONTEXT.md records verified source paths/revision, read-only policy scope, and repository authority. |
 | Recent commits/PRs/releases/settings | Partial | docs/repo-history.json and shared-history files inventory accessible branch/PR/release history and current settings; inaccessible/deleted settings history cannot be reconstructed. |
 | Verify baseline and prechange counts | Done | AUDIT_VERIFICATION.md: 240 tests at starting SHA; historical findings distinguished from current implementation. |
-| Dated primary-source research through cutoff | Done | RESEARCH.md includes September2026 work, foundational benchmarks, official docs, dates or unknowns, and evaluation methods. |
+| Dated primary-source research through cutoff | Done | RESEARCH.md includes September 2026 work, foundational benchmarks, official docs, dates or unknowns, and evaluation methods. |
 | Positioning/usefulness | Done | BRAND.md and README define user, supplied-evidence task, and integration boundaries. No demand/adoption claim. |
 | Family/product name and collision checks | Done | Siftgrain State, name-checks.json exact GitHub/npm/PyPI/HF queries and limited web search; Spanward rejected. No legal-clearance claim. |
 | Original SVG logo/wordmark/palette/type/voice | Done | brand assets and BRAND.md; shared canonical tokens, system/Georgia/monospace fonts. |
@@ -25,7 +25,7 @@ The other two tools' implementation belongs to their own repositories.
 | Real MP4 per vibe | Done | assets/demos: actual Playwright viewer recordings converted with ffmpeg, no fabricated product footage. |
 | Explicit deterministic offline stdlib core | Done | Existing core retained; adapters/MCP never collect or execute. Guarded boundary tests. Default runtime dependencies zero. |
 | Hashes bind bytes, not truth | Done | README/contracts/UI preserve trust boundary; signatures remain optional. |
-| Versioned Draft2020-12 schemas and v0.2.x migrations | Done | Existing v1/v2/v3 schemas and explicit unsigned migration retained; 19schemas/10 examples validated. Dataset schema adds versioned case shape. |
+| Versioned Draft2020-12 schemas and v0.2.x migrations | Done | Existing v1/v2/v3 schemas and explicit unsigned migration retained; 19 schemas/10 examples validated. Dataset schema adds versioned case shape. |
 | Range/contains/anchored bounded regex | Done | Already present and preserved; current audit refs and negative tests. |
 | Unchanged/changed-from-baseline/requires_change | Done | Explicit prior subject/path baseline; no-op returns unconfirmed; fault and contract tests. |
 | Optional RFC8785 signatures | Done | Existing restricted and v3 canonical profiles retained, signing extra optional, no key handling added. |
@@ -43,11 +43,11 @@ The other two tools' implementation belongs to their own repositories.
 | LLM-as-judge baseline | Partial | Omitted: no model calls or new judgments; explicit in results and dataset card. |
 | Throughput/memory/confidence intervals | Done | Actual timed run and tracemalloc peak, hardware/runtime recorded; intervals intentionally unavailable for correlated nonrandom fault cases. |
 | License/version/download/checksum/date | Done | data-v1/provenance.json, pinned SHA, source MIT notice, date fields/unknowns, checksum-enforced fetch. |
-| Datasheet/Croissant/HF card/splits/schema/checksums | Done | data-v1 metadata and generated local archive; task-ID grouped dev/test and separate keys. Native mlcroissant1.1.1 parser reports two RecordSets; no hosted dataset claim. |
+| Datasheet/Croissant/HF card/splits/schema/checksums | Done | data-v1 metadata and generated local archive; task-ID grouped dev/test and separate keys. Native mlcroissant 1.1.1 parser reports two RecordSets; no hosted dataset claim. |
 | One-command benchmark/local ZIP | Done | make bench fetches, validates, runs, checks invariants and packages build/siftgrain-state-data-v1.zip. No public upload. |
 | Human-study protocol/no fabricated labels | Done | data-v1/HUMAN_PROTOCOL.md is protocol-only; no study participants or results claimed. |
 | README/changelog/migration/limits | Done | Current brand/quickstart/integrations/results/limits, unreleased changes, stable distributions and schema migration. |
-| Clean clone/fresh environment checks | Done | No-hardlink source clone, explicit fresh Python3.11.13/3.13.9 gates, installed wheel without signing dependency, schema/build/benchmark/native metadata checks; RESULTS.md and audit bind source. |
+| Clean clone/fresh environment checks | Partial until final PR evidence | No-hardlink source clone, explicit fresh Python 3.11.13/3.13.9 gates, installed wheel without signing dependency, schema/build/benchmark/native metadata checks; RESULTS.md and audit bind source. |
 | Independent review and delivery record | Done for reviewed product source | Coordinator reviewed runtime d5a0817 and interpreter-only a2e423e with no blocking finding. Final head/check/landing evidence belongs to live PR21, not this static matrix; no self-approval. |
 | Repo rename/transfer/new shared package/HF upload | Gated | Unapplied; MIGRATION.md and publishing commands below require applicable named authority. |
 | Preserve releases/tags/branches/secrets/people | Done | No tag/history replacement, permanent source deletion, secret work, or messages to people. Installer cache cleanup was observed and reported; subsequent browser installs disable GC. |

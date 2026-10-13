@@ -89,7 +89,7 @@
     {
       "@id": "dev-cases",
       "@type": "cr:RecordSet",
-      "description": "Controlled fault cases; packet JSON and independent answer keys are described by cases.schema.json.",
+      "description": "Controlled fault cases; packet JSON is described by cases.schema.json; independent answer keys are described by answers.schema.json.",
       "field": [
         {
           "@id": "dev/id",
@@ -153,7 +153,7 @@
     {
       "@id": "test-cases",
       "@type": "cr:RecordSet",
-      "description": "Controlled fault cases; packet JSON and independent answer keys are described by cases.schema.json.",
+      "description": "Controlled fault cases; packet JSON is described by cases.schema.json; independent answer keys are described by answers.schema.json.",
       "field": [
         {
           "@id": "test/id",

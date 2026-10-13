@@ -18,7 +18,7 @@ No automated tool alone establishes full WCAG conformance.
 | firefox | 267 | 16 | 6.06/6.06 | webgl2 |
 | webkit | 31 | 24 | 16.00/17.00 | static |
 
-Each cadence sample contains60 rAF deltas while replaying timeline state motion.
+Each cadence sample contains 60 rAF deltas while replaying timeline state motion.
 These are main-thread presentation cadence, not GPU profiler frame times or a
 midrange-laptop certification. CI enforces median<=18 ms and p95<25 ms for this
 finite smoke interaction, plus every observed event duration<200 ms. Event Timing
@@ -42,7 +42,7 @@ runtime CSS/logo embeds against their canonical sources. All assets are local.
 
 WebGL2 runs in an optional OffscreenCanvas worker only after viewer interaction.
 Initial rendering uses a static surface; no startup GPU context or idle render
-loop. Finite600 ms sweeps stop under reduced motion, pause, or hidden-page state.
+loop. Finite 600 ms sweeps stop under reduced motion, pause, or hidden-page state.
 Workers terminate on pagehide. Text remains full contrast during motion after an
 observed opacity-fade contrast defect was fixed. No WebGPU layer is needed.
 

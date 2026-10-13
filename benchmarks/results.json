@@ -1,6 +1,6 @@
 {
   "cases": 1038,
-  "cases_per_second": 650.547788812989,
+  "cases_per_second": 685.6828496173712,
   "checker": {
     "accuracy": 1.0,
     "states": {
@@ -85,9 +85,9 @@
   },
   "native_baseline": "Not executed: archive omits full databases/goals; native checker replays tools.",
   "order_deterministic": true,
-  "peak_python_bytes": 164256,
+  "peak_python_bytes": 160892,
   "public_trajectories": 200,
-  "seconds": 1.5955784000034328,
+  "seconds": 1.5138194000028307,
   "source_sha256": "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa",
   "split_counts": {
     "dev": 168,

@@ -1,6 +1,6 @@
 # Results
 
-Measured October 13, 2026 on Windows-11-10.0.26300-SP0,
+Measured October 13, 2026 with recorded Python platform Windows-10-10.0.26300-SP0 (Windows 11 host),
 Python 3.11.13, AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD.
 Numbers below are real software runs, not agent competence or human-study scores.
 
@@ -22,10 +22,10 @@ Overall diagnostic accuracy: 1.000. Naive typed equality accuracy:
 0.333; confirmed precision:
 0.200. Its failure to distinguish
 no-op, wrong subject, and timestamp ineligibility is deliberate baseline scope.
-Every individual fault family has accuracy 1.0 on its173 constructed cases.
+Every individual fault family has accuracy 1.0 on its 173 constructed cases.
 
-Timed checker loop: 1.595578 s, 650.55 cases/s with tracemalloc enabled;
-peak traced Python allocation 164256 bytes. This is not resident process memory,
+Timed checker loop: 1.513819 s, 685.68 cases/s with tracemalloc enabled;
+peak traced Python allocation 160892 bytes. This is not resident process memory,
 a production SLA, or an instrument-free speed estimate. Reversed input ordering
 reproduced identical ID-bound verdicts. Timing is machine/load-sensitive.
 Exact environment, splits, metrics and source checksum: [results.json](benchmarks/results.json).
@@ -38,16 +38,16 @@ these correlated deterministic variants of a nonrandom source inventory.
 
 ## Existing external projection study
 
-The retained prior study of84 native-reported successes has13 confirmed,
+The retained prior study of 84 native-reported successes has 13 confirmed,
 9 contradicted,62 unobserved reservation-field projections. These are not
-full-task success judgments or proof of nine wrong native scores. All84 full
+full-task success judgments or proof of nine wrong native scores. All 84 full
 database/goal comparisons are unobserved because required snapshots are absent.
 See [tau study](studies/tau-airline/README.md). No missing state is recovered from
 reward bits, signatures, or hashes.
 
 ## Software and viewer
 
-Prechange:240 tests at7c49ae4. Current product run:260 tests pass; lint/format,
+Prechange:240 tests at 7c49ae4. Current product run:260 tests pass; lint/format,
 mypy, pyright,19 versioned schemas/10 examples, wheel/sdist build and actionlint
 pass. Fresh-clone source-bound results are recorded below and in the audit.
 See [PERF.md](PERF.md) for actual three-engine accessibility/cadence/LCP results,
@@ -81,3 +81,5 @@ assertions and all 27 browser observations pass in the final local matrix.
 A prior concurrent WebKit p95 of 33 ms correctly failed the unchanged 25 ms cap.
 A controlled same-context comparison under reduced host contention measured
 blank p95 17 ms and app replay p95 17 ms. These runs do not certify every laptop.
+
+The additional fresh 4a321c6 clone passed 260 tests on Python 3.11.13 in 10.46 seconds, Ruff, mypy and all 19 schemas/10 examples. Its build under an ignored build/ ancestor was interrupted after confirming Hatchling discarded its ignore patterns; it is not counted as a successful build. Final-head verification is performed outside that path and recorded in PR21. Previously successful builds remain dated evidence above.

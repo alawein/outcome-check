@@ -137,3 +137,7 @@ controller-contract tests reproduced pause/reduced-motion behavior before the
 fix; both now pass. Cartoon settles with transform squash/stretch, Calm has a
 small guarded pointer parallax on its decorative field, and Pixel uses a static
 dither texture behind stepped motion. Text opacity remains unchanged.
+
+## Retain source branches on delivery
+
+On October 13, 2026, GitHub reported automatic branch deletion enabled. The coordinator changed only `delete_branch_on_merge` to `false` and verified the live readback, applying this repository's explicit feature-branch retention instruction. Other settings, protections, and Dependabot were unchanged.
