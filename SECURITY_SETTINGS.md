@@ -19,7 +19,7 @@ needed. These are hosted observations, not claims from local preparation.
 The read-only prepublication check on October 8 found vulnerability alerts and
 automated security fixes disabled. That is a dated observation, not a new request
 to change them. The exact maintainer page is
-<https://github.com/alawein/outcome-check/settings/security_analysis>.
+<https://github.com/alawein/siftgrain-state/settings/security_analysis>.
 Its narrow anonymous-link-check exception remains because GitHub returns 404 to
 anonymous readers; public citations and release links remain checked.
 

@@ -346,7 +346,7 @@ def render_html(
         + content
         + "</pre></details>"
         "<p>Hashes bind supplied bytes, not authenticity.</p>"
-        '<p><a href="https://github.com/alawein/outcome-check">Source and installation</a>'
+        '<p><a href="https://github.com/alawein/siftgrain-state">Source and installation</a>'
         "</p></main></body></html>"
     )
     from outcome_check._tokens import TOKENS

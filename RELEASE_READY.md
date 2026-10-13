@@ -80,9 +80,11 @@ Publication states must remain distinct:
   Reconcile the destination first because a timeout may have had an effect.
 - **Not attempted:** no successful or failed external publication is claimed.
 
-The existing PyPI trusted publisher uses repository `alawein/outcome-check`,
-workflow `release.yml`, environment `pypi`. Owner-entered interactive authentication
-is an access requirement when needed, not a renewed authorization request.
+The current intended PyPI publisher identity is owner `alawein`, repository
+`siftgrain-state`, workflow `release.yml`, environment `pypi`. On October 13, the
+settings page redirected to sign-in; no publisher setting was read back or changed,
+so the native binding remains unverified after the rename. Owner-entered interactive
+authentication is an access requirement when needed, not a renewed authorization request.
 Never expose a token or invent an alternative secret flow.
 
 ## Pages and security

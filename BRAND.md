@@ -10,9 +10,10 @@ Voice: **Show the change. Keep the evidence.** Short, specific, candid about
 missing observations. Confirmed means the declared check passed, never that the
 world is true or that an agent caused it.
 
-The family is Siftgrain; the descriptor is State. Cite and Census are sibling
-descriptors. [Name checks](docs/name-checks.json) record exact GitHub, npm, PyPI,
-and Hugging Face searches plus a trademark-style web search on October 13, 2026.
+The family is Siftgrain; the descriptor is State. Siftgrain Cite and Siftgrain
+Audit are sibling products. [Name checks](docs/name-checks.json) record exact
+GitHub, npm, PyPI, and Hugging Face searches plus a trademark-style web search
+on October 13, 2026.
 The search found no obvious competing software brand among returned Siftgrain
 results. This limited search is not legal clearance. Spanward was rejected after
 software collisions. Existing distribution identities remain compatible.
@@ -31,7 +32,7 @@ easing; Calm adds guarded gentle pointer parallax and slower state settling; Lab
 pause, and hidden-page handling. A finite GPU sweep reveals the existing evidence
 field and never changes a verdict. Color always accompanies a text state.
 
-`design-tokens/` is an identical vendored copy of the family owner in claim-review,
+`design-tokens/` is an identical vendored copy of the family owner in Siftgrain Cite,
 version 1.0.0, private and unpublished. `_tokens.py` embeds the exact CSS for
 installed-wheel single-file reports; `scripts/check_perf.py` enforces equality.
 No separate published runtime package is created.

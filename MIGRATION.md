@@ -1,8 +1,9 @@
 # Migration
 
-Siftgrain State is the display brand. Package `outcome-check`, import
-`outcome_check`, CLI `outcome-check`, and repository URL retain their identities.
-No existing tag, registry file, packet, or JSON result field is renamed.
+Siftgrain State is the display brand and the GitHub repository is now
+`alawein/siftgrain-state`. Package `outcome-check`, import `outcome_check`, and
+CLI `outcome-check` remain compatible. No existing tag, registry file, packet,
+or JSON result field is renamed.
 
 v0.2.x schema v1 packets load directly. Their three-state semantics remain intact;
 no required change or baseline is silently added. Schema v2/v3 adds `unconfirmed`.
@@ -17,10 +18,14 @@ New entrypoints `outcome-convert` and `outcome-check-mcp` are additive. Conversi
 requires explicit subject, clocks, and goals. Outputs use the same no-clobber,
 input-alias, and atomic-write policy as the checker.
 
-Remote renames/transfers remain unapplied. If separately authorized, exact
-repository rename is `gh repo rename siftgrain-state --repo alawein/outcome-check`.
-GitHub redirects do not rename Python imports or preserve every external badge;
-update verified consumers and release metadata before any package-name migration.
-A kohyr transfer additionally needs confirmed organization permissions and its
-own explicit repository transfer approval. No blanket transfer or registry-name
-availability is inferred from the limited name search.
+The repository rename is complete. GitHub redirects do not rename Python imports
+or preserve every external badge; update verified consumers and release metadata
+before any package-name migration. A kohyr transfer still needs confirmed
+organization permissions and its own explicit repository transfer approval. No
+blanket transfer or registry-name availability is inferred from the limited name
+search.
+
+After a repository rename, verify current README/badges, package repository
+metadata and the release-workflow repository guard. Read back the native PyPI
+publisher binding against `alawein/siftgrain-state`; local metadata does not prove
+a registry setting changed.
