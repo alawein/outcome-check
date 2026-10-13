@@ -134,7 +134,7 @@ def render_html(
     observations = _index(packet_map.get("observations"))
     baselines = _index(packet_map.get("baselines"))
     as_of = packet_map.get("as_of")
-    title = html.escape(demo_title or "Outcome check")
+    title = html.escape(demo_title or "Siftgrain State")
     note = (
         "<details><summary>Demo context and source text hash</summary>"
         f'<p class="demo-note">{html.escape(demo_note)}</p></details>'
@@ -276,7 +276,7 @@ def render_html(
             "otherwise unobserved.</li>",
             "unconfirmed if the outcome needs an observed change, otherwise unobserved.</li>",
         )
-    return (
+    page = (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="description" content="Supplied-evidence outcome checks: action '
@@ -349,3 +349,7 @@ def render_html(
         '<p><a href="https://github.com/alawein/outcome-check">Source and installation</a>'
         "</p></main></body></html>"
     )
+    from outcome_check._tokens import TOKENS
+    from outcome_check.viewer import enhance
+
+    return enhance(page, results, TOKENS)

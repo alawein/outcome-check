@@ -1,0 +1,1 @@
+{"name":"siftgrain-state-viewer-checks","private":true,"type":"module","scripts":{"test":"node scripts/browser-check.mjs","perf":"node scripts/lighthouse.mjs"},"devDependencies":{"playwright":"1.62.1","axe-core":"4.10.3","lighthouse":"12.8.2"}}

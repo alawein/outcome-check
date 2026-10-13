@@ -1,0 +1,96 @@
+{
+  "cases": 1038,
+  "cases_per_second": 429.7394611371428,
+  "checker": {
+    "accuracy": 1.0,
+    "states": {
+      "confirmed": {
+        "actual": 173,
+        "precision": 1.0,
+        "predicted": 173,
+        "recall": 1.0,
+        "tp": 173
+      },
+      "contradicted": {
+        "actual": 173,
+        "precision": 1.0,
+        "predicted": 173,
+        "recall": 1.0,
+        "tp": 173
+      },
+      "unconfirmed": {
+        "actual": 173,
+        "precision": 1.0,
+        "predicted": 173,
+        "recall": 1.0,
+        "tp": 173
+      },
+      "unobserved": {
+        "actual": 519,
+        "precision": 1.0,
+        "predicted": 519,
+        "recall": 1.0,
+        "tp": 519
+      }
+    }
+  },
+  "confidence_intervals": "Not reported: correlated faults, not a population sample.",
+  "eligible_trajectories": 173,
+  "environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "python": "3.13.9"
+  },
+  "fault_accuracy": {
+    "clean": 1.0,
+    "noop": 1.0,
+    "stale": 1.0,
+    "subject": 1.0,
+    "timezone-skew": 1.0,
+    "wrong-state": 1.0
+  },
+  "llm_baseline": "Omitted: no model calls; controlled fault labels.",
+  "naive_equality": {
+    "accuracy": 0.3333333333333333,
+    "states": {
+      "confirmed": {
+        "actual": 173,
+        "precision": 0.2,
+        "predicted": 865,
+        "recall": 1.0,
+        "tp": 173
+      },
+      "contradicted": {
+        "actual": 173,
+        "precision": 1.0,
+        "predicted": 173,
+        "recall": 1.0,
+        "tp": 173
+      },
+      "unconfirmed": {
+        "actual": 173,
+        "precision": null,
+        "predicted": 0,
+        "recall": 0.0,
+        "tp": 0
+      },
+      "unobserved": {
+        "actual": 519,
+        "precision": null,
+        "predicted": 0,
+        "recall": 0.0,
+        "tp": 0
+      }
+    }
+  },
+  "native_baseline": "Not executed: archive omits full databases/goals; native checker replays tools.",
+  "order_deterministic": true,
+  "peak_python_bytes": 171390,
+  "public_trajectories": 200,
+  "seconds": 2.4154169999965234,
+  "source_sha256": "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa",
+  "split_counts": {
+    "dev": 168,
+    "test": 870
+  }
+}

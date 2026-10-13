@@ -103,3 +103,30 @@ hosting. A release tag starts trusted package publication, so the tag requires
 both tag and registry publication authorization. npm first-publication bootstrap,
 if needed, is a separate owner-approved publication using existing access; this
 run does not create secrets or bypass registry setup.
+
+## Siftgrain State redesign
+
+This is an architectural extension across integration, presentation, and evaluation.
+Retain the tested stdlib checker and schemas; add explicit adapters, a bounded
+read-only MCP transport, and a self-contained report. A core rewrite would add
+compatibility risk; a viewer-only update would leave integration gaps.
+
+Display brand changes to Siftgrain State after the documented limited name search.
+Package/import/repository identities remain stable. Canonical suite tokens are
+vendored unchanged from claim-review; no independently published shared package.
+
+Public trajectory fault labels are deterministic interventions on supplied
+reservation snapshots, not human annotations or external full-task gold. Keep
+archive transcripts out of Git, retain license/provenance, and generate local
+downloadable splits and separate answer keys. Split by source task identity.
+Missing native full-state goals cannot be reconstructed from hashes or rewards.
+The native replay baseline is therefore unavailable; LLM judgment is omitted.
+
+WebGL2 effects use an optional OffscreenCanvas worker because main-thread GPU
+initialization caused material Lighthouse blocking time. A static surface remains
+usable without GPU/worker support. Finite sweeps show existing evidence; CSS
+settling and contradiction motion keep their supplied verdict meaning.
+
+No WebGPU path: it adds no demonstrated need over this small WebGL2 field.
+No new runtime dependency: optional signing stays optional; browser/audit tools
+are development dependencies. No automatic package release is triggered.

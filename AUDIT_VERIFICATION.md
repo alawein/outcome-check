@@ -135,3 +135,28 @@ Hosted initial link check failed on the two references to the authenticated
 maintainer settings page, each returning 404 to anonymous lychee. Only the exact
 settings URL is excluded in .lycheeignore; public citations remain checked.
 The remote checks are rerun after this documented correction.
+
+## Fresh redesign baseline, October 13, 2026
+
+Prechange source `7c49ae4f77c69b48abdb0f38c1a276811f3886db`: 240 tests passed
+in7.15s, Python 3.13.9. Prior 49-test baseline and114-test hardening results above
+are historical, not today's count. Core default runtime dependencies remain zero.
+
+| Prior hypothesis | Fresh classification and source evidence |
+| --- | --- |
+| Equality-only | Refuted for current source: core.py:118 compare and checks.py:8 safe_regex implement range/contains/bounded regex. Confirmed only at historical baseline. |
+| Trusted unsigned observations | Confirmed boundary: signatures.py:64 signature_status labels unsigned/unverified; bytes do not prove truth. Optional signatures already exist. |
+| No baseline/no-op protection | Refuted currently: core.py:151 compare_baseline and contract.py:177 validate_v2 require referenced prior subject/path evidence and produce unconfirmed for no required change. |
+| No adapters | Partially confirmed currently: studies/tau-airline/run.py projects archived reservation fields, but no public CLI converter existed. New explicit harness adapters fill a narrower, documented supplied-snapshot contract. |
+| Test count45vs49 | Confirmed historical mismatch recorded above; current prechange suite is240, not either old number. |
+| No property/read-only proof | Refuted currently: tests/test_freshness_properties.py:12 and tests/test_runtime_boundary.py:17 already exist; MCP-specific proof is added. |
+| First PR one check not passing | Partially confirmed: PR1 exact head a67d58642ac56008052be23cee39c8ab5e01e99f merged October4 at16:57:13Z; check-runs succeeded but CodeRabbit commit status remains pending. A pending reviewer status is not a demonstrated failed required build. |
+| No published PyPI release | Refuted currently: v0.3.0/v0.4.0 publication evidence and fresh release listing; preserve immutable bytes. |
+| 0 stars/single contributor/squash origin | 0 stars confirmed by current repo API; October4 bootstrap/squashed PR commits verified. Contributor history alone cannot establish all humans/tools involved. |
+| Dependabot/security alerts disabled October6 | Current alerts/updates disabled confirmed; PR13 removed config October6. Historical settings events are not fully available, so precise toggle date is only partially verified. |
+| No adapters can verify full-task truth | Confirmed limit: supplied snapshots/results cannot independently collect state or establish complete goals. |
+
+Exact prechange file line numbers and history are retained in the committed
+source tree and earlier evidence above; current implementation changes do not
+rewrite historical audit claims as new measurements. New outcome/CLI/safety
+negative tests are run before implementation, with initial failures observed.

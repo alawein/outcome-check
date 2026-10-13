@@ -1,0 +1,198 @@
+[
+  {
+    "browser": "chromium",
+    "vibe": "cartoon",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "cartoon",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "calm",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "calm",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "pixel",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "pixel",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "lab",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "vibe": "lab",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "chromium",
+    "metrics": {
+      "lcp": 76,
+      "events": [
+        32,
+        32,
+        32,
+        16
+      ]
+    },
+    "frameMedianMs": 16.699999999999818,
+    "frameP95Ms": 16.700000000000045,
+    "sample": "60 rAF deltas while replaying timeline",
+    "renderer": "webgl2",
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "cartoon",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "cartoon",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "calm",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "calm",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "pixel",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "pixel",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "lab",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "vibe": "lab",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "firefox",
+    "metrics": {
+      "lcp": 92,
+      "events": [
+        24
+      ]
+    },
+    "frameMedianMs": 6.060000000000059,
+    "frameP95Ms": 6.079999999999927,
+    "sample": "60 rAF deltas while replaying timeline",
+    "renderer": "webgl2",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "cartoon",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "cartoon",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "calm",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "calm",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "pixel",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "pixel",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "lab",
+    "appearance": "dark",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "vibe": "lab",
+    "appearance": "light",
+    "axeViolations": []
+  },
+  {
+    "browser": "webkit",
+    "metrics": {
+      "lcp": 65,
+      "events": [
+        56,
+        56,
+        56,
+        24,
+        24,
+        16,
+        16,
+        16
+      ]
+    },
+    "frameMedianMs": 16,
+    "frameP95Ms": 18,
+    "sample": "60 rAF deltas while replaying timeline",
+    "renderer": "static",
+    "errors": []
+  }
+]

@@ -1,0 +1,23 @@
+name: Siftgrain State
+description: Check explicit outcome packets offline with the existing outcome-check contract.
+inputs:
+  packet:
+    description: Local packet JSON path. Never a URL.
+    required: true
+  html:
+    description: Optional HTML output path. Existing files are never overwritten.
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Check supplied outcome evidence
+      shell: bash
+      env:
+        PACKET: ${{ inputs.packet }}
+        HTML_REPORT: ${{ inputs.html }}
+      run: |
+        args=()
+        if [ -n "$HTML_REPORT" ]; then args+=(--html "$HTML_REPORT"); fi
+        args+=(-- "$PACKET")
+        PYTHONPATH="$GITHUB_ACTION_PATH/src" python -c 'import sys; from outcome_check.cli import main; assert sys.version_info >= (3,11); raise SystemExit(main())' "${args[@]}"

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alawein.github.io/outcome-check/schemas/dataset-v1",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "source_index",
+      "task_id",
+      "split",
+      "fault",
+      "packet"
+    ],
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "source_index": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "task_id": {
+        "type": [
+          "string",
+          "integer",
+          "null"
+        ]
+      },
+      "split": {
+        "enum": [
+          "dev",
+          "test"
+        ]
+      },
+      "fault": {
+        "enum": [
+          "clean",
+          "noop",
+          "stale",
+          "subject",
+          "timezone-skew",
+          "wrong-state"
+        ]
+      },
+      "packet": {
+        "type": "object"
+      }
+    }
+  }
+}
