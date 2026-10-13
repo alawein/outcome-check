@@ -24,3 +24,8 @@ before any package-name migration. A kohyr transfer still needs confirmed
 organization permissions and its own explicit repository transfer approval. No
 blanket transfer or registry-name availability is inferred from the limited name
 search.
+
+After a repository rename, verify current README/badges, package repository
+metadata and the release-workflow repository guard. Read back the native PyPI
+publisher binding against `alawein/siftgrain-state`; local metadata does not prove
+a registry setting changed.
