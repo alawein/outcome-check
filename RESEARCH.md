@@ -25,7 +25,7 @@ lack immutable revision dates, so precise version claims use pinned source.
 | [WebArena](https://arxiv.org/abs/2307.13854) | July 26, 2023 | Unknown in this scan | Unknown | Website environments evaluate functional task completion. |
 | [OSWorld](https://arxiv.org/abs/2404.07972) | April 12, 2024 | Unknown in this scan | Unknown | Computer environments use task-specific execution-based evaluation. |
 | [Agentic Benchmark Checklist](https://arxiv.org/abs/2507.02825v5) | July 3, 2025 | August 7, 2025, v5 | Not applicable | Reward/task setup defects limit interpretation of success rates. |
-| [MCP schema](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-06-18/schema.mdx) | Unknown | Protocol June 18, 2025; page revision unknown | Not applicable | Closed-world readOnlyHint and structured tool results; hints are not proof. |
+| [MCP schema](https://modelcontextprotocol.io/specification/2025-06-18/schema) | Unknown | Protocol June 18, 2025; page revision unknown | Not applicable | Closed-world readOnlyHint and structured tool results; hints are not proof. |
 | [RFC8785](https://www.rfc-editor.org/rfc/rfc8785) | June 2020 | RFC8785 | Not applicable | Canonical JSON bytes for optional signatures. |
 
 September 1 to October 13 emphasis: the September hyper-tau paper and tau-Rec
