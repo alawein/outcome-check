@@ -33,5 +33,16 @@
     "Lighthouse and event duration do not prove field INP.",
     "Earlier nested-clone build was interrupted, not passed.",
     "No human study or full native tau reward replay."
-  ]
+  ],
+  "swebench_identity_followup": {
+    "date": "2026-10-13",
+    "python": "3.11.13",
+    "tests": 262,
+    "seconds": 8.08,
+    "lint_types_schemas_build": "passed",
+    "adapter_sha256": "a8b3ce3dedab3b58f5f485c6bd5062e8e17a22d0f6805e8c7c2f34b182f93450",
+    "integration_tests_sha256": "8f02eccd21341ab031cd7d53d9c0b96a1da97f9071213221300ef9d3a92e5eaf",
+    "negative_regression": "failed before correction; matching IDs accepted, conflicting IDs rejected without input mutation",
+    "viewer_and_checker": "unchanged"
+  }
 }

@@ -47,7 +47,7 @@ reward bits, signatures, or hashes.
 
 ## Software and viewer
 
-Prechange:240 tests at 7c49ae4. Current product run:260 tests pass; lint/format,
+Prechange:240 tests at 7c49ae4. Current product run:262 tests pass; lint/format,
 mypy, pyright,19 versioned schemas/10 examples, wheel/sdist build and actionlint
 pass. Fresh-clone source-bound results are recorded below and in the audit.
 See [PERF.md](PERF.md) for actual three-engine accessibility/cadence/LCP results,
@@ -89,3 +89,7 @@ The additional fresh 4a321c6 clone passed 260 tests on Python 3.11.13 in 10.46 s
 Fresh temporary clone `1bed622efcacc88de57b074b4d02aa0fa41a7fa2` passed all 260 tests on Python 3.11.13 in 10.82 seconds, Ruff, mypy, pyright, 19 schemas/10 examples, and wheel/sdist build. It also passed 27 browser observations, both motion cancellation regressions, all 1038 benchmark cases, and native Croissant parsing. This resolves the interrupted nested-clone build above without changing source or build requirements.
 
 The separate direct Lighthouse run measured performance 0.82, accessibility 1.00, LCP 1145 ms and TBT 335 ms. Native Lighthouse CI measured performance 0.92, accessibility 1.00, LCP 894.226 ms and TBT 196.5 ms and passed its unchanged LCP/accessibility assertions. Both measurements are retained in docs/final-verification.json. Neither proves field INP. Independent review of 4a321c6..1bed622 found no actionable defects. Final hosted status and landing are recorded by PR21.
+
+## SWE-bench identity follow-up
+
+A final native-review finding reproduced silent replacement of a conflicting nested instance ID by its wrapper key. The adapter now rejects differing or differently typed explicit IDs; matching IDs and source input immutability are covered. The negative regression failed on the previous implementation. All 262 tests passed on Python 3.11.13 in 8.08 seconds, with Ruff, mypy, pyright, 19 schemas/10 examples and wheel/sdist build. The checker and viewer remain unchanged. Final clean-clone/hosted execution and independent review bind the follow-up in PR21.

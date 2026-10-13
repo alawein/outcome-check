@@ -29,6 +29,24 @@ def test_swe_result_is_supplied_state_not_patch_execution():
     assert data == before
 
 
+def test_swe_wrapper_rejects_conflicting_identity_without_mutation():
+    for nested_id in ("another-instance", None, 1):
+        data = {"x": {"instance_id": nested_id, "resolved": True}}
+        before = deepcopy(data)
+        with pytest.raises(InputError, match="conflicting instance_id"):
+            convert("swebench", data, **options())
+        assert data == before
+
+
+def test_swe_wrapper_preserves_matching_explicit_identity():
+    data = {"x": {"instance_id": "x", "resolved": True}}
+    before = deepcopy(data)
+    packet = convert("swebench", data, **options())
+    assert packet["observations"][0]["subject"] == "x"
+    assert check_packet(packet)["counts"]["confirmed"] == 1
+    assert data == before
+
+
 @pytest.mark.parametrize(
     "bad", [True, [], {}, {"instance_id": "x"}, {"instance_id": "x", "resolved": 1}]
 )

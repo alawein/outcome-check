@@ -67,3 +67,5 @@ Checkout this repository at an exact reviewed commit and invoke `uses: ./` with
 must already supply Python 3.11+. The composite action needs no package install,
 network, or secret. Exit 1 fails the step when evidence needs review. Workflows
 using a remote action should pin its full reviewed commit SHA.
+
+A SWE-bench single-instance wrapper may repeat its ID inside the report only when both value and type agree. Conflicting explicit IDs reject the whole conversion; no subject is silently overwritten.

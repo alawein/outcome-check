@@ -32,6 +32,14 @@ def convert(
         if "instance_id" not in record and len(record) == 1:
             native_id, native = next(iter(record.items()))
             require(type(native) is dict, "native per-instance report must be an object")
+            require(
+                "instance_id" not in native
+                or (
+                    type(native["instance_id"]) is type(native_id)
+                    and native["instance_id"] == native_id
+                ),
+                "conflicting instance_id in native per-instance report",
+            )
             record = native | {"instance_id": native_id}
         subject = record.get("instance_id")
         require(type(record.get("resolved")) is bool, "resolved Boolean required")
