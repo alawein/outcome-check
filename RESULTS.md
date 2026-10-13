@@ -93,3 +93,5 @@ The separate direct Lighthouse run measured performance 0.82, accessibility 1.00
 ## SWE-bench identity follow-up
 
 A final native-review finding reproduced silent replacement of a conflicting nested instance ID by its wrapper key. The adapter now rejects differing or differently typed explicit IDs; matching IDs and source input immutability are covered. The negative regression failed on the previous implementation. All 262 tests passed on Python 3.11.13 in 8.08 seconds, with Ruff, mypy, pyright, 19 schemas/10 examples and wheel/sdist build. The checker and viewer remain unchanged. Final clean-clone/hosted execution and independent review bind the follow-up in PR21.
+
+The fresh temporary clone was fast-forwarded to 974e64e and passed all 262 Python 3.11.13 tests in 9.72 seconds, Ruff, mypy, pyright, schemas and wheel/sdist build. Source hashes in docs/final-verification.json explicitly use canonical LF Git blob bytes. The viewer is byte-unchanged from its complete 1bed622 browser/Lighthouse verification.

@@ -40,9 +40,14 @@
     "tests": 262,
     "seconds": 8.08,
     "lint_types_schemas_build": "passed",
-    "adapter_sha256": "a8b3ce3dedab3b58f5f485c6bd5062e8e17a22d0f6805e8c7c2f34b182f93450",
-    "integration_tests_sha256": "8f02eccd21341ab031cd7d53d9c0b96a1da97f9071213221300ef9d3a92e5eaf",
+    "adapter_sha256": "b344fbc09c6cb2981c2f29fa9db9971904c6a4bee6f2e7a53b461abda2763589",
+    "integration_tests_sha256": "25adb2147833668938192b6afe499517bb0b4c4b10aaa1e14fabdefb5bddabfb",
     "negative_regression": "failed before correction; matching IDs accepted, conflicting IDs rejected without input mutation",
-    "viewer_and_checker": "unchanged"
+    "viewer_and_checker": "unchanged",
+    "hash_basis": "SHA-256 of canonical LF Git blob bytes",
+    "fresh_clone_source_head": "974e64e3c46afe3529786c38a38abbcdaedf62ec",
+    "fresh_clone_tests": 262,
+    "fresh_clone_test_seconds": 9.72,
+    "fresh_clone_lint_types_schemas_build": "passed"
   }
 }
