@@ -1,0 +1,37 @@
+{
+  "source_head": "1bed622efcacc88de57b074b4d02aa0fa41a7fa2",
+  "access_date": "2026-10-13",
+  "clone": "fresh --no-local temporary clone outside ignored directory names",
+  "python": "3.11.13",
+  "python_tests": 260,
+  "test_seconds": 10.82,
+  "ruff": "passed",
+  "mypy": "passed",
+  "pyright": "0 errors, 0 warnings",
+  "schemas": 19,
+  "examples": 10,
+  "wheel_and_sdist": "passed",
+  "browser_observations": 27,
+  "motion_contract_tests": 2,
+  "benchmark_cases": 1038,
+  "benchmark_accuracy": 1.0,
+  "native_croissant_record_sets": 2,
+  "direct_lighthouse": {
+    "performance": 0.82,
+    "accessibility": 1.0,
+    "lcp_ms": 1145,
+    "tbt_ms": 335
+  },
+  "native_lighthouse_ci": {
+    "performance": 0.92,
+    "accessibility": 1.0,
+    "lcp_ms": 894.226,
+    "tbt_ms": 196.5,
+    "configured_assertions": "passed"
+  },
+  "limitations": [
+    "Lighthouse and event duration do not prove field INP.",
+    "Earlier nested-clone build was interrupted, not passed.",
+    "No human study or full native tau reward replay."
+  ]
+}

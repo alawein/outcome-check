@@ -91,3 +91,5 @@ activation. A visible confirmed row is verified to have an active replay before
 the final browser cadence window; replay is restarted at frames 20 and 40. This
 avoids treating offscreen or paused animation as an active-interaction sample.
 Offscreen effects are canceled through IntersectionObserver where available.
+
+Final temporary-clone verification at 1bed622 passed all 27 browser observations. Direct Lighthouse measured LCP 1145 ms/TBT 335 ms/performance 0.82/accessibility 1.00. Native Lighthouse CI measured LCP 894.226 ms/TBT 196.5 ms/performance 0.92/accessibility 1.00 and passed its unchanged assertions. These additional results preserve load-sensitive variation rather than replacing slower measurements. See docs/final-verification.json.
