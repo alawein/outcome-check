@@ -22,6 +22,12 @@ for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
   });
   await page.goto(url,{waitUntil:'domcontentloaded'});await page.waitForTimeout(200);
   assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+  await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'vibe');
+  assert.notEqual(await page.locator('#vibe').evaluate(e=>getComputedStyle(e).outlineStyle),'none');
+  await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'appearance');
+  await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'pause-motion');
+  await page.keyboard.press('Space');assert.equal(await page.locator('#pause-motion').getAttribute('aria-pressed'),'true');
+  await page.keyboard.press('Space');assert.equal(await page.locator('#pause-motion').getAttribute('aria-pressed'),'false');
   for(const vibe of ['cartoon','calm','pixel','lab']){
     await page.selectOption('#vibe',vibe);
     for(const appearance of ['dark','light']){
@@ -33,11 +39,14 @@ for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
       assert.deepEqual(serious,[],`${name} ${vibe} ${appearance} axe`);
     }
   }
-  await page.selectOption('#vibe','pixel');await page.reload({waitUntil:'domcontentloaded'});
+  await page.selectOption('#vibe','pixel');await page.goto('about:blank');
+  await page.goto(url,{waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('html').getAttribute('data-vibe'),'pixel');
   await page.selectOption('#verdict-filter','contradicted');
   assert.equal(await page.locator('.event:visible:not([data-status=contradicted])').count(),0);
+  await page.click('#replay');
   await page.click('#pause-motion');assert.equal(await page.locator('#pause-motion').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('.event').evaluateAll(es=>es.some(e=>e.getAnimations().some(a=>a.playState==='running'))),false);
   await page.emulateMedia({reducedMotion:'reduce'});
   assert.equal(await page.locator('.event').first().evaluate(e=>getComputedStyle(e).animationName),'none');
   await page.setViewportSize({width:390,height:844});
@@ -46,12 +55,15 @@ for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
   await page.emulateMedia({reducedMotion:'no-preference'});
   await page.click('#pause-motion');
   await page.selectOption('#verdict-filter','all');
-  await page.click('#replay');
+  await page.locator('.event').first().scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>typeof IntersectionObserver==='undefined'||document.querySelector('.event').dataset.inView==='true');
+  assert.equal(await page.evaluate(()=>{document.getElementById('replay').click();
+    return document.querySelector('.event').getAnimations().some(a=>a.playState==='running')}),true);
   const frames=await page.evaluate(()=>new Promise(resolve=>{const deltas=[];let last=performance.now();
     function step(now){deltas.push(now-last);last=now;
     if(deltas.length===20||deltas.length===40)document.getElementById('replay').click();
     if(deltas.length<61)requestAnimationFrame(step);else resolve(deltas.slice(1))}requestAnimationFrame(step)}));
-  results.push({browser:name,metrics:await page.evaluate(()=>window.metrics),frameMedianMs:frames.sort((a,b)=>a-b)[30],frameP95Ms:frames[57],sample:'60 rAF deltas while replaying timeline',renderer:await page.locator("#evidence-field").getAttribute("data-renderer"),errors});
+  results.push({browser:name,metrics:await page.evaluate(()=>window.metrics),frameMedianMs:frames.sort((a,b)=>a-b)[30],frameP95Ms:frames[57],sample:'60 rAF deltas with a visible confirmed row; active replay verified and restarted at frames20/40',browserVersion:browser.version(),renderer:await page.locator("#evidence-field").getAttribute("data-renderer"),errors});
   assert.deepEqual(errors,[]);
   await fs.writeFile(path.join(output,"results.json"),JSON.stringify(results,null,2)+"\n");
   assert.ok(frames[30]<=18&&frames[57]<25,`${name} cadence median=${frames[30]} p95=${frames[57]}`);
@@ -62,7 +74,8 @@ for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
     Object.defineProperty(window,'localStorage',{get(){throw Error('blocked')}});
     HTMLCanvasElement.prototype.getContext=()=>null;
   });await blocked.goto(url,{waitUntil:'domcontentloaded'});await blocked.selectOption('#vibe','cartoon');
-  await blocked.selectOption('#appearance','light');await blocked.reload({waitUntil:'domcontentloaded'});
+  await blocked.selectOption('#appearance','light');await blocked.goto('about:blank');
+  await blocked.goto(url,{waitUntil:'domcontentloaded'});
   assert.equal(await blocked.locator('html').getAttribute('data-theme'),'dark');
   await context.close();await browser.close();
 }

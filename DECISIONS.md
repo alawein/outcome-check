@@ -130,3 +130,10 @@ settling and contradiction motion keep their supplied verdict meaning.
 No WebGPU path: it adds no demonstrated need over this small WebGL2 field.
 No new runtime dependency: optional signing stays optional; browser/audit tools
 are development dependencies. No automatic package release is triggered.
+
+Motion cancellation explicitly covers Web Animations API handles, because CSS
+animation:none alone did not cancel an already running replay. Two failing
+controller-contract tests reproduced pause/reduced-motion behavior before the
+fix; both now pass. Cartoon settles with transform squash/stretch, Calm has a
+small guarded pointer parallax on its decorative field, and Pixel uses a static
+dither texture behind stepped motion. Text opacity remains unchanged.

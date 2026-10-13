@@ -18,10 +18,10 @@ The other two tools' implementation belongs to their own repositories.
 | Four runtime themes and guarded persistence | Done | Cartoon/Calm/Pixel/Lab, dark/light controls; every storage access guarded; denied-storage tests. |
 | GPU motion/offline fallbacks | Done | Finite WebGL2 worker sweep on explicit interaction; Chromium handshake verifies actual renderer. Static fallback where unavailable; no CDN. |
 | Meaningful verdict motion | Done | Confirmed settles, contradiction shakes, missing evidence uses dashed/ghosted outline; no-op has explicit fourth label. Motion does not alter results. |
-| Reduced motion/pause/hidden lifecycle | Done | CSS/WAAPI/GPU guards; hidden work stopped, pagehide worker terminated, controls and browser runs. |
+| Reduced motion/pause/hidden lifecycle | Done | CSS/WAAPI/GPU guards, explicit active-animation cancellation and offscreen observer; hidden work stopped, pagehide worker terminated, controls and browser runs. |
 | WCAG2.2AA/focus/keyboard/labels | Partial | All four themes/both appearances/three engines passed automated WCAG-tag axe with no violations; full manual assistive-technology conformance is not established. Motion text opacity defect was corrected. |
 | 60 fps, INP<200 ms, file LCP<2.5s | Partial | Measured active replay rAF cadence, event timing and file LCP in PERF.md; CI enforces explicit budgets. Field INP and midrange-laptop certification are unavailable. |
-| Lighthouse CI/axe/gzip budget | Done | npm run perf invokes Lighthouse in CI; npm test invokes axe and three engines; 32,768-byte gzip cap enforced. Lighthouse score/TBT are reported candidly. |
+| Lighthouse CI/axe/gzip budget | Done | npm run perf invokes Lighthouse and npm run lhci uses native collect/assert in CI; npm test invokes axe and three engines; 32,768-byte gzip cap enforced. Lighthouse score/TBT are reported candidly. |
 | Real MP4 per vibe | Done | assets/demos: actual Playwright viewer recordings converted with ffmpeg, no fabricated product footage. |
 | Explicit deterministic offline stdlib core | Done | Existing core retained; adapters/MCP never collect or execute. Guarded boundary tests. Default runtime dependencies zero. |
 | Hashes bind bytes, not truth | Done | README/contracts/UI preserve trust boundary; signatures remain optional. |
@@ -47,8 +47,8 @@ The other two tools' implementation belongs to their own repositories.
 | One-command benchmark/local ZIP | Done | make bench fetches, validates, runs, checks invariants and packages build/siftgrain-state-data-v1.zip. No public upload. |
 | Human-study protocol/no fabricated labels | Done | data-v1/HUMAN_PROTOCOL.md is protocol-only; no study participants or results claimed. |
 | README/changelog/migration/limits | Done | Current brand/quickstart/integrations/results/limits, unreleased changes, stable distributions and schema migration. |
-| Clean clone/fresh environment checks | Pending | Candidate-bound verification is recorded after the scoped checkpoint in AUDIT_VERIFICATION.md. |
-| Independent review/hosted checks/landing | Pending | Coordinator reviews the exact PR head; no self-approval or unreviewed merge. |
+| Clean clone/fresh environment checks | Done | No-hardlink source clone, explicit fresh Python3.11.13/3.13.9 gates, installed wheel without signing dependency, schema/build/benchmark/native metadata checks; RESULTS.md and audit bind source. |
+| Independent review and delivery record | Done for reviewed product source | Coordinator reviewed runtime d5a0817 and interpreter-only a2e423e with no blocking finding. Final head/check/landing evidence belongs to live PR21, not this static matrix; no self-approval. |
 | Repo rename/transfer/new shared package/HF upload | Gated | Unapplied; MIGRATION.md and publishing commands below require applicable named authority. |
 | Preserve releases/tags/branches/secrets/people | Done | No tag/history replacement, permanent source deletion, secret work, or messages to people. Installer cache cleanup was observed and reported; subsequent browser installs disable GC. |
 

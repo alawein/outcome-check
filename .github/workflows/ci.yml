@@ -172,6 +172,7 @@ jobs:
       - run: uv run python scripts/check_perf.py
       - run: npm test
       - run: npm run perf
+      - run: npm run lhci
       - run: make bench
       - run: uv run --with mlcroissant==1.1.1 python scripts/check_croissant.py
       - name: Report browser development dependency audit

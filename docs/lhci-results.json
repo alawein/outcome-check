@@ -1,0 +1,17 @@
+{
+  "tool": "@lhci/cli 0.15.1",
+  "lighthouse": "12.6.1",
+  "access_date": "2026-10-13",
+  "profile": "desktop 1280x800; original configured defaults retained",
+  "performance": 0.95,
+  "accessibility": 1,
+  "lcp_ms": 853.152,
+  "tbt_ms": 165.5,
+  "assertions": {
+    "lcp_max_ms": 2500,
+    "accessibility_min": 1,
+    "passed": true
+  },
+  "uploads": "none",
+  "runtime_source": "a2e423e59b7b5aeda15f80a62a51485e32ebc6f0; final presentation-only change labels null action as not required"
+}

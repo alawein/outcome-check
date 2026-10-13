@@ -26,8 +26,8 @@ and pink contradictions. Light appearance has tested text/control contrast.
 
 Use system sans-serif for long copy, Georgia for display, system monospace for
 values. There are no downloaded fonts or CDN requests. Pixel changes corners and
-stepped easing; Cartoon adds sticker shadows and spring easing; Calm slows state
-settling; Lab tightens density. Nonessential motion stops under reduced motion,
+stepped easing; Cartoon adds sticker shadows, uneven corners, transform squash/stretch and spring
+easing; Calm adds guarded gentle pointer parallax and slower state settling; Lab tightens density. Nonessential motion stops under reduced motion,
 pause, and hidden-page handling. A finite GPU sweep reveals the existing evidence
 field and never changes a verdict. Color always accompanies a text state.
 

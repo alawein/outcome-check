@@ -33,7 +33,8 @@ fault construction; they are not an independently annotated external gold set.
 
 Task IDs, including repeated trials, are SHA-256 grouped into dev (hash mod 5=0)
 and test (all others). Source indices identify each recorded trajectory. Answer
-keys live separately from case JSON. Both splits are public diagnostic material,
+keys live separately from case JSON. Both case and answer-key schemas are
+Draft 2020-12; every generated packet also validates against packet schema v3. Both splits are public diagnostic material,
 not sealed held-out scientific evaluation. A developer can see their labels.
 
 ## Uses

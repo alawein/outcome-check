@@ -1,1 +1,16 @@
-{"name":"siftgrain-state-viewer-checks","private":true,"type":"module","scripts":{"test":"node scripts/browser-check.mjs","perf":"node scripts/lighthouse.mjs"},"devDependencies":{"playwright":"1.62.1","axe-core":"4.10.3","lighthouse":"12.8.2"}}
+{
+  "name": "siftgrain-state-viewer-checks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test scripts/motion-contract.test.mjs && node scripts/browser-check.mjs",
+    "perf": "node scripts/lighthouse.mjs",
+    "lhci": "node scripts/lhci.mjs"
+  },
+  "devDependencies": {
+    "@lhci/cli": "0.15.1",
+    "axe-core": "4.10.3",
+    "lighthouse": "12.8.2",
+    "playwright": "1.62.1"
+  }
+}

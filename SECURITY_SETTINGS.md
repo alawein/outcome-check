@@ -43,3 +43,10 @@ The current maintainer URL above is the destination, not proof of permissions.
 Browser-only development tools now also use `npm audit --json` in report-only
 CI. Audit findings do not change zero-default-dependency Python runtime scope.
 Do not blindly apply audit fix --force or enable Dependabot to clear reports.
+
+The final development-tool audit snapshot reports 36 npm findings (2 low,
+23 moderate, 11 high) after adding the requested native Lighthouse CI CLI.
+These are development-only dependencies; no claim of a clean browser-tool audit
+is made. The Python dependency snapshot reports no known vulnerabilities; the
+unpublished development package itself is skipped by the public vulnerability
+registry. Both jobs remain report-only, with no forced dependency upgrade.

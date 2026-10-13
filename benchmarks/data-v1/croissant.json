@@ -45,6 +45,7 @@
     "transform": "cr:transform"
   },
   "@type": "Dataset",
+  "citeAs": "Meshal Alawein. Siftgrain State controlled fault set v1 (2026).",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "datePublished": "2026-10-13",
   "description": "Pinned public reservation-state anchors with six controlled interventions; not full-task human gold.",
@@ -215,6 +216,5 @@
     }
   ],
   "url": "https://github.com/alawein/outcome-check",
-  "version": "1.0.0",
-  "citeAs": "Meshal Alawein. Siftgrain State controlled fault set v1 (2026)."
+  "version": "1.0.0"
 }

@@ -160,3 +160,27 @@ Exact prechange file line numbers and history are retained in the committed
 source tree and earlier evidence above; current implementation changes do not
 rewrite historical audit claims as new measurements. New outcome/CLI/safety
 negative tests are run before implementation, with initial failures observed.
+
+## Redesign candidate verification
+
+Code checkpoint d5a0817b87cb51000e3007121ef15c53e0006c12; a2e423e59b7b5aeda15f80a62a51485e32ebc6f0 adds only explicit CI interpreter selection/version prints. Fresh no-hardlink clone full gate: Python3.13.9,260tests; fresh explicit UV_PYTHON3.11.13 and separate environment:260tests in20.50s, lint/format,mypy,pyright,19schemas/10examples,wheel/sdist pass. Installed default wheel on isolated3.11 has no cryptography dependency and renders four states. Benchmark:1038cases,168dev/870test, split bytes identical across3.11/3.13. Native mlcroissant1.1.1 parser/extraction passed two RecordSets.
+
+Plain uv run initially honored the repository3.13 pin rather than the requested3.11 environment; this was observed and corrected, not counted as3.11 evidence. CI matrix now explicitly selects its interpreter and prints it. First draft d5a passed all20hosted checks; a2e's only failure was a503 on a previously successful MCP primary-source link. One targeted failed-job rerun was issued after that URL was verified reachable. No link exclusion or required check was weakened.
+
+Final local browser harness uses fresh document startup through about:blank to test stored preferences after intermittent Firefox file-reload instrumentation timeouts, also reproduced with GPU disabled. All24theme/appearance axe cases and27browser observations passed; a concurrent WebKit33msp95 failure is retained candidly in PERF.md alongside controlled blank/app17msp95 comparison. Budget unchanged. Candidate-source Lighthouse clean clone:.97performance,1.0accessibility,LCP1002ms,TBT0. Field INP and midrange-hardware certification remain unverified.
+
+Independent coordinator reviewed product checkpoint d5a and CI-only a2e delta with no blocking findings; final head/check binding remains in the draft PR. Existing release tags/bytes/feature branches and all shared safety code are preserved.
+
+The named Lighthouse CI CLI0.15.1 also completed native collect/assert with one
+local URL/run, unchanged LCP2500ms/accessibility1.0 bounds and no upload. Native
+result summary is docs/lhci-results.json. Final instrumentation changes add
+keyboard/focus assertions and fresh-document persistence navigation; core source remains unchanged; the final presentation also humanizes a null
+action reference as "not required" without changing JSON.
+
+A final controller review found that CSS-only pause/reduced-motion handling did
+not cancel already-running Web Animations. Two no-GPU emitted-JS controller tests
+failed before implementation, then passed after explicit cancellation on pause,
+reduction and hidden-page events. Real-browser pause assertions additionally
+check no running event animation. Final viewer polish keeps transform-only
+Cartoon squash/stretch, guarded Calm parallax and Pixel dither. All core modules,
+adapters, MCP semantics and shared output-safety bytes remain unchanged.

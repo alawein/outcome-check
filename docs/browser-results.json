@@ -50,15 +50,20 @@
   {
     "browser": "chromium",
     "metrics": {
-      "lcp": 76,
+      "lcp": 52,
       "events": [
-        32,
-        32,
-        32,
+        24,
+        24,
+        24,
+        16,
+        16,
+        16,
+        16,
+        16,
         16
       ]
     },
-    "frameMedianMs": 16.699999999999818,
+    "frameMedianMs": 16.699999999999932,
     "frameP95Ms": 16.700000000000045,
     "sample": "60 rAF deltas while replaying timeline",
     "renderer": "webgl2",
@@ -115,13 +120,13 @@
   {
     "browser": "firefox",
     "metrics": {
-      "lcp": 92,
+      "lcp": 267,
       "events": [
-        24
+        16
       ]
     },
-    "frameMedianMs": 6.060000000000059,
-    "frameP95Ms": 6.079999999999927,
+    "frameMedianMs": 6.059999999999945,
+    "frameP95Ms": 6.060000000000059,
     "sample": "60 rAF deltas while replaying timeline",
     "renderer": "webgl2",
     "errors": []
@@ -177,20 +182,20 @@
   {
     "browser": "webkit",
     "metrics": {
-      "lcp": 65,
+      "lcp": 31,
       "events": [
-        56,
-        56,
-        56,
         24,
         24,
+        24,
+        16,
+        16,
         16,
         16,
         16
       ]
     },
     "frameMedianMs": 16,
-    "frameP95Ms": 18,
+    "frameP95Ms": 17,
     "sample": "60 rAF deltas while replaying timeline",
     "renderer": "static",
     "errors": []

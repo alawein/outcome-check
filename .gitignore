@@ -40,3 +40,5 @@ studies/data/
 node_modules/
 playwright-report/
 test-results/
+
+.lighthouseci/

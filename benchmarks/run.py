@@ -178,6 +178,18 @@ def main():
     schema = json.loads((DATA / "cases.schema.json").read_text(encoding="utf-8"))
     Draft202012Validator.check_schema(schema)
     Draft202012Validator(schema).validate(rows)
+    answers_schema = json.loads((DATA / "answers.schema.json").read_text(encoding="utf-8"))
+    Draft202012Validator.check_schema(answers_schema)
+    for split in ("dev", "test"):
+        Draft202012Validator(answers_schema).validate(
+            json.loads((generated / f"{split}-answers.json").read_text(encoding="utf-8"))
+        )
+    packet_schema = json.loads(
+        (ROOT.parent / "schemas/v3/packet.schema.json").read_text(encoding="utf-8")
+    )
+    validator = Draft202012Validator(packet_schema)
+    for row in rows:
+        validator.validate(row["packet"])
     tracemalloc.start()
     start = time.perf_counter()
     predictions = {r["id"]: check_packet(r["packet"])["results"][0]["status"] for r in rows}

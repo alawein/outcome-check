@@ -61,6 +61,7 @@ uv run python scripts/build_state_demo.py
 npm ci --ignore-scripts
 npm test
 npm run perf
+npm run lhci
 ```
 
 Open `site/state.html` for the four-state showcase, `site/index.html` for the alarm case or `site/acceptance.html` for the

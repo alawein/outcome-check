@@ -31,9 +31,12 @@ animation:settle .45s both}.event[data-status=contradicted]{border-inline-start-
 animation:shake .35s both}.event[data-status=unobserved]{border-style:dashed}
 .event[data-status=unobserved] .stages{opacity:1}.event[data-status=unconfirmed]{
 border-inline-start-color:var(--pending)}.event small{display:block;margin-top:12px}
-[data-vibe=cartoon] .event,[data-vibe=cartoon] .card{border-radius:20px;
+[data-vibe=cartoon] .event,[data-vibe=cartoon] .card{border-radius:18px 24px 20px 16px;
 box-shadow:5px 5px 0 var(--muted);animation-timing-function:cubic-bezier(.2,1.7,.4,1)}
 [data-vibe=calm] .event{animation-duration:.8s}[data-vibe=pixel] *{border-radius:0!important}
+[data-vibe=pixel] .hero{
+background-image:repeating-conic-gradient(var(--surface) 0 25%,transparent 0 50%);
+background-size:4px 4px}
 [data-vibe=pixel] .event{animation-timing-function:steps(5)}[data-vibe=lab] main{max-width:1440px}
 [data-vibe=lab] .event{padding:12px;animation-duration:.12s}[data-vibe=lab]{font-size:15px}
 .hero{width:100%;height:80px;display:block;border-radius:8px;background:var(--surface)}
@@ -104,11 +107,12 @@ announce(paused?'Motion paused':'Motion resumed')});
 
 document.addEventListener('visibilitychange',()=>{root.classList.toggle('hidden-page',document.hidden);
 
-if(!document.hidden)draw()});
+if(document.hidden)stopMotion();else if(attempted)draw()});
 const canvas=document.getElementById('evidence-field');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-let worker=null,attempted=false;
-function draw(){if(document.hidden||reduced.matches||root.classList.contains('paused'))return;
+let worker=null,attempted=false,fieldVisible=true;
+function draw(){
+if(!fieldVisible||document.hidden||reduced.matches||root.classList.contains('paused'))return;
 initWorker();if(worker){
 worker.postMessage({tint:getComputedStyle(root).getPropertyValue('--accent').trim(),animate:true})}}
 function initWorker(){if(attempted)return;attempted=true;
@@ -120,21 +124,43 @@ worker.onmessage=e=>{if(e.data.renderer)canvas.dataset.renderer=e.data.renderer}
 const surface=canvas.transferControlToOffscreen();
 worker.postMessage({canvas:surface},[surface]);}}
 catch{worker=null}}
-reduced.addEventListener('change',()=>{
-if(reduced.matches&&worker)worker.postMessage({stop:true});else draw()});
-pause.addEventListener('click',()=>{if(worker)worker.postMessage({stop:true});
+function stopMotion(){
+document.querySelectorAll('.event, .hero').forEach(e=>e.getAnimations().forEach(a=>a.cancel()));
+if(worker)worker.postMessage({stop:true})}
+reduced.addEventListener('change',()=>{if(reduced.matches)stopMotion();else draw()});
+pause.addEventListener('click',()=>{stopMotion();
 if(!root.classList.contains('paused'))draw()});
 function replay(){if(reduced.matches||root.classList.contains('paused')||document.hidden)return;
+canvas.getAnimations().forEach(a=>a.cancel());
 const easing=getComputedStyle(root).getPropertyValue('--ease').trim()||'ease-out';
 document.querySelectorAll('.event').forEach(e=>{e.getAnimations().forEach(a=>a.cancel());
-if(e.dataset.status==='confirmed')e.animate([{transform:'translateY(8px)'},
+if(e.dataset.inView==='false')return;
+if(e.dataset.status==='confirmed')e.animate(root.dataset.vibe==='cartoon'?
+[{transform:'translateY(8px) scale(.97,1.03)'},{transform:'translateY(-2px) scale(1.02,.98)'},
+{transform:'translateY(0) scale(1,1)'}]:[{transform:'translateY(8px)'},
 {transform:'translateY(0)'}],{duration:600,easing});
 if(e.dataset.status==='contradicted')e.animate([{transform:'translateX(0)'},
 {transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],
 {duration:350,easing})});draw()}
+if(typeof IntersectionObserver!=='undefined'){
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+if(entry.target===canvas)fieldVisible=entry.isIntersecting;
+else entry.target.dataset.inView=String(entry.isIntersecting);
+if(!entry.isIntersecting){entry.target.getAnimations().forEach(a=>a.cancel());
+if(entry.target===canvas&&worker)worker.postMessage({stop:true})}}));
+observer.observe(canvas);document.querySelectorAll('.event').forEach(e=>observer.observe(e))}
+canvas.addEventListener('pointermove',e=>{
+if(!fieldVisible||root.dataset.vibe!=='calm'||reduced.matches||document.hidden||
+root.classList.contains('paused'))return;
+const r=canvas.getBoundingClientRect();
+const x=((e.clientX-r.left)/r.width-.5)*4,y=((e.clientY-r.top)/r.height-.5)*4;
+canvas.getAnimations().forEach(a=>a.cancel());
+canvas.animate([{transform:'translate3d(0,0,0)'},{transform:`translate3d(${x}px,${y}px,0)`}],
+{duration:220,easing:'ease-out',fill:'forwards'})});
+canvas.addEventListener('pointerleave',()=>canvas.getAnimations().forEach(a=>a.cancel()));
 document.getElementById('replay').addEventListener('click',replay);
 vibe.addEventListener('change',replay);
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&worker)worker.postMessage({stop:true})});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMotion()});
 window.addEventListener('pagehide',()=>{if(worker){worker.terminate();worker=null}});
 })();"""
 
@@ -176,7 +202,12 @@ Replay timeline</button>
         label = "unconfirmed-no-change" if status == "unconfirmed" else status
 
         def esc(key: str, item: dict = row) -> str:
-            return html.escape(str(item.get(key, "not supplied")))
+            value = item.get(key, "not supplied")
+            if (key == "action_id" and value is None) or (
+                key == "action" and value == "not_required"
+            ):
+                value = "not required"
+            return html.escape(str(value))
 
         events.append(
             f'<li class="event" data-status="{status}"><h3>{esc("id")}: {label}</h3>'
