@@ -1,0 +1,53 @@
+{
+  "source_head": "1bed622efcacc88de57b074b4d02aa0fa41a7fa2",
+  "access_date": "2026-10-13",
+  "clone": "fresh --no-local temporary clone outside ignored directory names",
+  "python": "3.11.13",
+  "python_tests": 260,
+  "test_seconds": 10.82,
+  "ruff": "passed",
+  "mypy": "passed",
+  "pyright": "0 errors, 0 warnings",
+  "schemas": 19,
+  "examples": 10,
+  "wheel_and_sdist": "passed",
+  "browser_observations": 27,
+  "motion_contract_tests": 2,
+  "benchmark_cases": 1038,
+  "benchmark_accuracy": 1.0,
+  "native_croissant_record_sets": 2,
+  "direct_lighthouse": {
+    "performance": 0.82,
+    "accessibility": 1.0,
+    "lcp_ms": 1145,
+    "tbt_ms": 335
+  },
+  "native_lighthouse_ci": {
+    "performance": 0.92,
+    "accessibility": 1.0,
+    "lcp_ms": 894.226,
+    "tbt_ms": 196.5,
+    "configured_assertions": "passed"
+  },
+  "limitations": [
+    "Lighthouse and event duration do not prove field INP.",
+    "Earlier nested-clone build was interrupted, not passed.",
+    "No human study or full native tau reward replay."
+  ],
+  "swebench_identity_followup": {
+    "date": "2026-10-13",
+    "python": "3.11.13",
+    "tests": 262,
+    "seconds": 8.08,
+    "lint_types_schemas_build": "passed",
+    "adapter_sha256": "b344fbc09c6cb2981c2f29fa9db9971904c6a4bee6f2e7a53b461abda2763589",
+    "integration_tests_sha256": "25adb2147833668938192b6afe499517bb0b4c4b10aaa1e14fabdefb5bddabfb",
+    "negative_regression": "failed before correction; matching IDs accepted, conflicting IDs rejected without input mutation",
+    "viewer_and_checker": "unchanged",
+    "hash_basis": "SHA-256 of canonical LF Git blob bytes",
+    "fresh_clone_source_head": "974e64e3c46afe3529786c38a38abbcdaedf62ec",
+    "fresh_clone_tests": 262,
+    "fresh_clone_test_seconds": 9.72,
+    "fresh_clone_lint_types_schemas_build": "passed"
+  }
+}

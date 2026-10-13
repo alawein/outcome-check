@@ -1,0 +1,22 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "site",
+      "url": ["http://localhost/state.html"],
+      "numberOfRuns": 1,
+      "additive": true,
+      "settings": {
+        "onlyCategories": ["performance", "accessibility"],
+        "formFactor": "desktop",
+        "screenEmulation": {"mobile": false, "width": 1280, "height": 800, "deviceScaleFactor": 1, "disabled": false},
+        "chromeFlags": "--headless --no-sandbox"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "largest-contentful-paint": ["error", {"maxNumericValue": 2500}],
+        "categories:accessibility": ["error", {"minScore": 1}]
+      }
+    }
+  }
+}

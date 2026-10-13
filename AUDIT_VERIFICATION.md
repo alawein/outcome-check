@@ -42,7 +42,7 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
 | Equality only | Confirmed at baseline. | Version 2 ranges, typed array contains, restricted regex and baseline checks. |
 | Do-nothing exploit | Confirmed: equal final state can confirm even if it existed already. | requires_change plus explicit preaction baseline yields unconfirmed for unchanged satisfied state. |
 | No adapters | Confirmed at baseline; a generic format does not collect benchmark state. | Explicit final-state mapping and supplied public trajectory study; no benchmark execution claim. |
-| 45 vs 49 tests | Confirmed baseline has 49. | PR head 9c96f81 and squash 939b9a5 tests identical; isolated head has49. PRbody45 stale; v0.2.0 release49 correct. Links in docs/related-work.md. |
+| 45 vs 49 tests | Confirmed baseline has 49. | PR head 9c96f81 and squash 939b9a5 tests identical; isolated head has 49. PRbody45 stale; v0.2.0 release49 correct. Links in docs/related-work.md. |
 | First PR nonpassing check | Root verified 15 successful Actions checks, CodeRabbit pending. | No test failure inferred from the aggregate 15/16 display. |
 | No property tests/schemas | Confirmed at baseline. | Hypothesis freshness and versioned Draft 2020-12 schemas. |
 | Python floor/distribution | Confirmed Python >=3.13 and GitHub artifact installation. | 3.11 compatibility tested; publication remains explicitly out of scope. |
@@ -58,7 +58,7 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
   required-change state becomes unconfirmed; contradictory unchanged/change flags
   are rejected by contract validation.
 - contract.py age_seconds:54 retains exact Fraction comparisons. load_packet:160
-  opens only rb at161. validate_v2:175 validates extensions without relaxing v1.
+  opens only rb at 161. validate_v2:175 validates extensions without relaxing v1.
 - cli.py delegates requested report writes to atomic_write, and writes JSON stdout.
   output.py atomic_write:26 stages requested reports; stream.write:39, fsync,
   os.replace or no-clobber os.link, then stage cleanup. signatures.py public-key
@@ -73,15 +73,15 @@ HEAD 1d52b8e92790fcd304cb0da5309822a2c3d8d844, clean isolated clone. Frozen lock
   Public study scope, hosted security settings, release/publish/merge/Pages gates,
   absent adoption evidence and full RFC 8785 float interoperability remain explicit
   limits, not completed external effects.
-- Final product suite: 49 baseline to114 tests, including200 Hypothesis generated
-  freshness examples per default run across2 property tests. Type check, lint,
+- Final product suite: 49 baseline to 114 tests, including200 Hypothesis generated
+  freshness examples per default run across 2 property tests. Type check, lint,
   schemas and builds are independently run; no test count is inferred from docs.
-  Frozen lock8 to69 entries, zero default runtime dependencies. Historical3.11.14
+  Frozen lock8 to 69 entries, zero default runtime dependencies. Historical3.11.14
   interpreter was broken before project import; independent3.11.13 works.
 
 Product commit31269ea was cloned locally without hard links into an ignored
 build/verification-clone. Frozen installation,114 tests, Ruff lint/format, mypy,
-all12schemas/all6JSONexamples, build and isolated installed-wheel v1/v2 smoke
+all 12 schemas/all 6JSONexamples, build and isolated installed-wheel v1/v2 smoke
 passed there; git status remained clean. This verifies the committed product,
 not the root-owned uncommitted CI/public-study files. Original wheel and sdist
 were also separately built, checked by twine and installed/tested in fresh venvs.
@@ -135,3 +135,60 @@ Hosted initial link check failed on the two references to the authenticated
 maintainer settings page, each returning 404 to anonymous lychee. Only the exact
 settings URL is excluded in .lycheeignore; public citations remain checked.
 The remote checks are rerun after this documented correction.
+
+## Fresh redesign baseline, October 13, 2026
+
+Prechange source `7c49ae4f77c69b48abdb0f38c1a276811f3886db`: 240 tests passed
+in 7.15s, Python 3.13.9. Prior 49-test baseline and 114-test hardening results above
+are historical, not today's count. Core default runtime dependencies remain zero.
+
+| Prior hypothesis | Fresh classification and source evidence |
+| --- | --- |
+| Equality-only | Refuted for current source: core.py:118 compare and checks.py:8 safe_regex implement range/contains/bounded regex. Confirmed only at historical baseline. |
+| Trusted unsigned observations | Confirmed boundary: signatures.py:64 signature_status labels unsigned/unverified; bytes do not prove truth. Optional signatures already exist. |
+| No baseline/no-op protection | Refuted currently: core.py:151 compare_baseline and contract.py:177 validate_v2 require referenced prior subject/path evidence and produce unconfirmed for no required change. |
+| No adapters | Partially confirmed currently: studies/tau-airline/run.py projects archived reservation fields, but no public CLI converter existed. New explicit harness adapters fill a narrower, documented supplied-snapshot contract. |
+| Test count45vs49 | Confirmed historical mismatch recorded above; current prechange suite is240, not either old number. |
+| No property/read-only proof | Refuted currently: tests/test_freshness_properties.py:12 and tests/test_runtime_boundary.py:17 already exist; MCP-specific proof is added. |
+| First PR one check not passing | Partially confirmed: PR1 exact head a67d58642ac56008052be23cee39c8ab5e01e99f merged October 4 at 16:57:13Z; check-runs succeeded but CodeRabbit commit status remains pending. A pending reviewer status is not a demonstrated failed required build. |
+| No published PyPI release | Refuted currently: v0.3.0/v0.4.0 publication evidence and fresh release listing; preserve immutable bytes. |
+| 0 stars/single contributor/squash origin | 0 stars confirmed by current repo API; October 4 bootstrap/squashed PR commits verified. Contributor history alone cannot establish all humans/tools involved. |
+| Dependabot/security alerts disabled October 6 | Current alerts/updates disabled confirmed; PR13 removed config October 6. Historical settings events are not fully available, so precise toggle date is only partially verified. |
+| No adapters can verify full-task truth | Confirmed limit: supplied snapshots/results cannot independently collect state or establish complete goals. |
+
+Exact prechange file line numbers and history are retained in the committed
+source tree and earlier evidence above; current implementation changes do not
+rewrite historical audit claims as new measurements. New outcome/CLI/safety
+negative tests are run before implementation, with initial failures observed.
+
+## Redesign candidate verification
+
+Code checkpoint d5a0817b87cb51000e3007121ef15c53e0006c12; a2e423e59b7b5aeda15f80a62a51485e32ebc6f0 adds only explicit CI interpreter selection/version prints. Fresh no-hardlink clone full gate: Python 3.13.9,260 tests; fresh explicit UV_PYTHON3.11.13 and separate environment:260 tests in 20.50s, lint/format,mypy,pyright,19 schemas/10 examples,wheel/sdist pass. Installed default wheel on isolated3.11 has no cryptography dependency and renders four states. Benchmark:1038 cases,168 dev/870 test, split bytes identical across 3.11/3.13. Native mlcroissant 1.1.1 parser/extraction passed two RecordSets.
+
+Plain uv run initially honored the repository3.13 pin rather than the requested3.11 environment; this was observed and corrected, not counted as3.11 evidence. CI matrix now explicitly selects its interpreter and prints it. First draft d5a passed all 20 hosted checks; a 2e's only failure was a 503 on a previously successful MCP primary-source link. One targeted failed-job rerun was issued after that URL was verified reachable. No link exclusion or required check was weakened.
+
+Final local browser harness uses fresh document startup through about:blank to test stored preferences after intermittent Firefox file-reload instrumentation timeouts, also reproduced with GPU disabled. All 24 theme/appearance axe cases and 27 browser observations passed; a concurrent WebKit 33msp95 failure is retained candidly in PERF.md alongside controlled blank/app17msp95 comparison. Budget unchanged. Candidate-source Lighthouse clean clone:.97performance,1.0accessibility,LCP1002 ms,TBT0. Field INP and midrange-hardware certification remain unverified.
+
+Independent coordinator reviewed product checkpoint d5a and CI-only a 2e delta with no blocking findings; final head/check binding remains in the draft PR. Existing release tags/bytes/feature branches and all shared safety code are preserved.
+
+The named Lighthouse CI CLI0.15.1 also completed native collect/assert with one
+local URL/run, unchanged LCP2500 ms/accessibility1.0 bounds and no upload. Native
+result summary is docs/lhci-results.json. Final instrumentation changes add
+keyboard/focus assertions and fresh-document persistence navigation; core source remains unchanged; the final presentation also humanizes a null
+action reference as "not required" without changing JSON.
+
+A final controller review found that CSS-only pause/reduced-motion handling did
+not cancel already-running Web Animations. Two no-GPU emitted-JS controller tests
+failed before implementation, then passed after explicit cancellation on pause,
+reduction and hidden-page events. Real-browser pause assertions additionally
+check no running event animation. Final viewer polish keeps transform-only
+Cartoon squash/stretch, guarded Calm parallax and Pixel dither. All core modules,
+adapters, MCP semantics and shared output-safety bytes remain unchanged.
+
+## Final review verification
+
+Actual CodeRabbit review identified an incorrect answer-key schema description, a measured-platform transcription mismatch, a transitive chrome-launcher import, unused persisted viewer checkout credentials, and prose spacing. These are corrected without changing the checker, adapters, MCP, or viewer behavior. The Kilo duplicate-pause-listener warning is refuted: one listener updates the user-visible pause state and the other stops active motion once, in registration order. The two executable cancellation regressions pass without weakening assertions.
+
+A fresh no-hardlink clone at 4a321c6 passed all 260 tests on explicitly printed Python 3.11.13 in 10.46 seconds, Ruff, mypy, and 19 schemas/10 examples. Its source build was interrupted after diagnosis: Hatchling 1.32.4 discards VCS ignore patterns when the absolute project path itself matches build/, so a clone nested under build/ traverses generated files and node_modules. Final clean-clone verification uses a temporary path outside ignored directory names. The interrupted build is not a pass. Exact final-head checks and fresh-clone results are recorded in PR21.
+
+Final SWE-bench follow-up: conflicting nested wrapper identities now fail instead of being overwritten. The new negative case reproduced the defect; 13 integration tests and the full 262-test Python 3.11.13 gate pass, including types/schemas/build. Duplicate pause/vibe warnings do not demonstrate double replay: settings and animation responsibilities are separate. Duplicate hidden-page stop messages are idempotent; canvas WAAPI cancellation controls the decorative transform, separately from the worker stop message. Fractional MCP request IDs are intentionally rejected. These bounded optional suggestions did not justify speculative runtime changes.

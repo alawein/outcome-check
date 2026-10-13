@@ -26,3 +26,27 @@ anonymous readers; public citations and release links remain checked.
 [Release readiness](RELEASE_READY.md) records the successful v0.3.0 trusted
 publication and the new workflow. Never rotate or expose a token to work around
 registry authentication.
+
+## October 13 observation and optional restoration
+
+Read-only API returned Dependabot security updates disabled, vulnerability alerts
+HTTP404 with GitHub's explicit disabled message, and secret scanning/push protection
+enabled. No settings were changed. The entire Dependabot family remains off by
+owner instruction; restoration requires that instruction to change.
+
+Optional exact owner click paths: repository Settings -> Security -> Advanced
+Security (or Code security and analysis) -> Dependabot alerts -> Enable; then
+Dependabot security updates -> Enable. Version-update PRs separately require
+a reviewed `.github/dependabot.yml`; no such configuration is added here.
+The current maintainer URL above is the destination, not proof of permissions.
+
+Browser-only development tools now also use `npm audit --json` in report-only
+CI. Audit findings do not change zero-default-dependency Python runtime scope.
+Do not blindly apply audit fix --force or enable Dependabot to clear reports.
+
+The final development-tool audit snapshot reports 36 npm findings (2 low,
+23 moderate, 11 high) after adding the requested native Lighthouse CI CLI.
+These are development-only dependencies; no claim of a clean browser-tool audit
+is made. The Python dependency snapshot reports no known vulnerabilities; the
+unpublished development package itself is skipped by the public vulnerability
+registry. Both jobs remain report-only, with no forced dependency upgrade.

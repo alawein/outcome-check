@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add Siftgrain State display branding, four offline viewer themes, dark/light controls, evidence timeline, and optional worker WebGL2 sweep.
+- Add explicit tau/SWE-bench/Inspect JSON conversion, a read-only stdio MCP check tool, and a composite GitHub Action.
+- Add pinned trajectory fault benchmark, local downloadable splits, browser/a11y/performance verification, and real theme recordings.
+- Retain package identity, stdlib runtime, schema v1/v2/v3 semantics, signatures, and atomic output safety.
+
 - Retry incomplete post-publication registry listings with bounded backoff while
   preserving strict distribution bytes, inventory and publisher provenance checks.
 

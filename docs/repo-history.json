@@ -1,0 +1,357 @@
+{
+  "access_date": "2026-10-13",
+  "cutoff": "2026-10-13 America/Los_Angeles",
+  "coverage": "All current branch commits and PRs/releases returned since October4; current settings snapshot only. Historical settings change events unavailable for a user-owned repo.",
+  "commits": [
+    {
+      "sha": "aa7f1ba58766032cff8f3315a856156b106878bc",
+      "date": "2026-10-10T19:17:31Z",
+      "subject": "fix: label demo tabs and use verified upstream evidence links"
+    },
+    {
+      "sha": "2e6e8c790e8ea578960f4d31602bdfed9aa8cddf",
+      "date": "2026-10-10T19:06:54Z",
+      "subject": "Merge remote-tracking branch 'origin/main' into feature/agent-acceptance-demo"
+    },
+    {
+      "sha": "b0004d0351bd2a2cb6980b0ed8ce8b8917caff7a",
+      "date": "2026-10-10T18:57:27Z",
+      "subject": "feat: add evidence-first Agent Acceptance demo"
+    },
+    {
+      "sha": "bfc857f6b4ffbe63dc950052e9ee5a8e7278bad2",
+      "date": "2026-10-08T19:09:16Z",
+      "subject": "fix: reconcile release notes after verified retries (#19)"
+    },
+    {
+      "sha": "6500ecf94692bfb818c2fe00ae3371d9dac67b88",
+      "date": "2026-10-08T18:50:25Z",
+      "subject": "fix: wait for verified registry metadata propagation (#18)"
+    },
+    {
+      "sha": "6f026e2f59059c34dd53b496eb4ff973712d380d",
+      "date": "2026-10-08T18:29:59Z",
+      "subject": "feat: add versioned canonical signatures and release closeout (#17)"
+    },
+    {
+      "sha": "66fea09ab87352224d3e01b65709392c3259e0ca",
+      "date": "2026-10-08T15:00:20Z",
+      "subject": "feat: harden supplied-observation outcome checks for v0.3.0 (#16)"
+    },
+    {
+      "sha": "1d52b8e92790fcd304cb0da5309822a2c3d8d844",
+      "date": "2026-10-07T11:45:00Z",
+      "subject": "docs: refine README introduction and add stack labels (#15)"
+    },
+    {
+      "sha": "e7afb4308b3bf1f495ac458f1a0c78dae3c8359c",
+      "date": "2026-10-06T15:35:03Z",
+      "subject": "ci: trim redundant workflow runs (#14)"
+    },
+    {
+      "sha": "6a55cc93a8cac436999f07f2e6fd439e8bd2550b",
+      "date": "2026-10-06T07:04:42Z",
+      "subject": "chore: remove Dependabot config (#13)"
+    },
+    {
+      "sha": "999cbe77758f662b70f3ff70b862608c42c0e9c6",
+      "date": "2026-10-06T04:52:49Z",
+      "subject": "chore(deps): bump actions/upload-pages-artifact from 3.0.1 to 5.0.0 (#9)"
+    },
+    {
+      "sha": "273514ed9c1f066cb35d2d3c5d29da41d1191c4f",
+      "date": "2026-10-06T04:52:24Z",
+      "subject": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0 (#8)"
+    },
+    {
+      "sha": "34957dd8b25b33da63331643410adb1804297fa4",
+      "date": "2026-10-06T04:49:13Z",
+      "subject": "chore(deps): bump astral-sh/setup-uv from 6.8.0 to 10.2.0 (#10)"
+    },
+    {
+      "sha": "bd31c4b265995a3b99aaf1d5b9bfd54130e0a723",
+      "date": "2026-10-06T04:49:03Z",
+      "subject": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1 (#7)"
+    },
+    {
+      "sha": "f6f27ec9c23021ac3f5344b837b26f1ff11db832",
+      "date": "2026-10-06T04:48:56Z",
+      "subject": "chore(deps): bump actions/configure-pages from 5.0.0 to 6.0.0 (#6)"
+    },
+    {
+      "sha": "844e61ca5440156019b80b6f60af7e14b8f967e3",
+      "date": "2026-10-06T04:21:32Z",
+      "subject": "fix(ci): reject missing pull request title coverage (#11)"
+    },
+    {
+      "sha": "90d9ad59ee5f72ee730ccc01b8eef734ad3ffb1e",
+      "date": "2026-10-04T21:05:45Z",
+      "subject": "docs: link shared stack conventions (#5)"
+    },
+    {
+      "sha": "939b9a5c91178d46ff749bdc0211c5bcdcdedfe3",
+      "date": "2026-10-04T19:56:06Z",
+      "subject": "feat: structured report viewer and diagnostics (v0.2.0) (#4)"
+    },
+    {
+      "sha": "d11a66a5607ef3aa0cb8dfe261c078bf6dc85365",
+      "date": "2026-10-04T17:37:59Z",
+      "subject": "fix: regenerate canonical example digests for v0.1.2 (#3)"
+    },
+    {
+      "sha": "0cf4ce709f98c052d8250444ba40e495c11d7f8d",
+      "date": "2026-10-04T17:02:47Z",
+      "subject": "chore(release): v0.1.0 (#2)"
+    },
+    {
+      "sha": "0a45873278a4a7af112e98ef43f912cb03921acf",
+      "date": "2026-10-04T16:57:12Z",
+      "subject": "feat: implement supplied-evidence outcome checks (#1)"
+    },
+    {
+      "sha": "be5eaa8356111235d41fb80841ee1e0ff2c66480",
+      "date": "2026-10-04T16:44:16Z",
+      "subject": "chore: bootstrap outcome check"
+    },
+    {
+      "sha": "7c49ae4f77c69b48abdb0f38c1a276811f3886db",
+      "date": "2026-10-10T19:43:51Z",
+      "subject": "feat: add Agent Acceptance outcome demo (#20)"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 20,
+      "title": "feat: add Agent Acceptance outcome demo",
+      "state": "closed",
+      "created_at": "2026-10-10T19:07:36Z",
+      "updated_at": "2026-10-10T19:56:13Z",
+      "merged_at": "2026-10-10T19:43:51Z",
+      "head_sha": "aa7f1ba58766032cff8f3315a856156b106878bc"
+    },
+    {
+      "number": 19,
+      "title": "fix: reconcile release notes after verified retries",
+      "state": "closed",
+      "created_at": "2026-10-08T19:07:28Z",
+      "updated_at": "2026-10-10T18:38:06Z",
+      "merged_at": "2026-10-08T19:09:16Z",
+      "head_sha": "ab57e1c44ab4e49a4f2d33c924337f6d1a66b120"
+    },
+    {
+      "number": 18,
+      "title": "fix: wait for verified registry metadata propagation",
+      "state": "closed",
+      "created_at": "2026-10-08T18:43:41Z",
+      "updated_at": "2026-10-10T18:37:56Z",
+      "merged_at": "2026-10-08T18:50:26Z",
+      "head_sha": "1dbc445e8c9657503bbf9d86ea0a9e9de66d456e"
+    },
+    {
+      "number": 17,
+      "title": "feat: add versioned canonical signatures and release closeout",
+      "state": "closed",
+      "created_at": "2026-10-08T17:56:27Z",
+      "updated_at": "2026-10-10T18:37:48Z",
+      "merged_at": "2026-10-08T18:30:00Z",
+      "head_sha": "4b31a00abe0a07c3d41516bb7c7fc23828463ba5"
+    },
+    {
+      "number": 16,
+      "title": "feat: harden supplied-observation outcome checks for v0.3.0",
+      "state": "closed",
+      "created_at": "2026-10-08T11:57:06Z",
+      "updated_at": "2026-10-10T18:37:39Z",
+      "merged_at": "2026-10-08T15:00:21Z",
+      "head_sha": "0629b3e835f2032841c2e197bb7315b2e00ed10c"
+    },
+    {
+      "number": 15,
+      "title": "docs: refine README introduction and add stack labels",
+      "state": "closed",
+      "created_at": "2026-10-07T11:42:01Z",
+      "updated_at": "2026-10-07T11:45:02Z",
+      "merged_at": "2026-10-07T11:45:00Z",
+      "head_sha": "f9a81823a42fd30819d6be42be1c7a160a8265e3"
+    },
+    {
+      "number": 14,
+      "title": "ci: trim redundant workflow runs",
+      "state": "closed",
+      "created_at": "2026-10-06T15:34:23Z",
+      "updated_at": "2026-10-06T15:35:05Z",
+      "merged_at": "2026-10-06T15:35:03Z",
+      "head_sha": "936e0d355491c81aef7af11fa56189723d4a6f75"
+    },
+    {
+      "number": 13,
+      "title": "chore: remove Dependabot config",
+      "state": "closed",
+      "created_at": "2026-10-06T07:03:23Z",
+      "updated_at": "2026-10-06T07:04:45Z",
+      "merged_at": "2026-10-06T07:04:43Z",
+      "head_sha": "333c505a27dcb170b68e3adef662fa04da91ffd8"
+    },
+    {
+      "number": 12,
+      "title": "chore: remove Dependabot config",
+      "state": "closed",
+      "created_at": "2026-10-06T06:26:07Z",
+      "updated_at": "2026-10-07T11:46:11Z",
+      "merged_at": null,
+      "head_sha": "bb64d16260753d812bf47c0de97257a51d925044"
+    },
+    {
+      "number": 11,
+      "title": "fix(ci): reject missing pull request title coverage",
+      "state": "closed",
+      "created_at": "2026-10-06T04:19:33Z",
+      "updated_at": "2026-10-06T04:21:35Z",
+      "merged_at": "2026-10-06T04:21:32Z",
+      "head_sha": "603ca90685bb3da705fe7bda2ec9403ae0a1fddb"
+    },
+    {
+      "number": 10,
+      "title": "chore(deps): bump astral-sh/setup-uv from 6.8.0 to 10.2.0",
+      "state": "closed",
+      "created_at": "2026-10-05T08:26:41Z",
+      "updated_at": "2026-10-06T04:49:16Z",
+      "merged_at": "2026-10-06T04:49:14Z",
+      "head_sha": "04b80747ef56a180d41442f19529da10fb37969e"
+    },
+    {
+      "number": 9,
+      "title": "chore(deps): bump actions/upload-pages-artifact from 3.0.1 to 5.0.0",
+      "state": "closed",
+      "created_at": "2026-10-05T08:26:31Z",
+      "updated_at": "2026-10-06T04:52:52Z",
+      "merged_at": "2026-10-06T04:52:49Z",
+      "head_sha": "dbf55840bc940b30fac4b9182d0fcbdc4725c645"
+    },
+    {
+      "number": 8,
+      "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+      "state": "closed",
+      "created_at": "2026-10-05T08:26:29Z",
+      "updated_at": "2026-10-06T04:52:27Z",
+      "merged_at": "2026-10-06T04:52:25Z",
+      "head_sha": "b090f2f5ea66d76a28b9558d511cc376f8f5b034"
+    },
+    {
+      "number": 7,
+      "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+      "state": "closed",
+      "created_at": "2026-10-05T08:26:26Z",
+      "updated_at": "2026-10-06T04:49:06Z",
+      "merged_at": "2026-10-06T04:49:04Z",
+      "head_sha": "0321d96ff232ec19ed33dc7657122da9116628dc"
+    },
+    {
+      "number": 6,
+      "title": "chore(deps): bump actions/configure-pages from 5.0.0 to 6.0.0",
+      "state": "closed",
+      "created_at": "2026-10-05T08:26:22Z",
+      "updated_at": "2026-10-06T04:48:59Z",
+      "merged_at": "2026-10-06T04:48:57Z",
+      "head_sha": "5876fe87da69689ed13d9b713a60433c23d28871"
+    },
+    {
+      "number": 5,
+      "title": "docs: link shared stack conventions",
+      "state": "closed",
+      "created_at": "2026-10-04T21:04:21Z",
+      "updated_at": "2026-10-04T21:05:47Z",
+      "merged_at": "2026-10-04T21:05:45Z",
+      "head_sha": "2f1123a72cec74931eb4942052d6593b15f11ea9"
+    },
+    {
+      "number": 4,
+      "title": "feat: structured report viewer and diagnostics (v0.2.0)",
+      "state": "closed",
+      "created_at": "2026-10-04T19:35:51Z",
+      "updated_at": "2026-10-04T19:56:09Z",
+      "merged_at": "2026-10-04T19:56:07Z",
+      "head_sha": "9c96f81da3d12e0b518801d0f2a48d6365284903"
+    },
+    {
+      "number": 3,
+      "title": "fix: regenerate canonical example digests for v0.1.2",
+      "state": "closed",
+      "created_at": "2026-10-04T17:30:59Z",
+      "updated_at": "2026-10-04T17:38:03Z",
+      "merged_at": "2026-10-04T17:38:00Z",
+      "head_sha": "24bab923cffd4e43ebfc82298a65a3f4dc407d91"
+    },
+    {
+      "number": 2,
+      "title": "chore(release): v0.1.0",
+      "state": "closed",
+      "created_at": "2026-10-04T16:57:19Z",
+      "updated_at": "2026-10-04T17:02:50Z",
+      "merged_at": "2026-10-04T17:02:48Z",
+      "head_sha": "228d346a099d6e651cb7966488f2441f55fcbb5f"
+    },
+    {
+      "number": 1,
+      "title": "feat: implement supplied-evidence outcome checks",
+      "state": "closed",
+      "created_at": "2026-10-04T16:50:37Z",
+      "updated_at": "2026-10-04T16:57:14Z",
+      "merged_at": "2026-10-04T16:57:13Z",
+      "head_sha": "a67d58642ac56008052be23cee39c8ab5e01e99f"
+    }
+  ],
+  "releases": [
+    {
+      "tag_name": "v0.4.0",
+      "published_at": "2026-10-08T18:36:07Z",
+      "name": "v0.4.0",
+      "html_url": "https://github.com/alawein/outcome-check/releases/tag/v0.4.0"
+    },
+    {
+      "tag_name": "v0.3.0",
+      "published_at": "2026-10-08T15:21:57Z",
+      "name": "outcome-check v0.3.0",
+      "html_url": "https://github.com/alawein/outcome-check/releases/tag/v0.3.0"
+    },
+    {
+      "tag_name": "v0.2.0",
+      "published_at": "2026-10-04T19:58:11Z",
+      "name": "v0.2.0 structured report viewer and diagnostics",
+      "html_url": "https://github.com/alawein/outcome-check/releases/tag/v0.2.0"
+    },
+    {
+      "tag_name": "v0.1.2",
+      "published_at": "2026-10-04T17:39:05Z",
+      "name": "Outcome check 0.1.2",
+      "html_url": "https://github.com/alawein/outcome-check/releases/tag/v0.1.2"
+    },
+    {
+      "tag_name": "v0.1.0",
+      "published_at": "2026-10-04T17:04:54Z",
+      "name": "Outcome check 0.1.0",
+      "html_url": "https://github.com/alawein/outcome-check/releases/tag/v0.1.0"
+    }
+  ],
+  "settings": {
+    "default_branch": "main",
+    "stargazers_count": 0,
+    "security_and_analysis": {
+      "secret_scanning": {
+        "status": "enabled"
+      },
+      "secret_scanning_push_protection": {
+        "status": "enabled"
+      },
+      "dependabot_security_updates": {
+        "status": "disabled"
+      },
+      "secret_scanning_non_provider_patterns": {
+        "status": "disabled"
+      },
+      "secret_scanning_validity_checks": {
+        "status": "disabled"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_version": "1.0.0",
+  "source_url": "https://raw.githubusercontent.com/sierra-research/tau-bench/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json",
+  "source_commit": "59a200c6d575d595120f1cb70fea53cef0632f6b",
+  "source_sha256": "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa",
+  "publication_date": "unknown: archive original publication not established",
+  "revision_date": "2026-03-18T17:36:06Z",
+  "release_date": "unknown",
+  "access_date": "2026-10-13",
+  "license": "MIT",
+  "license_url": "https://raw.githubusercontent.com/sierra-research/tau-bench/59a200c6d575d595120f1cb70fea53cef0632f6b/LICENSE",
+  "source_stored": "ignored studies/data; raw transcripts not redistributed",
+  "labels": "controlled programmatic fault labels, no human judgments",
+  "native_baseline": "unavailable: complete goal/final databases not present",
+  "llm_baseline": "omitted: no model calls"
+}

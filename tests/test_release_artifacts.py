@@ -46,7 +46,10 @@ def test_exact_inventory_and_metadata(tmp_path):
 
 def test_create_checksum_inventory_has_exact_lf_bytes(tmp_path, monkeypatch):
     directory, manifest = artifacts(tmp_path)
-    monkeypatch.chdir(Path(__file__).parents[1])
+    (tmp_path / "pyproject.toml").write_text(
+        '[project]\nname = "outcome-check"\nversion = "0.4.0"\n'
+    )
+    monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(
         sys,
         "argv",

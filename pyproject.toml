@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "outcome-check"
-version = "0.4.0"
+version = "0.5.0.dev0"
 description = "Compare requested outcomes with supplied state evidence."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -16,6 +16,8 @@ signing = ["cryptography>=44"]
 
 [project.scripts]
 outcome-check = "outcome_check.cli:main"
+outcome-convert = "outcome_check.convert:main"
+outcome-check-mcp = "outcome_check.mcp:main"
 
 [dependency-groups]
 dev = [

@@ -1,0 +1,220 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "Dataset",
+  "citeAs": "Meshal Alawein. Siftgrain State controlled fault set v1 (2026).",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "datePublished": "2026-10-13",
+  "description": "Pinned public reservation-state anchors with six controlled interventions; not full-task human gold.",
+  "distribution": [
+    {
+      "@id": "dev",
+      "@type": "cr:FileObject",
+      "contentUrl": "dev.json",
+      "encodingFormat": "application/json",
+      "name": "dev.json",
+      "sha256": "6275bf92c8b898eb9319cb8b7a94a2f8305c81ba8c9be973681ba686d32be0f7"
+    },
+    {
+      "@id": "test",
+      "@type": "cr:FileObject",
+      "contentUrl": "test.json",
+      "encodingFormat": "application/json",
+      "name": "test.json",
+      "sha256": "d75bc46a20cd233a8798e891579daeff55f7027659b22e9fe871a7b816b9c6ef"
+    },
+    {
+      "@id": "dev-answers",
+      "@type": "cr:FileObject",
+      "contentUrl": "dev-answers.json",
+      "encodingFormat": "application/json",
+      "name": "dev-answers.json",
+      "sha256": "927e38fff6f41f8f3d8783c367f262bcc29c6e1e12ed296bd24b4b83b2aa9353"
+    },
+    {
+      "@id": "test-answers",
+      "@type": "cr:FileObject",
+      "contentUrl": "test-answers.json",
+      "encodingFormat": "application/json",
+      "name": "test-answers.json",
+      "sha256": "2f6213a3f6cc16e3c3164ded34c05c142c61d9f87c270178a5f12405077ab408"
+    }
+  ],
+  "license": "https://spdx.org/licenses/MIT.html",
+  "name": "Siftgrain State controlled fault set",
+  "recordSet": [
+    {
+      "@id": "dev-cases",
+      "@type": "cr:RecordSet",
+      "description": "Controlled fault cases; packet JSON is described by cases.schema.json; independent answer keys are described by answers.schema.json.",
+      "field": [
+        {
+          "@id": "dev/id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "id",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].id"
+            },
+            "fileObject": {
+              "@id": "dev"
+            }
+          }
+        },
+        {
+          "@id": "dev/source_index",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "name": "source_index",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].source_index"
+            },
+            "fileObject": {
+              "@id": "dev"
+            }
+          }
+        },
+        {
+          "@id": "dev/fault",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "fault",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].fault"
+            },
+            "fileObject": {
+              "@id": "dev"
+            }
+          }
+        },
+        {
+          "@id": "dev/split",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "split",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].split"
+            },
+            "fileObject": {
+              "@id": "dev"
+            }
+          }
+        }
+      ],
+      "name": "dev_cases"
+    },
+    {
+      "@id": "test-cases",
+      "@type": "cr:RecordSet",
+      "description": "Controlled fault cases; packet JSON is described by cases.schema.json; independent answer keys are described by answers.schema.json.",
+      "field": [
+        {
+          "@id": "test/id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "id",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].id"
+            },
+            "fileObject": {
+              "@id": "test"
+            }
+          }
+        },
+        {
+          "@id": "test/source_index",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "name": "source_index",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].source_index"
+            },
+            "fileObject": {
+              "@id": "test"
+            }
+          }
+        },
+        {
+          "@id": "test/fault",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "fault",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].fault"
+            },
+            "fileObject": {
+              "@id": "test"
+            }
+          }
+        },
+        {
+          "@id": "test/split",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "name": "split",
+          "source": {
+            "extract": {
+              "jsonPath": "$[*].split"
+            },
+            "fileObject": {
+              "@id": "test"
+            }
+          }
+        }
+      ],
+      "name": "test_cases"
+    }
+  ],
+  "url": "https://github.com/alawein/outcome-check",
+  "version": "1.0.0"
+}

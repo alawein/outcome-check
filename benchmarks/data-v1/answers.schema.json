@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alawein.github.io/outcome-check/schemas/answers-v1",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": {
+    "enum": [
+      "confirmed",
+      "contradicted",
+      "unobserved",
+      "unconfirmed"
+    ]
+  }
+}

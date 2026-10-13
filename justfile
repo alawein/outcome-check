@@ -30,3 +30,12 @@ check: lint test typecheck schemas build
 fix:
     uv run ruff check --fix .
     uv run ruff format .
+
+# Fetch pinned public source, inject faults and package local archives.
+bench:
+    uv run python benchmarks/run.py --fetch
+
+viewer:
+    uv run python scripts/build_demo.py
+    uv run python scripts/build_state_demo.py
+    npm test

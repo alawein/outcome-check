@@ -1,0 +1,14 @@
+"""Embedded original logo for single-file reports."""
+
+LOGO = (
+    "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA"
+    "5NiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIj48dGl0bGUgaWQ9InRpdGxlIj"
+    "5TaWZ0Z3JhaW4gU3RhdGUgZXZpZGVuY2Ugc3RlcHM8L3RpdGxlPjxyZWN0IHdpZHRoPSI5NiIga"
+    "GVpZ2h0PSI5NiIgcng9IjE2IiBmaWxsPSIjMTAwYzFjIi8+PHBhdGggZD0iTTIwIDY4VjUyaDIw"
+    "VjM2aDIwVjIwaDE2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmM0NmIiIHN0cm9rZS13aWR0aD0"
+    "iNiIvPjxwYXRoIGQ9Ik0yMCA2OGgxNk00MCA1MmgxNk02MCAzNmgxNiIgc3Ryb2tlPSIjYzViYm"
+    "QzIiBzdHJva2Utd2lkdGg9IjQiLz48cmVjdCB4PSIxNCIgeT0iNjIiIHdpZHRoPSIxMiIgaGVpZ"
+    "2h0PSIxMiIgZmlsbD0iIzlmZTRjNSIvPjxyZWN0IHg9IjM0IiB5PSI0NiIgd2lkdGg9IjEyIiBo"
+    "ZWlnaHQ9IjEyIiBmaWxsPSIjOWZlNGM1Ii8+PHJlY3QgeD0iNTQiIHk9IjMwIiB3aWR0aD0iMTI"
+    "iIGhlaWdodD0iMTIiIGZpbGw9IiM5ZmU0YzUiLz48L3N2Zz4NCg=="
+)
