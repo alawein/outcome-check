@@ -1,6 +1,7 @@
 import base64
 import hashlib
 import json
+import re
 import runpy
 from html.parser import HTMLParser
 from pathlib import Path
@@ -348,6 +349,63 @@ def test_build_demo_keeps_alarm_snapshot_and_exports_acceptance(tmp_path, monkey
         prefix, encoded = href.split(",", 1)
         assert prefix.startswith("data:") and prefix.endswith(";base64")
         assert base64.b64decode(encoded, validate=True) == (site / filename).read_bytes()
+
+
+def test_pages_build_exports_all_demos_with_exact_evidence(tmp_path, monkeypatch):
+    root = Path(__file__).resolve().parents[1]
+    examples = tmp_path / "examples"
+    examples.mkdir()
+    for filename in (
+        "packet.json",
+        "acceptance.json",
+        "acceptance-source.txt",
+        "state.packet.json",
+    ):
+        (examples / filename).write_bytes((root / "examples" / filename).read_bytes())
+    workflow = (root / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+    builders = re.findall(
+        r"^\s+- run: uv run python (scripts/build_[a-z_]+\.py)\s*$", workflow, re.MULTILINE
+    )
+    monkeypatch.chdir(tmp_path)
+    for builder in builders:
+        runpy.run_path(str(root / builder), run_name="__main__")
+    site = tmp_path / "site"
+    required = {
+        "index.html",
+        "report.json",
+        "acceptance.html",
+        "acceptance.json",
+        "acceptance-report.json",
+        "acceptance-source.txt",
+        "state.html",
+        "state.packet.json",
+        "state.report.json",
+    }
+    assert required <= {path.name for path in site.iterdir() if path.stat().st_size}
+    packet_bytes = (examples / "state.packet.json").read_bytes()
+    assert (site / "state.packet.json").read_bytes() == packet_bytes
+    report = json.loads((site / "state.report.json").read_text(encoding="utf-8"))
+    assert report["input_sha256"] == hashlib.sha256(packet_bytes).hexdigest()
+    assert report["counts"] == {
+        "confirmed": 1,
+        "contradicted": 1,
+        "unobserved": 1,
+        "unconfirmed": 1,
+    }
+    assert report["exit_code"] == 1
+    page = (site / "state.html").read_text(encoding="utf-8")
+    assert "Siftgrain State: four evidence states" in page
+    assert "Synthetic, AI-assisted, non-client" in page
+    links = _download_hrefs(page)
+    assert set(links) == {"state.packet.json", "state.report.json"}
+    for filename, href in links.items():
+        prefix, encoded = href.split(",", 1)
+        assert prefix.startswith("data:") and prefix.endswith(";base64")
+        assert base64.b64decode(encoded, validate=True) == (site / filename).read_bytes()
+    assert (site / "acceptance.json").read_bytes() == (examples / "acceptance.json").read_bytes()
+    assert (site / "acceptance-source.txt").read_bytes() == (
+        examples / "acceptance-source.txt"
+    ).read_bytes()
 
 
 def test_v2_html_shows_signature_and_required_baseline_change():

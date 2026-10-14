@@ -25,6 +25,14 @@ jobs:
       - run: uv sync --frozen
       - run: uv run pytest
       - run: uv run python scripts/build_demo.py
+      - run: uv run python scripts/build_state_demo.py
+      - name: Require complete Pages artifact
+        run: |
+          for path in site/index.html site/report.json site/acceptance.html \
+            site/acceptance.json site/acceptance-report.json site/acceptance-source.txt \
+            site/state.html site/state.packet.json site/state.report.json; do
+            test -s "$path" || { echo "::error::Missing or empty Pages artifact: $path"; exit 1; }
+          done
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
